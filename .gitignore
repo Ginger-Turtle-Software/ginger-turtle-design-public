@@ -396,3 +396,21 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+.DS_Store
+
+**/.idea
+**/*/.idea
+**/.idea/**
+src/.DS_Store
+**/appsettings.Development.json
+
+# Specflow auto-generated files
+*.feature.cs
+
+# Notepad++ backup files
+*.bak
+**/local.settings.json
+
+src/GingerTurtle.Storybook.Wasm/Properties/launchSettings.json
+/src/GingerTurtle.Design/wwwroot/bundles
