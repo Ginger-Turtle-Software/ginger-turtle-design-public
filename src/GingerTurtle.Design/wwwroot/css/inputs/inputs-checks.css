@@ -1,0 +1,167 @@
+/****************************************************
+ *  Checkbox Inputs Style
+ ****************************************************/
+input [type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid var(--inputBorderColour);
+    background-color: var(--inputBackgroundColour);
+}
+
+input[type="checkbox"] + .pseudo-check:after{
+    border: 1px solid var(--inputBorderColour);
+    border-radius: 4px;
+    background-position: center;
+    background-size: 14px 14px;
+    top: 0;
+}
+
+input[type="checkbox"]:checked + .pseudo-check:after{
+    border-color: var(--inputSelectedBorderColour);
+    border-radius: 4px;
+    background-color: var(--inputSelectedBackgroundColour);
+    background-image: url('/_content/GingerTurtle.Design/img/icons/tick.svg');
+    background-repeat: no-repeat;
+}
+
+input:checked + .pseudo-check {
+    color: var(--inputSelectedFontColour);
+}
+
+input:checked + .pseudo-check:after{
+    border: 2px solid var(--inputSelectedBorderColour);
+}
+
+input:hover:not([disabled]):not(:focus):not(:focus-visible) + .pseudo-check:after {
+    border: 2px solid var(--inputSelectedBorderColour);
+}
+
+label.pseudo-check.outline:after,
+input[type="checkbox"]:checked + .pseudo-check.outline:after {
+    top: 10px;
+    left: 12px;
+}
+
+label.pseudo-check.outline{
+    background-color: var(--inputBackgroundColour);
+    padding: 8px 12px 8px 44px;
+    border: 1px solid var(--inputBorderColour);
+    border-radius: 4px;
+    line-height: 24px;
+    font-size: 14px;
+    display: inline-flex;
+}
+
+label.pseudo-check.outline:hover {
+    border-color: var(--inputHoverBorderColour);
+}
+
+label.pseudo-check {
+    line-height: 20px;
+    color: var(--inputFontColour);
+    font-weight: 500;
+    word-wrap: break-word;
+    display: block;
+    background-color: transparent;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 0 0 28px;
+    position: relative;
+}
+
+label.pseudo-check.outline:before{
+    top: 10px;
+    left: 12px;
+}
+
+input:checked + .pseudo-check.outline:before{
+    top: 10px;
+    left: 12px;
+}
+
+.pseudo-checkbox-stacked {
+    -webkit-perspective: 500px;
+    perspective: 500px;
+}
+
+.pseudo-checkbox-stacked li{
+    margin:10px 0;
+}
+
+.pseudo-checkbox-inline {
+    display:inline;
+}
+
+.pseudo-checkbox-inline li:first-child{
+    margin:0 10px 0 0;
+}
+
+.pseudo-checkbox-inline li{
+    display: inline-flex;
+    margin-inline: auto;
+    margin: 10px 10px 0;
+}
+
+label.pseudo-check:before,
+label.pseudo-check:after{
+    position: absolute;
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: var(--inputBackgroundColour);
+    transform-origin: center;
+    left:0;
+    border: 1px solid var(--inputBorderColour);
+}
+
+label.pseudo-check:before{
+    border-radius: 4px;
+}
+
+label.pseudo-check:after {
+    position: absolute;
+    background-color: white;
+    border: 0 none;
+}
+
+/****************************************************
+ *  Dark Styling
+ ****************************************************/
+input:hover:not(:focus):not(:focus-visible) + .pseudo-check.dark:after {
+    border: 1px solid var(--inputDarkBorderColour);
+}
+
+/****************************************************
+ *  Disabled / Read Only fields
+ ****************************************************/
+input:disabled + label.pseudo-check.outline {
+    background-color: var(--inputDisabledBackgroundColour);
+    color: var(--inputDisabledFontColour);
+    border-color: var(--inputDisabledBorderColour);
+    cursor: not-allowed;
+}
+input[type="checkbox"]:disabled + .pseudo-check:after,
+input[type="checkbox"]:checked:disabled + .pseudo-check:before{
+    cursor: not-allowed;
+    border-color: var(--inputDisabledBorderColour);
+}
+
+/****************************************************
+ *  Focus Styling
+ ****************************************************/
+input[type="checkbox"]:focus + .pseudo-check:before{
+    outline: 2px solid var(--highlightBlue);
+    border-color: var(--highlightBlue);
+}
+input[type="checkbox"]:focus + .pseudo-check:after {
+    border-color: var(--highlightBlue);
+}
+input:focus + label.pseudo-check.outline{
+    border-color: var(--highlightBlue);
+    outline: 2px var(--highlightBlue) solid;
+    border-radius: 3px;
+}

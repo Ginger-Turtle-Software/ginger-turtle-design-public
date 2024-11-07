@@ -1,0 +1,311 @@
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Contracts
+@using GingerTurtle.Design.Models
+
+<div class="dropdown-wrapper full">
+    
+    <Display If="(!IsExpanded)">
+        <label for="@($"{Id}_Input")" aria-label="@($"{Id}_Input")"></label>
+        <input type="text" Value="@DisplayValue" placeholder="@Placeholder" 
+               id="@($"{Id}_Input")"
+               class="@(Class) pseudo-dropdown @(CanEdit ? "" : "disabled")"
+               @onfocus="@(OpenDropDown)"
+               @onblur="@(() => RefocusOnInput($"{Id}_ExpandedInput"))"
+               disabled="@(!CanEdit || !DisplayOptions.Any())"
+               data-cy="@Id"
+               autocomplete="one-time-code"/>
+       
+        <div class="btn-wrapper @(Class)">
+            <Display If="@(CanEdit)">
+                <button id="@ClearButtonId"
+                        type="button"
+                        tabindex="-1"
+                        class="btn btn-square"
+                        @onclick="@(OpenAndClearDropDown)"
+                        data-cy="@ClearButtonId"
+                        aria-label="@($"{@ClearButtonId}")">
+                    <Icon IconUrl="@ImageUrls.ChevronDown"
+                          Size="ElementSize.Small"/>
+                </button>
+            </Display>
+        </div>
+    </Display>
+
+    <Display If="(IsExpanded)">
+        <label for="@($"{FilterInputId}")" aria-label="@($"{FilterInputId}")" class="hide-me">@($"{FilterInputId}")</label>
+        <DebounceTextInput Value="@DisplayValue"
+                           DebounceMilliseconds="200"
+                           Class="@GetCssClass(IsExpanded)"
+                           InputChangedHandler="FilterTextUpdated"
+                           ElapsedHandler="async() => await FilterOptions()"
+                           Placeholder="@Placeholder"
+                           Type="@TextInputType.Text"
+                           Id="@FilterInputId"
+                           BlurredCallback="@ResetDropdown"
+                           KeyPressedCallback="@KeyPressed"/>
+
+        <div class="btn-wrapper @(Class)">
+            <Display If="(DisplayOptions.Any())">
+                <button id="@ClearButtonId"
+                        type="button" 
+                        tabindex="-1"
+                        class="btn btn-square"
+                        @onblur="@(ResetDropdown)"
+                        @onmousedown="@(ResetDropdown)"
+                        @onclick:preventDefault="true"
+                        data-cy="@ClearButtonId">
+        
+                    <Icon IconUrl="@ImageUrls.ChevronDown"
+                          Size="ElementSize.Small"/>
+                </button>
+            </Display>
+            <Display If="(!DisplayOptions.Any())">
+                <button type="button" 
+                        tabindex="-1"
+                        class="btn btn-square"
+                        @onmousedown="@(ResetDropdown)"
+                        data-cy="@ClearButtonId">
+                    <Icon IconUrl="@ImageUrls.CloseLight"
+                          Size="ElementSize.Medium"/>
+                </button>
+            </Display>
+        </div>
+
+        <div id="@Id"
+             class="dropdown-options-wrapper @(Class) @(RenderInline ? "inline" : "")"
+             tabindex="0">
+            <ol>
+                <Display If="(!DisplayOptions.Any())">
+                    <li class="make-clickable display-message"
+                        @onmousedown="@(ResetDropdown)"
+                        @onclick:preventDefault="true"
+                        data-cy="@($"{Id}_Message")">
+                        @DisplayMessage
+                    </li>
+                </Display>
+
+                <Display If="@(DisplayOptions.Any())">
+                    <Display If="@(CanClear)">
+                        <li class="make-clickable"
+                            @onmousedown="@(ClearSelection)"
+                            @onclick:preventDefault="true"
+                            data-cy="@($"{Id}_Clear")">
+                            <i>@(!string.IsNullOrEmpty(SelectedOptionId) ? "clear":  Placeholder)</i>
+                        </li>
+                    </Display>
+
+                    @foreach (var option in DisplayOptions)
+                    {
+                        <li class="make-clickable @(option.Id == SelectedOptionId ? "selected" : "") @(ActiveOption?.Description == option.Description ? "active" :"")"
+                            id="@GenerateOptionId(option)"
+                            @onmousedown="@(() => SelectionChanged(option))"
+                            @onclick:preventDefault="true"
+                            data-cy="@GenerateOptionId(option)">
+                            @option.Description
+                        </li>
+                    }
+                </Display>
+            </ol>
+        </div>
+    </Display>
+</div>
+
+@code {
+
+    
+    [Inject]
+    public INavigationService NavigationService { get; set; }
+
+    [Inject]
+    public IInputService InputService { get; set; }
+
+    [Parameter]
+    public string Id { get; set; } = Guid.NewGuid().ToString();
+
+    [Parameter, EditorRequired]
+    public string SelectedOptionId { get; set; }
+    
+    [Parameter]
+    public List<QuestionOption> Options { get; set; } = new();
+
+    [Parameter]
+    public EventCallback<QuestionOption> SelectionChangedHandler { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter]
+    public bool CanEdit { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public bool CanClear { get; set; }
+
+    [Parameter] 
+    public bool IsRequired { get; set; }
+
+    protected List<QuestionOption> DisplayOptions { get; set; }
+
+    protected QuestionOption ActiveOption { get; set; }
+
+    protected bool IsExpanded { get; set; }
+    
+    [Parameter]
+    public bool RenderInline { get; set; }
+
+    private string DisplayValue { get; set; }
+
+    private string DisplayMessage { get; set; } = "No options available";
+
+    private string ClearButtonId => $"{Id}_Clear";
+
+    protected override void OnInitialized()
+    {
+        DisplayOptions = Options;
+        ResetDisplayValue();
+        CanEdit = CanEdit && DisplayOptions.Any();
+    }
+
+    protected override void OnParametersSet()
+    {
+        DisplayOptions = Options;
+        ResetDisplayValue();
+    }
+
+    private async Task OpenDropDown()
+    {
+        if (!CanEdit || !DisplayOptions.Any())
+            return;
+
+        IsExpanded = !IsExpanded;
+
+        if (IsExpanded)
+        {
+            if (Options.FirstOrDefault() == null)
+                return;
+
+            var selectedOptionIndex = 0;
+
+            if(!string.IsNullOrEmpty(DisplayValue))
+                selectedOptionIndex = GetSelectedOptionIndex();
+
+            await ScrollToAndFocusOnOption(selectedOptionIndex);
+        }
+    }
+
+    private async Task OpenAndClearDropDown()
+    {
+        if (!CanEdit || !DisplayOptions.Any())
+            return;
+
+        DisplayOptions = Options;
+        IsExpanded = !IsExpanded;
+
+        var selectedOptionIndex = GetSelectedOptionIndex();
+        await ScrollToAndFocusOnOption(selectedOptionIndex);
+    }
+
+    private async Task ScrollToAndFocusOnOption(int optionIndex)
+    {
+        await InputService.ScrollToCurrentSelected(GenerateOptionId(DisplayOptions.FirstOrDefault()), Id, optionIndex);
+        await InputService.FocusInput(FilterInputId);
+        await InputService.ScrollIntoModalView(Id);
+    }
+
+    private async Task RefocusOnInput(string elementId)
+    {
+        if (IsExpanded)
+            await InputService.FocusInput(elementId);
+    }
+
+    private async Task SelectionChanged(QuestionOption option)
+    {
+        await SelectionChangedHandler.InvokeAsync(option);
+        ResetDisplayValue();
+        CloseDropDown();
+    }
+    
+    
+    private int GetSelectedOptionIndex()
+    {
+        if (Options.Find(o => o.Id == SelectedOptionId) == null)
+            return  0;
+
+        if (CanClear)
+        {
+            return Options.IndexOf(Options.Find(o => o.Id == SelectedOptionId)) + 1;
+        }
+        return Options.IndexOf(Options.Find(o => o.Id == SelectedOptionId));
+    }
+    
+    private void CloseDropDown() => IsExpanded = false;
+
+    private string GenerateOptionId(QuestionOption option) => $"{Id}_{option.Id}";
+
+    private async Task KeyPressed(KeyboardEventArgs args)
+    {
+        switch (args.Key)
+        {
+            case KeyInputConstants.ArrowDownKey:
+                ActiveOption = DisplayOptions.GetNext(ActiveOption);
+                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveOption), Id);
+                break;
+            case KeyInputConstants.ArrowUpKey:
+                ActiveOption = DisplayOptions.GetPrevious(ActiveOption);
+                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveOption), Id);
+                break;
+            case KeyInputConstants.EscapeKey:
+                CloseDropDown();
+                break;
+            case KeyInputConstants.EnterKey:
+                await SelectionChanged(ActiveOption);
+                break;
+        }
+    }
+
+    private async Task ResetDropdown()
+    {
+        CloseDropDown();
+
+        ResetDisplayValue();
+
+        DisplayOptions = Options;
+
+        await SelectionChangedHandler.InvokeAsync(DisplayOptions.Find(o => o.Id == SelectedOptionId));
+    }
+
+    private async Task ClearSelection()
+    {
+        if (CanClear)
+            SelectedOptionId = null;
+        await ResetDropdown();  
+    }
+
+    private Task FilterOptions()
+    {
+        DisplayOptions = Options;
+
+        if (!string.IsNullOrEmpty(DisplayValue))
+            DisplayOptions = DisplayOptions.FindAll(o => o.Description.ToLower().Contains(DisplayValue.ToLower()));
+
+        StateHasChanged();
+
+        return Task.CompletedTask;
+    }
+
+    private void ResetDisplayValue() => DisplayValue = Options.Find(i => i.Id == SelectedOptionId)?.Description ?? string.Empty;
+
+    private void FilterTextUpdated(object value) => DisplayValue = value?.ToString() ?? "";
+
+    private string FilterInputId => $"{Id}_ExpandedInput";
+
+    private string GetCssClass(bool isExpanded)
+    {
+        var style = $"{Class} pseudo-dropdown";
+        if (isExpanded)
+            style = $"{style} active-dropdown";
+        return style;
+    }
+}

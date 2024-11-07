@@ -1,0 +1,196 @@
+
+/*
+
+
+.datepicker{
+    position: relative;
+    width: auto;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #e4e4e4;
+    box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
+    max-width: 760px;
+    z-index: 2;
+    padding: 26px 12px 28px;
+}
+*/
+
+
+ul.days{
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    color: #6E727B;
+}
+
+ul.days li{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.calendar h5{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.week-wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.day-wrapper{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+
+
+.day{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.day:hover{
+    background-color: var(--inputHoverBackgroundColour);
+}
+
+.day-placeholder  {
+    width: 50px;
+    height: 50px;
+}
+
+ul.date-buttons{
+    display: flex;
+    width: 100%;
+}
+ul.date-buttons li{
+    display: flex;
+    flex-grow: 1;
+}
+ul.date-buttons li:first-child{
+    margin-right: 10px;
+}
+ul.date-buttons li:last-child{
+    margin-left: 10px;
+}
+
+
+ul.days{
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+    color: #6E727B;
+}
+
+ul.days li{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.calendar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 360px;
+    margin: auto;
+}
+
+.day-name{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.calendar h5{
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.week-wrapper{
+    display: flex;
+}
+
+.day-wrapper{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.day{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.day:hover{
+    background-color: var(--inputHoverBackgroundColour);
+}
+
+.day-placeholder  {
+    width: 50px;
+    height: 50px;
+}
+
+
+.day.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.day.in-range {
+    background-color: #d3d3d3;
+}
+
+
+.date-time-wrapper{
+ display: flex;   
+}
+
+.calendar-wrapper{
+    display: flex;
+    width: 360px;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-wrapper{
+    display: flex;
+    width: 360px;
+    height: 360px;
+    justify-content: center;
+    align-items: center;
+}
+
+.timepicker{
+    margin-top: 80px;
+    width: 250px;
+}

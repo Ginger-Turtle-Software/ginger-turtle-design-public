@@ -1,0 +1,28 @@
+
+<div class="side-by-side">
+
+    <div class="left-side">
+        <div class="content">
+            @LeftSide
+        </div>
+    </div>
+    <div class="divider-wrapper">
+        <div class="line"></div>
+    </div>
+    <div class="right-side">
+        <div class="content">
+            @RightSide
+        </div>
+    </div>
+
+</div>
+
+@code {
+
+[Parameter]
+public RenderFragment LeftSide { get; set; }
+
+[Parameter]
+public RenderFragment RightSide { get; set; }
+
+}

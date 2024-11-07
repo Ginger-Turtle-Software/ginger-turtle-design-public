@@ -1,0 +1,49 @@
+@using GingerTurtle.Design.Models
+
+    <PlainDropDown Options="@GenerateTestOptions()"
+                   Placeholder="select option"
+                   GroupName="test-plain-drop-down"
+                   SelectedOptionId="@(SelectedOption)"
+                   SelectionChangedHandler="SelectOption" />
+    
+
+@code {
+
+    private string SelectedOption { get; set; }
+
+    private List<QuestionOption> GenerateTestOptions()
+    {
+        return
+        [
+            new QuestionOption()
+            {
+                Description = "Description 1",
+                Id = "1"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 2",
+                Id = "2"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 3",
+                Id = "3"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 4",
+                Id = "4"
+            }
+        ];
+    }
+    
+    private void SelectOption(QuestionOption option)
+    {
+        SelectedOption = option?.Id;
+    }
+
+}

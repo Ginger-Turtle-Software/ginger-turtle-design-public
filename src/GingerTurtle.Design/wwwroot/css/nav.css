@@ -1,0 +1,28 @@
+nav{
+    background-color:#000;
+    color:white;
+}
+
+
+ul.nav-menu{
+    display: flex;
+    flex-grow: 1;
+}
+
+ul.account-menu{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+ul.nav-menu li,
+ul.account-menu li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+li.search-holder{
+    flex-grow: 1;
+}
+

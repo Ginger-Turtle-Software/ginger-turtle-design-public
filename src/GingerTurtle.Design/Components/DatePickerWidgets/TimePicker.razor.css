@@ -1,0 +1,32 @@
+.time-row{
+    display: flex;
+    width: 100%;
+    padding: 8px;
+}
+
+.hh{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colon{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mm{
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hh.time,
+.mm.time,
+.colon.time{
+    font-size: 38px;
+}

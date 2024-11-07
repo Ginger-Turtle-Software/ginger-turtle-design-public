@@ -1,0 +1,57 @@
+@using GingerTurtle.Design.Models
+<div class="dropdown-wrapper @Class">
+    <select @onchange="@SelectionChanged" class="@Class">
+        
+        @if (string.IsNullOrEmpty(SelectedOptionId))
+        {
+            <option disabled selected value>@Placeholder</option>
+        }
+        
+        @foreach (var option in Options)
+        {
+            @if (SelectedOptionId == option.Id)
+            {
+                <option name="@GroupName"
+                        value="@option.Id"
+                        selected="selected">
+                    @option.Description
+                </option>
+            }
+            else
+            {
+                <option name="@GroupName"
+                        value="@option.Id">
+                    @option.Description
+                </option>
+            }
+        }
+    </select>
+    
+</div>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string GroupName { get; set; }
+
+    [Parameter, EditorRequired]
+    public List<QuestionOption> Options { get; set; }
+
+    [Parameter, EditorRequired]
+    public string SelectedOptionId { get; set; }
+    
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<QuestionOption> SelectionChangedHandler { get; set; }
+    
+    private async Task SelectionChanged(ChangeEventArgs e)
+    {
+        await SelectionChangedHandler.InvokeAsync(Options.FirstOrDefault(o => o.Id == e.Value?.ToString()));
+    }
+    
+}

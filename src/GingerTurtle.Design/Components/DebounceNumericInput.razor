@@ -1,0 +1,68 @@
+@using System.Timers
+@using GingerTurtle.Design.Contracts
+
+<input type="tel"
+       @onchange="@OnChange"
+       @oninput="@FormatNumericInput"
+       autocomplete="false"
+       value="@Value"
+       class="@Class"
+       placeholder="@Placeholder"
+       id="@Id" />
+
+@code {
+    
+    [Inject]
+    public IInputService InputService { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string Pattern { get; set; }
+    
+    [Parameter]
+    public int DebounceMilliseconds { get; set; }
+
+    [Parameter]
+    public Func<Task> ElapsedHandler { get; set; }
+
+    [Parameter]
+    public Action<object> InputChangedHandler { get; set; }
+
+    private Timer DebounceTimer { get; set; }
+
+    protected override void OnInitialized()
+    {
+        DebounceTimer = new Timer(DebounceMilliseconds);
+        DebounceTimer.Elapsed += OnDebounceTimerOnElapsed;
+        DebounceTimer.AutoReset = false;
+    }
+
+    private async void OnDebounceTimerOnElapsed(object sender, ElapsedEventArgs args)
+    {
+        await ElapsedHandler.Invoke();
+    }
+    
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        Value = $"{args.Value}";
+        InputChangedHandler.Invoke(args.Value);
+        await ElapsedHandler.Invoke();
+    }
+
+    private async Task FormatNumericInput(ChangeEventArgs args)
+    {
+        await InputService.FormatInput(Id, Pattern,"");
+    }
+
+}

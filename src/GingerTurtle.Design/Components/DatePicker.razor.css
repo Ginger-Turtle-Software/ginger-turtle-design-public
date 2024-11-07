@@ -1,0 +1,53 @@
+.datepicker-wrapper{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: rgba(35, 50, 70, 0.9);
+    font-weight: 500;
+    box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
+}
+
+
+.datepicker{
+    position: relative;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0 48px 100px 0;
+    max-width: 760px;
+    z-index: 2;
+    width: 360px;
+}
+
+.datepicker-header{
+    color: white;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    font-size: 22px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    position: relative;
+}
+
+.datepicker-body{
+    padding: 0 10px;
+}
+
+.datepicker-footer{
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.close-wrapper{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}

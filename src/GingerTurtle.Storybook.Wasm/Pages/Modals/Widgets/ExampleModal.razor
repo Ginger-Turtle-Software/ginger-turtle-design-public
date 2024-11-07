@@ -1,0 +1,26 @@
+@using GingerTurtle.Design.Models
+
+<Modal Id="modExample1"
+       Disabled="false"
+       OpenIconPosition="IconPosition.Left"
+       State="@State"
+       ButtonType="ButtonType.Primary"
+       OpenIconColor="ElementColor.Default"
+       OpenIconSize="@ElementSize.Medium"
+       OpenIconUrl=""
+       IsDark="false"
+       OpenButtonSize="ElementSize.Medium"
+       ModalSize="ElementSize.Small"
+       OpenButtonText="Open Modal"
+       OpenHoverText="Open">
+    <ModalBody>
+        Example Modal Body
+    </ModalBody>
+    <ModalFooter>
+        Example Modal Footer
+    </ModalFooter>
+</Modal>
+
+@code {
+    private ModalState State { get; set; } = new();
+}

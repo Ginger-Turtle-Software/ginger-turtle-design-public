@@ -1,0 +1,170 @@
+@using System.Globalization
+@using System.Timers
+@using GingerTurtle.Design.Contracts
+
+<div class="date-wrapper">
+    <label for="@($"{DayInputId}")" aria-label="@($"{DayInputId}")" class="hide-me">@($"{DayInputId}")</label>
+        <input type="tel"
+               @oninput="@(async (args) => await OnInput(args, DayInputId, 2, MonthInputId))"
+               @onblur="@(async (args) => await OnBlur(args, DayInputId))"
+               @onchange="@OnDayChange"
+               @onkeyup="InputKeyUp"
+               autocomplete="false"
+               value="@Day"
+               class="@Class"
+               disabled="@(!IsEnabled)"
+               placeholder="DD"
+               id="@DayInputId"
+               data-cy="@DayInputId"/>
+    
+    <label for="@($"{MonthInputId}")" aria-label="@($"{MonthInputId}")" class="hide-me">@($"{MonthInputId}")</label>
+    <input type="tel"
+           @oninput="@(async (args) => await OnInput(args, MonthInputId, 2, YearInputId))"
+           @onblur="@(async (args) => await OnBlur(args, MonthInputId))"
+           @onchange="@OnMonthChange"
+           @onkeyup="InputKeyUp"
+           autocomplete="false"
+           class="@Class"
+           value="@Month"
+           disabled="@(!IsEnabled)"
+           placeholder="MM"
+           id="@MonthInputId"
+           data-cy="@MonthInputId"/>
+
+    <label for="@($"{YearInputId}")" aria-label="@($"{YearInputId}")" class="hide-me">@($"{YearInputId}")</label>
+    <input type="tel"
+           @oninput="@(async (args) => await OnInput(args, YearInputId, 4, ""))"
+           @onchange="@OnYearChange"
+           @onkeyup="InputKeyUp"
+           autocomplete="false"
+           value="@Year"
+           class="@Class"
+           disabled="@(!IsEnabled)"
+           placeholder="YYYY"
+           id="@YearInputId"
+           data-cy="@YearInputId"/>
+</div>
+
+@code {
+    
+    [Inject]
+    public IInputService InputService { get; set; }
+    
+    [Parameter]
+    public DateTime? Value { get; set; }
+    
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public EventCallback<DateTime?>  ElapsedHandler { get; set; }
+    
+    [Parameter]
+    public int DebounceMilliseconds { get; set; }
+
+    [Parameter]
+    public bool IsEnabled { get; set; }
+
+    [Parameter]
+    public bool IsRequired { get; set; }
+
+    private DateTime? Date { get; set; }
+    private string Month { get; set; }
+    private string Day { get; set; }
+    private string Year { get; set; }
+    private string MonthInputId { get; set; }
+    private string DayInputId { get; set; }
+    private string YearInputId { get; set; }
+    private Timer DebounceTimer { get; set; }
+
+    protected override void OnInitialized()
+    {
+        DebounceTimer = new Timer(DebounceMilliseconds);
+        DebounceTimer.Elapsed += OnDebounceTimerOnElapsed;
+        DebounceTimer.AutoReset = false;
+
+        MonthInputId = Id + "_month";
+        DayInputId = Id + "_day";
+        YearInputId = Id + "_year";
+        Date = Value;
+
+        if (!Date.HasValue)
+            return;
+        
+        Year= Date?.ToString("yyyy");
+        Month= Date?.ToString("MM");
+        Day= Date?.ToString("dd");
+    }
+
+    private async void OnDebounceTimerOnElapsed(object sender, ElapsedEventArgs args)
+    {
+        await ElapsedHandler.InvokeAsync(Date);
+    }
+
+    private async Task OnDayChange(ChangeEventArgs args)
+    {
+        var value = args.Value?.ToString();
+        Day = !string.IsNullOrEmpty(value) ? value.PadLeft(2, '0') : "";
+        await SetDate();
+    }
+    
+    private  async Task OnMonthChange(ChangeEventArgs args)
+    {
+        var value = args.Value?.ToString();
+        Month = !string.IsNullOrEmpty(value) ? value.PadLeft(2, '0') : "";
+        await SetDate();
+    }
+    
+    private  async Task OnYearChange(ChangeEventArgs args)
+    {
+        Year = args.Value?.ToString();
+        await SetDate();
+    }
+
+    private async Task OnInput(ChangeEventArgs args, string id,int inputLength, string nextId)
+    {
+        await InputService.FormatDateInputAndShiftFocus(id,inputLength,nextId);
+        ResetDebounce();
+    }
+
+    private async Task OnBlur(FocusEventArgs args,string id)
+    {
+        await InputService.PadDate(id);
+    }
+
+    private async Task SetDate()
+    {
+        Date = null;
+        Value = null;
+        if (InputsValid())
+        {
+            var newDate = $"{Year}/{Month}/{Day}";
+            var success = DateTime.TryParseExact(newDate,"yyyy/MM/dd",CultureInfo.InvariantCulture,DateTimeStyles.None,out var tryDate);
+            if (success)
+            {
+                Date = tryDate;
+                Value = Date;
+            }
+        }
+        await ElapsedHandler.InvokeAsync(Date);
+    }
+
+    private bool InputsValid()
+    {
+        return !string.IsNullOrEmpty(Month) && Month.Length == 2 && !string.IsNullOrEmpty(Day) && Month.Length == 2 && !string.IsNullOrEmpty(Year) && Year.Length == 4;
+    }
+
+    private void ResetDebounce()
+    {
+        DebounceTimer.Stop();
+        DebounceTimer.Start();
+    }
+
+    private void InputKeyUp()
+    {   
+        ResetDebounce();
+    }
+}

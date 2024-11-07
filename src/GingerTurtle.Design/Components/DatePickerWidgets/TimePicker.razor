@@ -1,0 +1,157 @@
+@using GingerTurtle.Design.Constants
+
+<div class="time-row">
+    <div class="hh">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Add5Hour"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large" 
+                    Id="btnAdd5Hour"
+                    ClickedCallback="@(async() => await AddHours(5))"/>
+    </div>
+    <div class="colon">
+        
+    </div>
+    <div class="mm">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Add5Min"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnAdd5Min"
+                    ClickedCallback="@(async() => await AddMins(5))"/>
+    </div>
+</div>
+
+<div class="time-row">
+    <div class="hh">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Add1Hour"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnAdd1Hour"
+                    ClickedCallback="@(async() => await AddHours(1))"/>
+    </div>
+    <div class="colon">
+
+    </div>
+    <div class="mm">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Add1Min"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnAdd1Min"
+                    ClickedCallback="@(async() => await AddMins(1))"/>
+    </div>
+</div>
+
+
+
+<div class="time-row">
+    <div class="hh time">
+        @CurrentHour
+    </div>
+    <div class="colon time">
+        :
+    </div>
+    <div class="mm time">
+        @CurrentMin
+    </div>
+</div>
+
+
+<div class="time-row">
+    <div class="hh">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Remove1Hour"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnRemove1Hour"
+                    ClickedCallback="@(async() => await AddHours(-1))"/>
+    </div>
+    <div class="colon">
+
+    </div>
+    <div class="mm">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Remove1Min"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnRemove1Min"
+                    ClickedCallback="@(async() => await AddMins(-1))"/>
+    </div>
+</div>
+
+
+<div class="time-row">
+    <div class="hh">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Remove5Hour"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnRemove5Hours"
+                    ClickedCallback="@(async() => await AddHours(-5))"/>
+    </div>
+    <div class="colon">
+
+    </div>
+    <div class="mm">
+        <FormButton Type="ButtonType.FlatIcon"
+                    IconUrl="@ImageUrls.Remove5Min"
+                    IconSize="ElementSize.Large"
+                    Size="ElementSize.Large"
+                    Id="btnRemove5Min"
+                    ClickedCallback="@(async() => await AddMins(-5))"/>
+    </div>
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public DateTime SelectedDate { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime> DateSelectedCallback { get; set; }
+    
+    private int CurrentHour { get; set; }
+    
+    private int CurrentMin { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CurrentMin = SelectedDate.Minute;
+        CurrentHour = SelectedDate.Hour;
+    }
+
+    private async Task AddHours(int hours)
+    {
+        CurrentHour += hours;
+        if (CurrentHour >= 24)
+            CurrentHour -= 24;
+        else if(CurrentHour < 0)
+            CurrentHour += 24;
+        await SetDate();
+    }
+    
+    private async Task AddMins(int mins)
+    {
+        CurrentMin += mins;
+        if (CurrentMin >= 60)
+            CurrentMin -= 60;
+        else if(CurrentMin < 0)
+            CurrentMin += 60;
+        await SetDate();
+    }
+
+    private async Task SetDate()
+    {
+        var date = new DateTime(
+            SelectedDate.Year,
+            SelectedDate.Month,
+            SelectedDate.Day,
+            CurrentHour,
+            CurrentMin, 
+            0);
+        await DateSelectedCallback.InvokeAsync(date);
+    }
+    
+}

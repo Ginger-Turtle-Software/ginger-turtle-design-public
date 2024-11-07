@@ -1,0 +1,19 @@
+
+.panel-wrapper{
+    margin-bottom: 8px;
+    border:1px solid #DFE1E6;
+    background-color: white;
+    border-radius: 5px;
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+.panel-header{
+    border-bottom: 1px solid #DFE1E6;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.panel-content{
+    padding: 8px 12px;
+}

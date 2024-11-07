@@ -1,0 +1,17 @@
+
+<div class="panel-content">
+    <div class="details-label">
+        @Description
+    </div>
+    <div class="details-value">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Description { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

@@ -1,0 +1,64 @@
+@using GingerTurtle.Design.Models
+
+<ul class="pseudo-checkbox-stacked">
+    @foreach (var option in Options)
+    {
+        <li>
+            @if (SelectedOptions.Contains(option.Id))
+            {
+                <input type="checkbox"
+                       checked="checked"
+                       id="@($"{GroupName}_{option.Id}")"
+                       @onchange="@(() => ToggleOption(option))"
+                       name="chkCompanyServices"
+                       autocomplete="one-time-code"/>   
+            }
+            else
+            {
+                <input type="checkbox"
+                       id="@($"{GroupName}_{option.Id}")"
+                       @onchange="@(() => ToggleOption(option))"
+                       name="chkCompanyServices"
+                       autocomplete="one-time-code"/>
+            }
+            <label for="@($"{GroupName}_{option.Id}")"
+                   id="@($"{GroupName}_{option.Id}_Label")"
+                   class="pseudo-check @(RenderOutline ? "outline" :"") makeclickable stacked">
+                @option.Description
+            </label>
+        </li>
+    }
+</ul>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public List<QuestionOption> Options { get; set; }
+    
+    [Parameter, EditorRequired]
+    public List<string> SelectedOptions { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<List<QuestionOption>> AnsweredCallback { get; set; }
+
+    [Parameter, EditorRequired]
+    public string GroupName { get; set; }
+    
+    [Parameter]
+    public bool RenderOutline { get; set; }
+    
+    private async Task ToggleOption(QuestionOption option)
+    {
+        var options = Options.Where(s => SelectedOptions.Contains(s.Id)).ToList();
+        if (options.Any(o => o.Id == option.Id))
+        {
+            options = options.Where(o => o.Id != option.Id).ToList();
+        }
+        else
+        {
+            options.Add(option);    
+        }
+        await AnsweredCallback.InvokeAsync(options);
+    }
+    
+}

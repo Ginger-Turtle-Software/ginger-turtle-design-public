@@ -1,0 +1,29 @@
+<div class="split-layout">
+    <div class="split left @(LeftSideScrolls ? "can-scroll" : "")">
+        <div class="content">
+            @LeftHandSide
+        </div>
+    </div>
+    
+    <Display If="@(RightHandSide != null)">
+        <div class="split right">
+            <div class="content">
+                @RightHandSide
+            </div>
+        </div>
+    </Display>
+</div>
+
+
+@code {
+    
+    [Parameter]
+    public RenderFragment LeftHandSide { get; set; }
+    
+    [Parameter]
+    public RenderFragment RightHandSide { get; set; }
+
+    [Parameter]
+    public bool LeftSideScrolls { get; set; }
+    
+}

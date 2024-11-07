@@ -1,0 +1,16 @@
+
+<label class="@Color.GetColorClass() @Size.GetCssClass()">
+    @Text
+</label>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string Text { get; set; }
+    
+    [Parameter, EditorRequired]
+    public ElementColor Color { get; set; }
+
+    [Parameter, EditorRequired]
+    public ElementSize Size { get; set; } = ElementSize.Medium;
+}

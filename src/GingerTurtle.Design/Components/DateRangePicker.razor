@@ -1,0 +1,144 @@
+@using GingerTurtle.Design.Contracts
+<ul class="date-buttons">
+    <li>
+        <TextInputButton Placeholder="Select Date"
+                         Text="@(StartDate?.ToString("dd/MM/yyyy") ?? "")"
+                         TitleText="Start Date"
+                         ClickedCallback="Toggle"/>
+    </li>
+    <li>
+    <TextInputButton Placeholder="Select Date"
+                     Text="@(EndDate?.ToString("dd/MM/yyyy") ?? "")"
+                     TitleText="End Date"
+                     ClickedCallback="Toggle"/>
+    </li>
+</ul>
+<Display If="IsExpanded">
+    
+        <Row>
+            <div class="overlay"></div>
+            <div class="datepicker-wrapper">
+                <div class="datepicker">
+                    
+                    <div class="close-wrapper">
+                        <FormButton Type="ButtonType.PrimaryLink"
+                                    Text="Close"
+                                    Size="ElementSize.Small"
+                                    ClickedCallback="Close"
+                                    Id="btnCloseDatePicker" />
+                    </div>
+                    
+                    <DateRangePickerMonths Year="Current.Year"
+                                           CurrentMonth="Current.Month"
+                                           MonthSelectedCallback="CurrentMonthSelected"/>
+
+                    <TwoColumns>
+                        @*
+                        <DatePickerMonth
+                            Current="Current"
+                            DateSelectedCallback="SetDate"
+                            SelectedDate="StartDate"
+                            EndDate="EndDate"/>
+
+                        <DatePickerMonth
+                            Current="@Current.AddMonths(1)"
+                            DateSelectedCallback="SetDate"
+                            SelectedDate="StartDate"
+                            EndDate="EndDate"/>
+*@
+                    </TwoColumns>
+
+                </div>
+            </div>
+        </Row>
+</Display>
+
+
+@code {
+    
+    [Inject]
+    public INavigationService NavigationService { get; set; }
+    
+    [Parameter]
+    public DateTime? StartDate { get; set; }
+    
+    [Parameter]
+    public DateTime? EndDate { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime?> StartDateSelectedCallback { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime?> EndDateSelectedCallback { get; set; }
+
+    private bool IsExpanded { get; set; }
+    
+    private async Task SetDate(DateTime date)
+    {
+        
+        if (!StartDate.HasValue || (StartDate.HasValue && EndDate.HasValue))
+        {
+            await StartDateSelectedCallback.InvokeAsync(date);
+            await EndDateSelectedCallback.InvokeAsync(null);
+        }
+        else
+        {
+            await EndDateSelectedCallback.InvokeAsync(date);
+            await NavigationService.EnableBodyScrolling();
+            IsExpanded = false;
+        }
+    }
+
+    private Task CurrentMonthSelected(DateTime month)
+    {
+        Current = month;
+        return Task.CompletedTask;
+    }
+    
+    private DateTime Current { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        Current = DateTime.UtcNow;
+       
+        if (StartDate.HasValue)
+        {
+            Current = StartDate.Value;
+        }
+        
+        base.OnInitialized();
+    }
+
+    private int? HoverDate { get; set; }
+
+    private void SetHoverDate(int d)
+    {
+        HoverDate = d;
+        Console.WriteLine($"Hover {HoverDate}");
+    }
+
+    private void ClearHoverDate()
+    {
+        HoverDate = null;
+    }
+
+    private async Task Toggle()
+    {
+        IsExpanded = !IsExpanded;
+        if (IsExpanded)
+        {
+            await NavigationService.DisableBodyScrolling();
+        }
+        else
+        {
+            await NavigationService.EnableBodyScrolling();
+        }
+    }
+
+    private async Task Close()
+    {
+        IsExpanded = false;
+        await NavigationService.EnableBodyScrolling();
+    }
+
+}

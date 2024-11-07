@@ -1,0 +1,45 @@
+@using GingerTurtle.Design.Models
+
+<CheckList Options="GenerateTestOptions()"
+           AnsweredCallback="() => { }"
+           GroupName="@Guid.NewGuid().ToString()"
+           RenderOutline="@RenderOutline"
+           SelectedOptions="@(new List<string>() { "2", "3" })"/>    
+
+
+@code {
+ 
+    [Parameter, EditorRequired]
+    public bool RenderOutline { get; set; }
+    
+    public List<QuestionOption> GenerateTestOptions()
+    {
+        return
+        [
+            new QuestionOption()
+            {
+                Description = "Description 1",
+                Id = "1"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 2",
+                Id = "2"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 3",
+                Id = "3"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 4",
+                Id = "4"
+            }
+        ];
+    }
+   
+}

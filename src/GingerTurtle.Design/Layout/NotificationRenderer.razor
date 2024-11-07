@@ -1,0 +1,121 @@
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Models
+
+<div class="notification">
+    <Row Type="@GetRowType()">
+        <Column DesktopSize="ColumnSize.ColAuto"
+            MobileSize="ColumnSize.ColAuto"
+            Layout="ElementPosition.VerticalCentre">
+            <Icon IconUrl="@GetIconType()"
+                  Color="GetIconColor()"
+                  Size="ElementSize.Large"/>
+        </Column>
+        
+        <Display If="@(!string.IsNullOrEmpty(Notification.Title))">
+            <Column DesktopSize="ColumnSize.ColAuto"
+                    MobileSize="ColumnSize.ColAuto"
+                    Layout="ElementPosition.VerticalCentre">
+                <div class="notification-title">
+                    @Notification.Title 
+                </div>
+            </Column>
+        </Display>
+
+        <Column DesktopSize="ColumnSize.ColGrow"
+                MobileSize="ColumnSize.ColAuto"
+                Layout="ElementPosition.VerticalCentre">
+            <p class="sm">
+                @Notification.Message
+            </p>
+        </Column>
+        <Column DesktopSize="ColumnSize.ColAuto"
+                MobileSize="ColumnSize.ColAuto"
+                Layout="ElementPosition.VerticalCentre">
+            <Display If="@(!PreventDismiss)">
+                <FormButton
+                    IconSize="ElementSize.Small"
+                    Type="ButtonType.BorderedIcon"
+                    ClickedCallback="@DismissNotification"
+                    IconUrl="@ImageUrls.CloseDark"
+                    Id="@($"dismiss_{Notification.Id}")"/>
+            </Display>
+            <Display If="@(PreventDismiss)">
+                <FormButton
+                    IconSize="ElementSize.Small"
+                    Type="ButtonType.BorderedIcon"
+                    IconUrl=""
+                    Id="@($"non_dismiss_{Notification.Id}")"/>
+            </Display>
+        </Column>
+    </Row>
+</div>
+
+@code {
+    
+    [Parameter]
+    public Notification Notification { get; set; }
+
+    [Parameter]
+    public EventCallback DismissNotificationCallback { get; set; }
+
+    [Parameter]
+    public bool PreventDismiss { get; set; }
+    
+    private async Task DismissNotification()
+    {
+        await DismissNotificationCallback.InvokeAsync();
+    }
+
+    private RowType GetRowType()
+    {
+        switch (Notification.Type)
+        {
+            case NotificationType.Info:
+                return RowType.Info;
+            case NotificationType.Success:
+                return RowType.Success;
+            case NotificationType.Warn:
+                return RowType.Warning;
+            case NotificationType.Error:
+                return RowType.NotificationError;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+    
+    private string GetCssClass()
+    {
+        return Notification.Type switch
+        {
+            NotificationType.Error => "error",
+            NotificationType.Success => "success",
+            NotificationType.Warn => "warn",
+            _ => "info"
+        };
+    }
+
+    private string GetIconType()
+    {
+        return Notification.Type switch
+        {
+            NotificationType.Success => ImageUrls.Success,
+            NotificationType.Error => ImageUrls.Error,
+            NotificationType.Warn => ImageUrls.Warn,
+            NotificationType.Info => ImageUrls.Info,
+            _ => ""
+        };
+    }
+
+    private ElementColor GetIconColor()
+    {
+        return Notification.Type switch
+        {
+            NotificationType.Success => ElementColor.Green,
+            NotificationType.Error => ElementColor.Red,
+            NotificationType.Info => ElementColor.Blue,
+            NotificationType.Warn => ElementColor.Orange,
+            _ => ElementColor.Default
+        };
+    }
+    
+}

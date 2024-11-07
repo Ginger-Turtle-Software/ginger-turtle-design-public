@@ -1,0 +1,140 @@
+@page "/reports/create"
+@using GingerTurtle.Design.Models
+
+<Container Size="ElementSize.Medium">
+    
+    <Row>
+        <Column Layout="ElementPosition.VerticalCentre"
+                DesktopSize="ColumnSize.Col100"
+                MobileSize="ColumnSize.Col100">
+            <h1>Manage Link</h1>
+        </Column>
+    </Row>
+    
+    <Question IsRequired="false"
+              IsValid="true"
+              QuestionText="Id"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="The unique id for the link">
+        <input type="text" disabled="disabled" value="1" />
+    </Question>
+
+
+    <Question IsRequired="false"
+              IsValid="true"
+              QuestionText="Link Title"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="What is the link title?">
+        <input type="text" placeholder="enter link title" />
+    </Question>
+
+    <Question IsRequired="true"
+              IsValid="true"
+              QuestionText="Link Type"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="What is the link type?">
+        <RadioList Options="QuestionTypes"
+                   GroupName="linkType"
+                   RenderOutline="true"
+                   AnsweredCallback="@(() => { })"
+                   SelectedOptionId=""/>
+    </Question>
+
+    <Question IsRequired="true"
+              IsValid="true"
+              QuestionText="SSRS Folder"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="What folder is the SSRS Report in?">
+        <input type="text" placeholder="enter folder name" />
+    </Question>
+
+    <Question IsRequired="true"
+              IsValid="true"
+              QuestionText="Portal Heading"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="What heading should this link appear under?">
+        <input type="text" placeholder="enter heading name" />
+    </Question>
+
+    <Question IsRequired="true"
+              IsValid="true"
+              QuestionText="Portal Sub-Heading"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="What sub-heading should this link appear under?">
+        <input type="text" placeholder="enter sub-heading name" />
+    </Question>
+
+    <Question IsRequired="true"
+              IsValid="true"
+              QuestionText="Access"
+              RenderError="false"
+              RenderStacked="false"
+              QuestionSubText="Who can view this link?">
+        <CheckList Options="RoleTypes"
+                   GroupName="linkAccounts"
+                   RenderOutline="true"
+                   AnsweredCallback="@(() => { })"
+                   SelectedOptions="@(new List<string>())"/>
+    </Question>
+
+
+    <Row>
+        <Column DesktopSize="ColumnSize.Col50"
+                MobileSize="ColumnSize.Col100">
+            <FormButton Type="ButtonType.Secondary"
+                        Text="Delete" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col50"
+                MobileSize="ColumnSize.Col100"
+                Layout="ElementPosition.Right">
+            <FormButton Type="ButtonType.Primary"
+                        Text="Save" />
+        </Column>
+    </Row>
+    
+</Container>
+
+@code {
+
+    private List<QuestionOption> QuestionTypes { get; set; } =
+    [
+        new()
+        {
+            Id = "Link",
+            Description = "Link"
+        },
+
+        new()
+        {
+            Id = "Report",
+            Description = "Report"
+        }
+    ];
+
+    private List<QuestionOption> RoleTypes { get; set; } =
+    [
+        new()
+        {
+            Id = "IT",
+            Description = "IT"
+        },
+
+        new()
+        {
+            Id = "Planner",
+            Description = "Group Planner"
+        },
+        new()
+        {
+            Id = "SitePlanner",
+            Description = "Site Planner"
+        }
+    ];
+    
+}

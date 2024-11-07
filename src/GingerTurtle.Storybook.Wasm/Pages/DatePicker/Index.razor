@@ -1,0 +1,32 @@
+@page "/"
+
+<Container Size="ElementSize.Large"
+           BackgroundColour="ElementColor.White"
+           HasShadow="true">
+    
+    <Heading1 Text="Date Picker" />
+
+    <DatePicker Date="DateTime.Now"
+                SetDateCallback="SetDate"/>
+
+    <Heading1 Text="Date Picker with Time" />
+
+
+    
+    <Heading1 Text="Date Range Picker" />
+    <DateRangePicker StartDate="DateTime.Now"
+                     EndDate="DateTime.Now.AddDays(2)"/>
+
+
+</Container>
+
+@code{
+
+    private Task SetDate(DateTime? d)
+    {
+        Console.WriteLine($"Date {d.ToString()}");
+        return Task.CompletedTask;
+    }
+    
+
+}

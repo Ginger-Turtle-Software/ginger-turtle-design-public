@@ -1,0 +1,25 @@
+<ul class="breadcrumbs @(IsDark ? "dark" : "")">
+    @foreach (var crumb in Crumbs)
+    {
+        <li>
+            <Display If="@(!string.IsNullOrEmpty(crumb.Value))">
+                <a href="@crumb.Value">@crumb.Key</a>
+            </Display>
+            <Display If="@(string.IsNullOrEmpty(crumb.Value))">
+                @crumb.Key
+            </Display>
+        </li>
+    }
+</ul>
+
+
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public Dictionary<string, string> Crumbs { get; set; }
+    
+    [Parameter]
+    public bool IsDark { get; set; }
+    
+}

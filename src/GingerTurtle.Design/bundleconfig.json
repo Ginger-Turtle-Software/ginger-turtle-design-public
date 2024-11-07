@@ -1,0 +1,57 @@
+[
+  {
+    "outputFileName": "wwwroot/bundles/styles.css",
+    "inputFiles": [
+      "wwwroot/css/htmlreset.css",
+      "wwwroot/css/layout.css",
+      "wwwroot/css/container.css",
+      "wwwroot/css/columns.css",
+      "wwwroot/css/rows.css",
+      "wwwroot/css/hover.css",
+      "wwwroot/css/icons.css",
+      "wwwroot/css/table.css",
+      "wwwroot/css/labels.css",
+      "wwwroot/css/nav.css",
+      "wwwroot/css/questions.css",
+      "wwwroot/css/headings.css",
+      "wwwroot/css/datepicker.css",
+      "wwwroot/css/notifications.css",
+      "wwwroot/css/inputs/inputs-core.css",
+      "wwwroot/css/inputs/inputs-checks.css",
+      "wwwroot/css/inputs/inputs-radios.css",
+      "wwwroot/css/inputs/inputs-dropdowns.css",
+      "wwwroot/css/inputs/inputs-toggle.css",
+      "wwwroot/css/buttons/buttons-core.css",
+      "wwwroot/css/buttons/buttons-primary.css",
+      "wwwroot/css/buttons/buttons-secondary.css",
+      "wwwroot/css/buttons/buttons-link.css",
+      "wwwroot/css/buttons/buttons-link-secondary.css",
+      "wwwroot/css/buttons/buttons-icon.css",
+      "wwwroot/css/buttons/buttons-square.css",
+      "wwwroot/css/buttons/buttons-tile.css",
+      "wwwroot/css/buttons/buttons-inline-radio.css",
+      "wwwroot/css/buttons/buttons-action.css"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "gzip": true
+    }
+  },
+  {
+    "outputFileName": "wwwroot/bundles/scripts.js",
+    "inputFiles": [
+      "wwwroot/scripts/store.js",
+      "wwwroot/scripts/errors.js",
+      "wwwroot/scripts/inputs.js",
+      "wwwroot/scripts/scrolling.js",
+      "wwwroot/scripts/datetime.js",
+      "wwwroot/scripts/app.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "gzip": true
+    }
+  }
+]

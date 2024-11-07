@@ -1,0 +1,102 @@
+
+
+<div class="months">
+    <Row>
+        <Column DesktopSize="ColumnSize.ColGrow"
+                MobileSize="ColumnSize.ColGrow"
+                Layout="ElementPosition.Centre">
+            <FormButton Type="ButtonType.PrimaryLink"
+                        Text="<"
+                        ClickedCallback="@(() => { ChangeMonth(-1); })" Id="btnPreviousMonth" />
+        </Column>
+
+        @{
+            var target2 = StartDate;
+            while (target2 < EndDate)
+            {
+                var target3 = target2;
+                <Column DesktopSize="ColumnSize.ColGrow"
+                        MobileSize="ColumnSize.ColGrow"
+                        Layout="ElementPosition.Centre">
+                    <span class="month @(IsCurrentMonth(target3.Month, target3.Year) || IsNextMonth(target3.Month, target3.Year) ? "active" : "")"
+                          @onclick="@(async () => { await SetMonth(target3); })">
+                        @target3.ToString("MMM")
+
+                        @if (target3.Month == 1)
+                        {
+                            <span class="year">
+                                @target3.Year
+                            </span>
+                        }
+                    
+                    </span>
+                </Column>
+
+                target2 = target2.AddMonths(1);
+            }
+        }
+
+        <Column DesktopSize="ColumnSize.ColGrow"
+                MobileSize="ColumnSize.ColGrow"
+                Layout="ElementPosition.Centre">
+            <FormButton Type="ButtonType.PrimaryLink"
+                        Text=">"
+                        ClickedCallback="@(() => { ChangeMonth(1); })" Id="btnNextMonth" />
+        </Column>
+    
+    </Row>
+</div>
+
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public int Year { get; set; }
+    
+    [Parameter, EditorRequired]
+    public int CurrentMonth { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime> MonthSelectedCallback { get; set; }
+    
+    private DateTime StartDate { get; set; }
+    private DateTime EndDate { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized");
+        StartDate = new DateTime(Year, 1, 1);
+        EndDate = new DateTime(Year, 12, 31);
+    }
+    
+    private async Task SetMonth(DateTime d)
+    {
+        await MonthSelectedCallback.InvokeAsync(d);
+    }
+
+    private void ChangeMonth(int amount)
+    {
+        StartDate = StartDate.AddMonths(amount);
+        EndDate = EndDate.AddMonths(amount);
+    }
+    
+   
+    private bool IsCurrentMonth(int month, int year)
+    {
+        return CurrentMonth == month && Year == year;
+    }
+    
+    private bool IsNextMonth(int month, int year)
+    {
+        var nextMonth = CurrentMonth + 1;
+        var nextYear = Year;
+        if (nextMonth > 12)
+        {
+            nextMonth = 1;
+            nextYear += 1;
+        }
+        
+        return month == nextMonth && year == nextYear;
+    }
+    
+}

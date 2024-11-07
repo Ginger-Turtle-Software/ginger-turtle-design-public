@@ -1,0 +1,85 @@
+/****************************************************
+ *  Core Button Style
+ ****************************************************/
+button {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn{
+    font-size: 14px;
+    line-height: 20px;
+    border-width: 0;
+    padding: 8px 16px;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn.sm{
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.btn.xs {
+    padding: 12px 4px;
+    font-size: 13px;
+}
+
+.btn.lg{
+    line-height: 24px;
+    padding: 12px 24px;
+    font-size: 18px;
+}
+
+.btn:disabled,
+.btn.disabled{
+    opacity: 0.25;
+    cursor: not-allowed;
+}
+
+.btn .icon{
+    margin:0 8px;
+    display: flex;
+    align-self: center;
+}
+
+.btn:focus-visible:not(:active){
+    border-color: transparent;
+    outline: 2px solid var(--highlightBlue);
+}
+
+/****************************************************
+ *  Core Link Styles
+ ****************************************************/
+a.disabled{
+    pointer-events: none;
+}
+
+
+.btn .spinner{
+    display: none;
+}
+
+.btn.processing .spinner {
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    display: inline-block;
+    margin-left: 10px;
+    transition: width 0.3s ease, padding 0.3s ease; /* Smooth width & padding transition */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

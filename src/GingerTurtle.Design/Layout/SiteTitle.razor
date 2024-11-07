@@ -1,0 +1,10 @@
+<Display If="@(!string.IsNullOrEmpty(Title))">
+    <div class="site-title">
+        @Title
+    </div>
+</Display>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Title { get; set; }
+}

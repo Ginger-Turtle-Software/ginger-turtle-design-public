@@ -1,0 +1,26 @@
+@using GingerTurtle.Design.Extensions
+@using GingerTurtle.Design.Types
+
+<div class="icon @GetIconClass()"
+     style="@BuildStyle()">
+</div>
+
+@code {
+
+    [Parameter, EditorRequired]
+    public string IconUrl { get; set; }
+
+    [Parameter]
+    public ElementSize Size { get; set; } = ElementSize.Medium;
+
+    [Parameter]
+    public ElementColor Color { get; set; } = ElementColor.Default;
+
+    private string GetIconClass() => $"{Size.GetCssClass()} {Color.GetColorClass()}";
+
+    private string BuildStyle()
+    {
+        return string.IsNullOrEmpty(IconUrl) ? "" : $"-webkit-mask-image: url('{IconUrl}');mask-image: url('{IconUrl}')";
+    }
+    
+}

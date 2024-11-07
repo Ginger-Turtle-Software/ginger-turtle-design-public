@@ -1,0 +1,80 @@
+
+<div class="header">
+
+    <Container Size="ElementSize.ExtraLarge">
+        
+        <Row>
+            <Column DesktopSize="ColumnSize.Col100"
+                    MobileSize="ColumnSize.Col10">
+                <h1>Lot Plan Comments</h1>
+            </Column>
+        </Row>
+
+        <Row>
+            <Column DesktopSize="ColumnSize.Col100"
+                    MobileSize="ColumnSize.Col10">
+                <h2>Site Planning - 2024.09.26</h2>
+            </Column>
+        </Row>
+        
+        <Row>
+            <Column DesktopSize="ColumnSize.Col25"
+                    MobileSize="ColumnSize.Col50">
+                <Stacked>
+                    <Question IsRequired="false"
+                              IsValid="true"
+                              QuestionText="Production Date"
+                              RenderError="false"
+                              RenderStacked="true"
+                              QuestionSubText="">
+                        <input type="text" class="white"/>
+                    </Question>
+
+                    <Question IsRequired="false"
+                              IsValid="true"
+                              QuestionText="Lots"
+                              RenderError="false"
+                              RenderStacked="true"
+                              QuestionSubText="">
+                        <input type="text" class="white"/>
+                    </Question>
+                </Stacked>
+            </Column>
+            
+            <Column DesktopSize="ColumnSize.Col25"
+                    MobileSize="ColumnSize.Col50">
+                <Stacked>
+                    <Question IsRequired="false"
+                              IsValid="true"
+                              QuestionText="Current Working Period"
+                              RenderError="false"
+                              RenderStacked="true"
+                              QuestionSubText="">
+                        <input type="text" class="white"/>
+                    </Question>
+                    <FormButton Type="ButtonType.Secondary" Text="Update period"/>
+                </Stacked>
+            </Column>
+            
+            <Column DesktopSize="ColumnSize.Col50"
+                    MobileSize="ColumnSize.Col100">
+                <Stacked>
+                    <Question IsRequired="false"
+                              IsValid="true"
+                              QuestionText="Lot Comment"
+                              RenderError="false"
+                              RenderStacked="true"
+                              QuestionSubText="">
+                        <textarea class="white"></textarea>
+                    </Question>
+                </Stacked>
+            </Column>
+        </Row>
+        
+    </Container>
+    
+</div>
+
+@code {
+    
+}

@@ -1,0 +1,55 @@
+@using GingerTurtle.Design.Models
+<ul class="pseudo-radio-stacked">
+    
+    @foreach (var option in Options)
+    {
+        <li @key=@option.Id>
+            @if (SelectedOptionId == option.Id)
+            {
+                <input type="radio"
+                       id="@($"{GroupName}_{option.Id}")"
+                       key="@($"{GroupName}_{option.Id}")"
+                       name="@GroupName"
+                       autocomplete="one-time-code"
+                       checked />
+            }
+            else
+            {
+                <input type="radio"
+                       @onchange="@(async () => await OptionSelected(option))"
+                       id="@($"{GroupName}_{option.Id}")"
+                       name="@GroupName"
+                       autocomplete="one-time-code" />
+            }
+            <label for="@($"{GroupName}_{option.Id}")"
+                   id="@($"{GroupName}_{option.Id}_Label")"
+                   class="pseudo-radio makeclickable @(RenderOutline ? "outline" : "") stacked" @onclick="@(async () => await OptionSelected(option))">
+                @option.Description
+            </label>
+        </li>
+    }
+</ul>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public List<QuestionOption> Options { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string SelectedOptionId { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<QuestionOption> AnsweredCallback { get; set; }
+
+    [Parameter, EditorRequired]
+    public string GroupName { get; set; }
+    
+    [Parameter]
+    public bool RenderOutline { get; set; }
+    
+    private async Task OptionSelected(QuestionOption option)
+    {
+        await AnsweredCallback.InvokeAsync(option);
+    }
+    
+}

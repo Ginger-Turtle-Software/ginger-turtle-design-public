@@ -1,0 +1,45 @@
+@using System.Text
+@using GingerTurtle.Design.Extensions
+@using GingerTurtle.Design.Types
+
+<div class="col @GetDeviceSizeCss()">
+    <div class="col-content @GetLayoutCss()">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public ColumnSize MobileSize { get; set; }
+    
+    [Parameter, EditorRequired]
+    public ColumnSize DesktopSize { get; set; }
+    
+    [Parameter]
+    public ElementPosition Layout { get; set; } = ElementPosition.Left;
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    private string GetDeviceSizeCss()
+    {
+        var builder = new StringBuilder();
+        builder.Append($"{MobileSize.GetMobileCss()} ");
+        builder.Append($"{DesktopSize.GetDesktopCss()} ");
+        builder.Append($"{GetLayoutCss()} ");
+        
+        return builder.ToString();
+    }
+
+    private string GetLayoutCss() => 
+        Layout switch
+        {
+            ElementPosition.Left => "",
+            ElementPosition.Centre => "col-centre",
+            ElementPosition.Right => "col-end",
+            ElementPosition.VerticalCentre => "col-vertical-centre",
+            _ => ""
+        };
+    
+}

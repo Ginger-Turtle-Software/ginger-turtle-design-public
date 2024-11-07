@@ -1,0 +1,19 @@
+<ToggleSwitch 
+    Id="@Guid.NewGuid().ToString()"
+    IsActive="@Toggled"
+    LabelText="Toggle"
+    AnsweredCallback="@Toggle"
+    HoverText="Toggle"/>
+
+
+
+@code {
+    private bool Toggled { get; set; }
+
+    private void Toggle(bool toggled)
+    {
+        Toggled = toggled;
+        Console.WriteLine($"Toggled {Toggled}");
+    }
+    
+}

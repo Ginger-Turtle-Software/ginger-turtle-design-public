@@ -1,0 +1,164 @@
+@using System.Text
+@using GingerTurtle.Design.Constants
+
+<div class="calendar">
+    
+    <Row>
+        <Column DesktopSize="ColumnSize.ColAuto"
+                MobileSize="ColumnSize.ColAuto"
+                Layout="ElementPosition.VerticalCentre">
+            <FormButton Type="ButtonType.FlatIcon"
+                        IconUrl="@ImageUrls.Left"
+                        ClickedCallback="SetPreviousMonth"
+                        Id="btnPreviousMonth"/>
+        </Column>
+
+        <Column DesktopSize="ColumnSize.ColGrow"
+                MobileSize="ColumnSize.ColGrow"
+                Layout="ElementPosition.Centre">
+            <h5>@MonthTitle()</h5>
+        </Column>
+
+        <Column DesktopSize="ColumnSize.ColAuto"
+                MobileSize="ColumnSize.ColAuto"
+                Layout="ElementPosition.VerticalCentre">
+            <FormButton Type="ButtonType.FlatIcon"
+                        IconUrl="@ImageUrls.Right"
+                        ClickedCallback="SetNextMonth"
+                        Id="btnNextMonth"/>
+        </Column>
+    </Row>
+    
+    
+
+    <ul class="week-wrapper">
+        <li class="day-name">
+            Mon
+        </li>
+        <li class="day-name">
+            Tue
+        </li>
+        <li class="day-name">
+            Wed
+        </li>
+        <li class="day-name">
+            Thu
+        </li>
+        <li class="day-name">
+           Fri
+        </li>
+        <li class="day-name">
+            Sat
+        </li>
+        <li class="day-name">
+            Sun
+        </li>
+    </ul>
+    
+    @for (var i = 0; i < 5; i++)
+    {
+        <ul class="week-wrapper">
+        @for (var x = 0; x < 7; x++)
+        {
+            var day = Current.GetDayOfMonth(i, x);
+            
+            @if (day > 0)
+            {
+                var date = new DateTime(Current.Year, Current.Month, day);
+                <li class="day @(IsSelected(date) ? "selected" : "")"
+                    @onclick="@(() => SetDate(day))">
+                    @day
+                </li>
+            }
+            else
+            {
+                <li class="day-placeholder">
+                    
+                </li>
+            }
+                
+        }
+        </ul>
+    }
+
+</div>
+
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public DateTime SelectedDate { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime> DateSelectedCallback { get; set; }
+    
+    private DateTime Current { get; set; }
+    
+    private static readonly string[] DaysOfWeek = new[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+    
+    
+    protected override void OnInitialized()
+    {
+        var firstDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month, 1);
+        Current = firstDayOfMonth;
+    }
+    
+    private Task SetNextMonth()
+    {
+        Current = Current.AddMonths(1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private Task SetPreviousMonth()
+    {
+        Current = Current.AddMonths(-1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private async Task SetDate(int day)
+    {
+        var date = new DateTime(Current.Year, Current.Month, day);
+        await DateSelectedCallback.InvokeAsync(date);
+    }
+    
+    private string MonthTitle()
+    {
+        var builder = new StringBuilder();
+        builder.Append(Current.ToString("MMMM yyyy"));
+        return builder.ToString();
+    }
+    
+    private int DaysInMonth()
+    {
+        return DateTime.DaysInMonth(Current.Year, Current.Month);
+    }
+    
+    private List<DateTime> GetDaysInMonth()
+    {
+        var days = new List<DateTime>();
+        var firstDayOfMonth = new DateTime(Current.Year, Current.Month, 1);
+        var firstDayOffset = ((int)firstDayOfMonth.DayOfWeek + 6) % 7; // Adjust for Monday start
+        var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+        for (var day = 0; day < firstDayOffset; day++)
+        {
+            days.Add(DateTime.MinValue); // Placeholder for empty days
+        }
+
+        for (var day = firstDayOfMonth; day <= lastDayOfMonth; day = day.AddDays(1))
+        {
+            days.Add(day);
+        }
+
+        return days;
+    }
+    
+    
+    private bool IsSelected(DateTime date)
+    {
+        return date == SelectedDate;
+    }
+    
+}

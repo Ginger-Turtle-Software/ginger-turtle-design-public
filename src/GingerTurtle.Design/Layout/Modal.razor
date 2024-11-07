@@ -1,0 +1,159 @@
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Contracts
+@using GingerTurtle.Design.Models
+
+<FormButton
+    Type="@ButtonType"
+    Disabled="@(State.IsOpen||Disabled)"
+    Id="@(!string.IsNullOrEmpty(Id) ? $"{Id.Trim()}_ModalButton" :$"{OpenButtonText.Trim()}_ModalButton")"
+    Text="@OpenButtonText"
+    ClickedCallback="@(async () => await InitializeModal())"
+    IconSize="@OpenIconSize"
+    IconUrl="@OpenIconUrl"
+    IconColor="OpenIconColor"
+    Size="@OpenButtonSize"
+    Title="@OpenButtonText"
+    HoverText="@OpenHoverText"
+    IsDark="@IsDark"
+    IconPosition="OpenIconPosition"/>
+
+@if (State.IsOpen)
+{
+    <div class="modal-wrapper"
+         @onabort:stopPropagation="true"
+         @onclick:stopPropagation="true">
+        <div class="overlay @(State.IsOpen ? "open" : "")"
+             title="" >
+            <div class="modal-container" title="">
+                <div class="modal @ModalSize.GetCssClass()">
+
+                    <div class="modal-close-wrapper">
+                        <FormButton Type="ButtonType.BorderedIcon"
+                                    IconSize="ElementSize.Medium"
+                                    Id="@($"{Id}_ModalCloseButton")"
+                                    IconUrl="@ImageUrls.CloseLight"
+                                    ClickedCallback="CloseModal"
+                                    Size="ElementSize.Small"
+                                    Text="Close"/>
+                    </div>
+
+                    <Display If="@(!State.IsInitialized)">
+                        <Container>
+                            <Row>
+                                <Column DesktopSize="ColumnSize.Col100"
+                                        MobileSize="ColumnSize.Col100"
+                                        Layout="ElementPosition.Centre">
+                                    <Loading LoadingText="@LoadingMessage"/>
+                                </Column>
+                            </Row>
+                        </Container>
+                    </Display>
+
+                    <Display If="@(State.IsInitialized)">
+
+                        <div class="modal-body">
+                            <div class="modal-body-content">
+
+                                <NotificationCentre />
+                                
+                                @ModalBody
+
+                                @if (ModalFooter != null)
+                                {
+                                <div class="modal-footer">
+                                    @ModalFooter
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </Display>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Inject]
+    public INavigationService NavigationService { get; set; }
+
+    [Inject]
+    public INotificationService NotificationService { get; set; }
+    
+    [Parameter, EditorRequired]
+    public ModalState State { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Id { get; set; }
+
+    [Parameter, EditorRequired]
+    public ButtonType ButtonType { get; set; }
+    
+    [Parameter]
+    public string OpenIconUrl { get; set; }
+
+    [Parameter]
+    public IconPosition OpenIconPosition { get; set; } = IconPosition.Left;
+
+    [Parameter]
+    public string OpenButtonText { get; set; }
+
+    [Parameter]
+    public ElementSize OpenIconSize { get; set; } = ElementSize.Medium;
+
+    [Parameter]
+    public ElementSize OpenButtonSize { get; set; } = ElementSize.Medium;
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]
+    public string OpenHoverText { get; set; }
+    
+    [Parameter]
+    public RenderFragment ModalBody { get; set; }
+
+    [Parameter]
+    public RenderFragment ModalFooter { get; set; }
+
+    [Parameter]
+    public EventCallback InitializingCallback { get; set; }
+
+    [Parameter]
+    public EventCallback ClosingCallback { get; set; }
+
+    [Parameter]
+    public ElementColor OpenIconColor { get; set; }
+
+    [Parameter]
+    public ElementSize ModalSize { get; set; } = ElementSize.Small;
+
+    [Parameter]
+    public bool IsDark { get; set; }
+
+    [Parameter] 
+    public string LoadingMessage { get; set; } = "Loading...";
+
+    private async Task InitializeModal()
+    {
+        State.IsOpen = true;
+        await InitializingCallback.InvokeAsync();
+        State.IsInitialized = true;
+        State.YOffset = await NavigationService.GetBodyScrollPosition();
+        await NavigationService.DisableBodyScrolling();
+        NotificationService.ClearAllNotifications();
+    }
+
+    private async Task CloseModal()
+    {
+        await NavigationService.EnableBodyScrolling();
+        await NavigationService.SetBodyScrollPosition(State.YOffset);
+        NotificationService.ClearAllNotifications();
+        State.IsInitialized = false;
+        State.IsOpen = false;
+        await ClosingCallback.InvokeAsync();
+    }
+
+}

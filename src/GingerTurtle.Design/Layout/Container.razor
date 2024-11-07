@@ -1,0 +1,39 @@
+@using System.Text
+<div class="container-wrapper @Size.GetCssClass()">
+    <div class="container @Size.GetCssClass() @GetCss()">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    
+    [Parameter]
+    public ElementSize Size { get; set; } = ElementSize.Medium;
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter] 
+    public ElementColor BackgroundColour { get; set; } = ElementColor.Default;
+
+    [Parameter]
+    public bool HasShadow { get; set; }
+    
+    private string GetCss()
+    {
+        var builder = new StringBuilder();
+        
+        switch (BackgroundColour)
+        {
+            case ElementColor.White:
+                builder.Append("white ");
+                break;
+        }
+
+        if (HasShadow)
+            builder.Append("outline ");
+
+        return builder.ToString();
+    } 
+    
+}

@@ -1,0 +1,111 @@
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Models
+
+
+<Display If="RenderOverlay">
+    <div id="overlay" 
+         class="overlay @(State.IsOpen ? "open" : "")"
+         @onclick="CloseModel"></div>
+</Display>
+
+<FormButton Type="@OpenButtonType"
+            Text="@OpenButtonText"
+            ClickedCallback="InitializeDrawer"
+            IconUrl="@OpenIconUrl"
+            IconColor="@OpenIconColour"
+            HoverText="@OpenHoverText"
+            IconPosition="@OpenIconPosition"
+            IsDark="IsDark"
+            Id="@($"btnOpenDrawer_{Id}")" />
+
+<div class="drawer @Size.GetCssClass() @(State.IsOpen ? "open" : "") @Alignment.GetCssClass() @(IsDark ? "dark" : "")">
+    <div class="drawer-content">
+        
+        <div class="close-wrapper">
+            <FormButton IconUrl="@ImageUrls.CloseLight"
+                        Id="@($"btnCloseModal{Id})")"
+                        Type="ButtonType.BorderedIcon"
+                        ClickedCallback="CloseModel"
+                        />
+        </div>
+    
+        <Display If="@(!State.IsInitialized)">
+            <Loading />
+        </Display>
+
+        <Display If="@(State.IsInitialized)">
+            @ChildContent
+        </Display>
+        
+    </div>
+</div>
+
+@code {
+    
+    // [Inject]
+    // public INavigationService NavigationService { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Id { get; set; }
+    
+    [Parameter, EditorRequired]
+    public DrawerState State { get; set; }
+    
+    [Parameter]
+    public ButtonType OpenButtonType { get; set; }
+
+    [Parameter] 
+    public ElementSize Size { get; set; } = ElementSize.Medium;
+    
+    [Parameter]
+    public string OpenButtonText { get; set; }
+    
+    [Parameter]
+    public EventCallback InitializeDrawerCallback { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter] 
+    public DrawerAlignment Alignment { get; set; } = DrawerAlignment.Left;
+    
+    [Parameter]
+    public bool IsDark { get; set; }
+    
+    [Parameter]
+    public bool RenderOverlay { get; set; }
+
+    [Parameter]
+    public string OpenIconUrl { get; set; }
+    
+    [Parameter]
+    public ElementColor OpenIconColour { get; set; }
+    
+    [Parameter]
+    public IconPosition OpenIconPosition { get; set; }
+    
+    [Parameter]
+    public string OpenHoverText { get; set; }
+
+    private async Task InitializeDrawer()
+    {
+        State.IsInitialized = false;
+
+        State.IsOpen = true;
+        
+        await InitializeDrawerCallback.InvokeAsync();
+        
+        //if(RenderOverlay)
+        //    await NavigationService.DisableBodyScrolling();
+
+        State.IsInitialized = true;
+    }
+
+    private Task CloseModel()
+    {
+        State.IsOpen = false;
+        return Task.CompletedTask;
+        // await NavigationService.EnableBodyScrolling();
+    }
+    
+}

@@ -1,0 +1,13 @@
+<Row>
+    <Column DesktopSize="ColumnSize.Col100"
+            MobileSize="ColumnSize.Col100">
+        <p>
+            @ChildContent
+        </p>
+    </Column>
+</Row>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

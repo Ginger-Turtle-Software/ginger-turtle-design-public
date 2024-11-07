@@ -1,0 +1,92 @@
+/****************************************************
+ *  Primary Button Style
+ ****************************************************/
+:root{
+
+    --primaryButtonFontColour: white;
+    --primaryButtonBackgroundColour: #0056b3;
+    --primaryButtonBorderColour: #0056b3;
+
+    --primaryButtonHoverFontColour: white;
+    --primaryButtonHoverBackgroundColour: #003d80;
+    --primaryButtonHoverBorderColour: #003d80;
+
+    --primaryButtonActiveFontColour: white;
+    --primaryButtonActiveBackgroundColour: #002d66;
+    --primaryButtonActiveBorderColour: #004494;
+
+    --primaryButtonDarkFontColour:#0056b3;
+    --primaryButtonDarkBackgroundColour: white;
+    --primaryButtonDarkBorderColour: white;
+
+    --primaryButtonDarkHoverFontColour:#003d80;
+    --primaryButtonDarkHoverBackgroundColour: white;
+    --primaryButtonDarkHoverBorderColour: white;
+
+    --primaryButtonDarkActiveFontColour:#002d66;
+    --primaryButtonDarkActiveBackgroundColour: white;
+    --primaryButtonDarkActiveBorderColour: #002d66;
+}
+
+
+/*-- Default Styling --*/
+.btn.btn-primary{
+    color: var(--primaryButtonFontColour);
+    background-color:var(--primaryButtonBackgroundColour);
+    border: 2px solid var(--primaryButtonBorderColour);
+    border-radius: 24px;
+}
+
+.btn.btn-primary .icon{
+    background-color: var(--primaryButtonFontColour);
+}
+
+.btn.btn-primary:hover{
+    color: var(--primaryButtonHoverFontColour);
+    background-color: var(--primaryButtonHoverBackgroundColour);
+    border-color: var(--primaryButtonHoverBorderColour);
+}
+.btn.btn-primary:hover .icon{
+    background-color: var(--primaryButtonHoverFontColour);
+}
+
+.btn.btn-primary:active{
+    color: var(--primaryButtonActiveFontColour);
+    background-color: var(--primaryButtonActiveBackgroundColour);
+    border-color: var(--primaryButtonActiveBorderColour);
+}
+.btn.btn-primary:active .icon{
+    background-color: var(--primaryButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-primary.dark {
+    color: var(--primaryButtonDarkFontColour);
+    background-color: var(--primaryButtonDarkBackgroundColour);
+    border-color: var(--primaryButtonDarkBorderColour);
+}
+.btn.btn-primary.dark .icon {
+    background-color: var(--primaryButtonDarkFontColour);
+}
+
+.btn.btn-primary.dark:hover {
+    color: var(--primaryButtonDarkHoverFontColour);
+    background-color: var(--primaryButtonDarkHoverBackgroundColour);
+    border-color: var(--primaryButtonDarkHoverBorderColour);
+}
+.btn.btn-primary.dark:hover .icon {
+    background-color: var(--primaryButtonDarkHoverFontColour);
+}
+
+.btn.btn-primary.dark:active {
+    color: var(--primaryButtonDarkActiveFontColour);
+    background-color: var(--primaryButtonDarkActiveBackgroundColour);
+    border-color: var(--primaryButtonDarkActiveBorderColour);
+}
+.btn.btn-primary.dark:active .icon {
+    background-color: var(--primaryButtonDarkActiveFontColour);
+}
+
+.btn.btn-primary.processing .spinner {
+    border-top: 2px solid var(--primaryButtonFontColour);
+}

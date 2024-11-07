@@ -1,0 +1,20 @@
+
+<Row>
+    <Column DesktopSize="ColumnSize.ColAuto"
+            MobileSize="ColumnSize.ColGrow">
+        <h1>
+            @Text
+        </h1>
+    </Column>
+    <Column DesktopSize="ColumnSize.ColGrow"
+            MobileSize="ColumnSize.ColHide">
+
+    </Column>
+</Row>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string Text { get; set; }
+    
+}

@@ -1,0 +1,30 @@
+<button class="text-button @Class" @onclick="Click">
+    <span class="title">@TitleText</span>
+    <span class="text @(string.IsNullOrEmpty(Text) ? "" : "active")">
+        @(string.IsNullOrEmpty(Text) ? Placeholder : Text)
+    </span>
+</button>
+
+@code {
+    
+    [Parameter]
+    public string TitleText { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Text { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Placeholder { get; set; }
+    
+    [Parameter]
+    public string Class { get; set; }
+    
+    [Parameter]
+    public EventCallback ClickedCallback { get; set; }
+
+    private async Task Click()
+    {
+        await ClickedCallback.InvokeAsync();
+    }
+    
+}

@@ -1,0 +1,29 @@
+
+.more-details-info-box{
+    display:inline-block;
+    width:100%;
+    position:relative;
+    padding: 8px 4px;
+    border-bottom: 1px solid #C6C6C6;
+    box-sizing: border-box;
+}
+
+
+.more-details-info-box:hover{
+    border-color: #233246;
+}
+
+
+.more-details-info-box-title{
+    font-size: 12px;
+    color: #2b3133;
+    float:left;
+}
+
+
+.more-details-info-box-info {
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    color: #562873;
+}

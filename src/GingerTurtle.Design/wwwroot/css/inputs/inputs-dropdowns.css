@@ -1,0 +1,161 @@
+/*Dropdown wrapper styles */
+.dropdown-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+}
+
+
+.pseudo-dropdown {
+    color: var(--inputFontColour);
+    display: block;
+    text-indent: 12px;
+    height: 38px;
+    background-color: var(--inputBackgroundColour);
+    border: 1px solid var(--inputBorderColour);
+    border-radius: 4px;
+    text-align: left;
+    text-overflow: ellipsis;
+    padding-right: 28px;
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-image: url("/_content/GingerTurtle.Design/img/icons/chevron-down.svg");
+}
+
+.pseudo-dropdown:focus{
+    border-color: var(--highlightBlue);
+}
+
+.invalid-input .pseudo-dropdown,
+.invalid-input .pseudo-dropdown:hover,
+.invalid-input .pseudo-dropdown:focus {
+    border-color: var(--inputErrorBorderColour);
+}
+
+.pseudo-dropdown.disabled {
+    background-color: var(--inputDisabledBackgroundColour);
+    border-color: var(--inputDisabledBorderColour);
+    cursor: not-allowed;
+    color: var(--inputDisabledFontColour);
+}
+
+.pseudo-dropdown.disabled:hover {
+    border-color: var(--inputDisabledBorderColour);
+}
+
+.pseudo-dropdown:hover:not(:active):not(:focus):not(:focus-visible):not(:disabled) {
+    border-color: var(--inputHoverBorderColour);
+}
+
+/*dropdown options wrapper styles*/
+.dropdown-options-wrapper {
+    background-color: var(--inputBackgroundColour);
+    box-sizing: border-box;
+    border: solid 1px var(--inputBorderColour);
+    border-radius: 4px;
+    width: 100%;
+    max-height: 210px;
+    margin-top: 0;
+    position: absolute;
+    z-index: 6;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 14px;
+}
+.dropdown-options-wrapper.xs {
+    width: 25%;
+}
+.dropdown-options-wrapper.sm {
+    width: 50%;
+}
+.dropdown-options-wrapper.md {
+    width: 75%;
+}
+.dropdown-options-wrapper.lg {
+    width: 100%;
+}
+.dropdown-options-wrapper.xl {
+    width: 100%;
+}
+
+.dropdown-options-wrapper ol{
+    width: 100%;
+}
+
+.dropdown-options-wrapper.inline {
+    position: relative;
+}
+
+.dropdown-options-wrapper.multi-select-wrapper {
+    width: max-content;
+    min-width: 100%;
+    margin-top:4px;
+    max-height: 280px;
+}
+
+.dropdown-options-wrapper .selected {
+    color: #233246;
+    font-weight: 500;
+}
+
+.dropdown-options-wrapper li {
+    color: #929292;
+    width: 100%;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-options-wrapper li.active {
+    /*color: var(--red); - FUTURE - When we get dropdown item active/focus styling we will add it here */
+}
+
+.dropdown-options-wrapper li:hover {
+    background-color: #F9F9F9;
+    color: #233246;
+    font-weight: 500;
+}
+
+/*btn wrapper  in dropdown styles */
+.dropdown-wrapper .btn-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 40px;
+}
+
+.dropdown-wrapper .btn-wrapper.xs {
+    right: 75%;
+}
+
+.dropdown-wrapper .btn-wrapper.sm {
+    right: 50%;
+}
+
+.dropdown-wrapper .btn-wrapper.md {
+    right: 25%;
+}
+
+.dropdown-wrapper .btn-wrapper.lg {
+    right: 0;
+}
+
+.dropdown-wrapper .btn-wrapper.xl {
+    right: 0;
+}
+
+.dropdown-wrapper .filter-name {
+    font-size: 9px;
+    margin-left: 4px;
+    text-transform: uppercase;
+    position: absolute;
+    top: -18px;
+    font-weight: 700;
+    letter-spacing: 0.9px;
+}
+

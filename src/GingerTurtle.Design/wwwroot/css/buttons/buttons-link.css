@@ -1,0 +1,91 @@
+/****************************************************
+ *  Link Button Style
+ ****************************************************/
+:root{
+
+    --linkButtonFontColour: #0056b3;
+    --linkButtonBackgroundColour: transparent;
+    --linkButtonBorderColour: transparent;
+
+    --linkButtonHoverFontColour: #003d80;
+    --linkButtonHoverBackgroundColour: transparent;
+    --linkButtonHoverBorderColour: transparent;
+
+    --linkButtonActiveFontColour: #002d66;
+    --linkButtonActiveBackgroundColour: transparent;
+    --linkButtonActiveBorderColour: transparent;
+
+    --linkButtonDarkFontColour: white;
+    --linkButtonDarkBackgroundColour: transparent;
+    --linkButtonDarkBorderColour: transparent;
+
+    --linkButtonDarkHoverFontColour: white;
+    --linkButtonDarkHoverBackgroundColour: transparent;
+    --linkButtonDarkHoverBorderColour: transparent;
+
+    --linkButtonDarkActiveFontColour: white;
+    --linkButtonDarkActiveBackgroundColour: transparent;
+    --linkButtonDarkActiveBorderColour: transparent;
+}
+
+/*-- Default Styling --*/
+.btn.btn-link{
+    color: var(--linkButtonFontColour);
+    background-color:var(--linkButtonBackgroundColour);
+    border: none;
+    padding: 0;
+    text-decoration: none;
+}
+
+.btn.btn-link .icon{
+    background-color: var(--linkButtonFontColour);
+}
+
+.btn.btn-link:hover{
+    color: var(--linkButtonHoverFontColour);
+    background-color: var(--linkButtonHoverBackgroundColour);
+    border-color: var(--linkButtonHoverBorderColour);
+    text-decoration: underline;
+}
+.btn.btn-link:hover .icon{
+    background-color: var(--linkButtonHoverFontColour);
+}
+
+.btn.btn-link:active{
+    color: var(--linkButtonActiveFontColour);
+    background-color: var(--linkButtonActiveBackgroundColour);
+    border-color: var(--linkButtonActiveBorderColour);
+    text-decoration: none;
+}
+.btn.btn-link:active .icon{
+    background-color: var(--linkButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-link.dark {
+    color: var(--linkButtonDarkFontColour);
+    background-color: var(--linkButtonDarkBackgroundColour);
+    border-color: var(--linkButtonDarkBorderColour);
+}
+.btn.btn-link.dark .icon {
+    background-color: var(--linkButtonDarkFontColour);
+}
+
+.btn.btn-link.dark:hover {
+    color: var(--linkButtonDarkHoverFontColour);
+    background-color: var(--linkButtonDarkHoverBackgroundColour);
+    border-color: var(--linkButtonDarkHoverBorderColour);
+}
+.btn.btn-link.dark:hover .icon {
+    background-color: var(--linkButtonDarkHoverFontColour);
+}
+
+.btn.btn-link.dark:active {
+    color: var(--linkButtonDarkActiveFontColour);
+    background-color: var(--linkButtonDarkActiveBackgroundColour);
+    border-color: var(--linkButtonDarkActiveBorderColour);
+}
+.btn.btn-link.dark:active .icon {
+    background-color: var(--linkButtonDarkActiveFontColour);
+}
+

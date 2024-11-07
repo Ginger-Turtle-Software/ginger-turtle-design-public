@@ -1,0 +1,47 @@
+@using GingerTurtle.Design.Models
+@using GingerTurtle.Design.Services
+
+<div class="notification-hub @(NotificationBag.Notification == null ? "no-notifications" : "")" role="alert">
+    @if (NotificationBag.Notification != null)
+    {
+        <div class="notifications-wrapper">
+            <NotificationRenderer
+                Notification="@NotificationBag.Notification"
+                DismissNotificationCallback="@DismissAllNotifications"/>
+        </div>
+    }
+</div>
+
+@code {
+    
+    [Inject]
+    public NotificationService NotificationService { get; set; }
+    
+    [Inject]
+    public NotificationBag NotificationBag { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        NotificationService.AddNotification += CreateNotification;
+        NotificationService.DismissNotification += DismissAllNotifications;
+    }
+
+    private void CreateNotification(Notification notification)
+    {
+        NotificationBag.CreateNotification(notification);
+        StateHasChanged();
+    }
+
+    private void DismissAllNotifications()
+    {
+        NotificationBag.DismissAllNotifications();
+        StateHasChanged();
+    }
+
+    private void DismissNotification(Guid notificationId)
+    {
+        NotificationBag.DismissNotification(notificationId);
+        StateHasChanged();
+    }
+    
+}

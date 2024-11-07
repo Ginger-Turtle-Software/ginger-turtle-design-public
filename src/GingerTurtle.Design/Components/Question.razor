@@ -1,0 +1,83 @@
+@using GingerTurtle.Design.Constants
+<div class="question-wrapper @(RenderError && !IsValid ? "invalid-input" : "")">
+    <Row>
+        <Column Layout="ElementPosition.Left"
+                DesktopSize="@(RenderStacked ? ColumnSize.Col100 : ColumnSize.Col50)"
+                MobileSize="ColumnSize.Col100">
+        
+            <div class="question-text-wrapper">
+                <div class="question-text @(RenderStacked ? "stacked" : "")">
+                    <Display If="@(!IsValid && RenderError)">
+                        <Icon Color="ElementColor.Red"
+                              Size="ElementSize.Medium"
+                              IconUrl="@ImageUrls.Error" />
+                    </Display>
+                    
+                    @QuestionText @(IsRequired ? "*" : "") 
+                </div>
+                <Display If="@(!string.IsNullOrEmpty(QuestionSubText))">
+                    <div class="question-sub-text">
+                        @QuestionSubText
+                    </div>
+                </Display>
+                
+                <Display If="@(RenderError && !IsValid && !RenderStacked)">
+                    <FormLabel Text="@ErrorMessage"
+                               Color="ElementColor.Red"
+                               Size="@ElementSize.Medium"/>
+                </Display>
+                
+                @if(RenderStacked)
+                {
+                   @ChildContent
+                }
+
+                <Display If="@(RenderError && !IsValid && RenderStacked)">
+                    <FormLabel Text="@ErrorMessage"
+                               Color="ElementColor.Red" 
+                               Size="@ElementSize.Small"/>
+                </Display>
+                
+            </div>
+        </Column>
+        
+        @if (!RenderStacked)
+        {
+            <Column Layout="ElementPosition.Left"
+                    DesktopSize="ColumnSize.Col50"
+                    MobileSize="ColumnSize.Col100">
+                <div class="question-content">
+                    @ChildContent
+                </div>
+            </Column>
+        }
+    </Row>
+</div>
+
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string QuestionText { get; set; }
+    
+    [Parameter, EditorRequired]
+    public bool RenderError { get; set; }
+    
+    [Parameter, EditorRequired]
+    public bool IsValid { get; set; }
+    
+    [Parameter, EditorRequired]
+    public bool IsRequired { get; set; }
+
+    [Parameter]
+    public bool RenderStacked { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+    [Parameter]
+    public string QuestionSubText { get; set; }
+
+    [Parameter] 
+    public string ErrorMessage { get; set; } = "Answer is required";
+}

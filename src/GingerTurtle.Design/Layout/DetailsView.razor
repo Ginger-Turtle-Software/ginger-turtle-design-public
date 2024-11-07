@@ -1,0 +1,26 @@
+<div class="details-layout">
+    <Display If="@(RightHandSide != null)">
+        <div class="details-area">
+            <div class="content">
+                @RightHandSide
+            </div>
+        </div>
+    </Display>
+    <div class="panel-area">
+        <div class="content">
+            @LeftHandSide
+        </div>
+    </div>
+</div>
+
+
+@code {
+    
+    [Parameter]
+    public RenderFragment LeftHandSide { get; set; }
+    
+    [Parameter]
+    public RenderFragment RightHandSide { get; set; }
+
+    
+}

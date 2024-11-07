@@ -1,0 +1,94 @@
+/****************************************************
+ *  action Button Style
+ ****************************************************/
+:root{
+    --actionButtonFontColour: #182A4E;
+    --actionButtonBackgroundColour: #F1F2F4;
+    --actionButtonBorderColour: #F1F2F4;
+
+    --actionButtonHoverFontColour: #182A4E;
+    --actionButtonHoverBackgroundColour: #DDDFE5;
+    --actionButtonHoverBorderColour: #DDDFE5;
+
+    --actionButtonActiveFontColour: #182A4E;
+    --actionButtonActiveBackgroundColour: #B3B9C5;
+    --actionButtonActiveBorderColour: #B3B9C5;
+
+    --actionButtonDarkFontColour: white;
+    --actionButtonDarkBackgroundColour: #585869;
+    --actionButtonDarkBorderColour: #233246;
+
+    --actionButtonDarkHoverFontColour: white;
+    --actionButtonDarkHoverBackgroundColour: #585869;
+    --actionButtonDarkHoverBorderColour: #585869;
+
+    --actionButtonDarkActiveFontColour: white;
+    --actionButtonDarkActiveBackgroundColour: #585869;
+    --actionButtonDarkActiveBorderColour: white;
+}
+
+
+/*-- Default Styling --*/
+.btn.btn-action{
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--actionButtonFontColour);
+    background-color:var(--actionButtonBackgroundColour);
+    border: 1px solid var(--actionButtonBorderColour);
+    border-radius: 0;
+    padding: 6px 12px;
+}
+
+.btn.btn-action .icon{
+    background-color: var(--actionButtonFontColour);
+}
+
+.btn.btn-action:hover{
+    color: var(--actionButtonHoverFontColour);
+    background-color: var(--actionButtonHoverBackgroundColour);
+    border-color: var(--actionButtonHoverBorderColour);
+}
+.btn.btn-action:hover .icon{
+    background-color: var(--actionButtonHoverFontColour);
+}
+
+.btn.btn-action:active{
+    color: var(--actionButtonActiveFontColour);
+    background-color: var(--actionButtonActiveBackgroundColour);
+    border-color: var(--actionButtonActiveBorderColour);
+}
+.btn.btn-action:active .icon{
+    background-color: var(--actionButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-action.dark {
+    color: var(--actionButtonDarkFontColour);
+    background-color: var(--actionButtonDarkBackgroundColour);
+    border-color: var(--actionButtonDarkBorderColour);
+}
+.btn.btn-action.dark .icon {
+    background-color: var(--actionButtonDarkFontColour);
+}
+
+.btn.btn-action.dark:hover {
+    color: var(--actionButtonDarkHoverFontColour);
+    background-color: var(--actionButtonDarkHoverBackgroundColour);
+    border-color: var(--actionButtonDarkHoverBorderColour);
+}
+.btn.btn-action.dark:hover .icon {
+    background-color: var(--actionButtonDarkHoverFontColour);
+}
+
+.btn.btn-action.dark:active {
+    color: var(--actionButtonDarkActiveFontColour);
+    background-color: var(--actionButtonDarkActiveBackgroundColour);
+    border-color: var(--actionButtonDarkActiveBorderColour);
+}
+.btn.btn-action.dark:active .icon {
+    background-color: var(--actionButtonDarkActiveFontColour);
+}
+
+.btn.btn-action.processing .spinner {
+    border-top: 2px solid var(--actionButtonFontColour);
+}

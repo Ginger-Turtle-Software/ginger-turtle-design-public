@@ -1,0 +1,88 @@
+
+.row-wrap{
+    margin:8px 0;
+    width:100%;
+}
+
+.row-wrap.heading{
+    margin-top:50px;
+}
+
+.row-wrap.error{
+    border-left: 4px solid #ED0001;
+    background-color: #FAEBEB;
+    /*color: #ED0001;*/
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-weight: 400;
+}
+
+/*background-color: #f7f5f9;
+    border-left: 5px solid #674186;*/
+
+.row-wrap.info{
+    border-left: 4px solid #0046A3;
+    background-color: #E1EBFF;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+
+.row-wrap.success{
+    border-left: 5px solid #007318;
+    background-color: #E6F3E8;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-weight: 400;
+}
+
+.row-wrap.warning{
+    border-left: 5px solid #f0a55f;
+    background-color: #fefaf7;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-weight: 400;
+}
+
+
+
+.row:before, .row:after {
+    content: " ";
+    display: table;
+}
+
+.row{
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+
+.row:after {
+    clear: both;
+}
+
+.row:before, .row:after {
+    content: " ";
+    display: table;
+}
+
+
+/* - Small Device -*/
+@media(max-width: 767px) {
+    .row {
+        flex-wrap: wrap;
+    }
+}
+
+/* - Large Device -*/
+@media(min-width: 768px) {
+
+}

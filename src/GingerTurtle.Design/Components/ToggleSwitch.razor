@@ -1,0 +1,58 @@
+
+<Hover HoverText="@HoverText">
+    <div class="checkbox_item citem_1">
+        <label class="checkbox_wrap">
+            <Display If="@(!string.IsNullOrEmpty(LabelText))">
+                <span class="title">
+                    @LabelText
+                </span>
+            </Display>
+            @if (IsActive)
+            {
+                <input type="checkbox"
+                       checked="checked"
+                       id="@Id"
+                       @onchange="@(() => ToggleOption(false))"
+                       name="chkToggle"
+                       class="checkbox_inp"/>
+            }
+            else
+            {
+                <input type="checkbox"
+
+                       id="@Id"
+                       @onchange="@(() => ToggleOption(true))"
+                       name="chkToggle"
+                       class="checkbox_inp"/>
+            }
+            <span class="checkbox_mark"></span>
+        </label>
+    </div>
+</Hover>
+
+
+@code{
+
+    [Parameter, EditorRequired]
+    public bool IsActive { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Id { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<bool> AnsweredCallback { get; set; }
+    
+    [Parameter]
+    public string LabelText { get; set; }
+    
+    [Parameter]
+    public string HoverText { get; set; }
+    
+    private async Task ToggleOption(bool selected)
+    {
+        StateHasChanged();
+        await AnsweredCallback.InvokeAsync(selected);
+    }
+    
+    
+}

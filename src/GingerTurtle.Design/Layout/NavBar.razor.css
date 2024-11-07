@@ -1,0 +1,22 @@
+nav{
+    background-color: #243778;
+    color: white;
+    width: 100vw;
+    position: static;
+    display: flex;
+    min-height: 60px;
+}
+
+.brand{
+    background-color: white;
+    width: 120px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand img{
+    max-width: 100px;
+    max-height: 100px;
+}

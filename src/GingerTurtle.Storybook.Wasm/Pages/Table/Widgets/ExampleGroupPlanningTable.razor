@@ -1,0 +1,80 @@
+@using GingerTurtle.Design.Constants
+
+<Container Size="ElementSize.ExtraLarge">
+    <ResponsiveTable>
+        <Row IsHeader="true">
+            <Cell Layout="ElementPosition.Left"
+                  Title=""
+                  IsHeader="true"
+                  DesktopSize="ColumnSize.Col20">
+                Name
+            </Cell>
+            <Cell Layout="ElementPosition.Left"
+                  Title=""
+                  IsHeader="true"
+                  DesktopSize="ColumnSize.Col20">
+                Group Comment
+            </Cell>
+            <Cell Layout="ElementPosition.Left"
+                  Title=""
+                  IsHeader="true"
+                  DesktopSize="ColumnSize.ColGrow">
+                Product Type Comment
+            </Cell>
+        </Row>
+        
+        @for(var i = 0; i < 10; i++)
+        {
+            
+            var i2 = i;
+            <Row>
+
+                @{
+                    var i1 = i2;
+                }
+                <Cell Layout="ElementPosition.Left"
+                      Title="Product Type"
+                      DesktopSize="ColumnSize.Col20">
+                    Product Type @i1
+                </Cell>
+                <Cell Layout="ElementPosition.Left"
+                      Title="Group Comment"
+                      DesktopSize="ColumnSize.Col20">
+                    
+                </Cell>
+                <Cell Layout="ElementPosition.Left"
+                      Title="Product Type Comment"
+                      DesktopSize="ColumnSize.ColGrow">
+                    <textarea class="white"></textarea>
+                    @if (i1 == 1)
+                    {
+                        <InlineLabelsHolder>
+                            <FormLabel Color="ElementColor.Yellow" Text="Unsaved Changes 1"/>
+                            <FormLabel Color="ElementColor.Yellow" Text="Unsaved Changes 2"/>
+                        </InlineLabelsHolder>
+                    }
+                </Cell>
+                <Cell Layout="ElementPosition.Centre"
+                      Title=""
+                      DesktopSize="ColumnSize.ColAuto"
+                      MobileSize="ColumnSize.Col50">
+                    <FormButton Type="ButtonType.BorderedIcon"
+                                HoverText="Update"
+                                Id="@Guid.NewGuid().ToString()"
+                                IconUrl="@ImageUrls.Save" />
+                </Cell>
+                <Cell Layout="ElementPosition.Centre"
+                      Title=""
+                      DesktopSize="ColumnSize.ColAuto"
+                      MobileSize="ColumnSize.Col50">
+                    <ExamplePrioritiesDrawer />
+                </Cell>
+            </Row>
+        }
+        
+    </ResponsiveTable>
+</Container>
+
+@code {
+    
+}

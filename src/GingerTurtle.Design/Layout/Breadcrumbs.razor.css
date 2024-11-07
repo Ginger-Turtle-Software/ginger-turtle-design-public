@@ -1,0 +1,51 @@
+
+ul.breadcrumbs{
+    display: flex;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    padding: 10px 20px;
+    font-weight: 400;
+}
+
+ul.breadcrumbs li a{
+    color: #007c89;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+ul.breadcrumbs.dark li a{
+    color: white;
+    font-weight: normal;
+}
+
+ul.breadcrumbs.dark li {
+    font-weight: 500;
+    color: white;
+}
+
+ul.breadcrumbs li:not(:last-of-type):after {
+    display: inline-block;
+    content: "​";
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23767676' stroke-width='2' stroke-linecap='round' stroke-linejoin='round%5C'%3E%3Cpolyline points='9 18 15 12 9 6'%3E%3C/polyline%3E%3C/svg%3E") center/16px 16px no-repeat;
+    width: 16px;
+    margin: 0 8px;
+}
+
+ul.breadcrumbs li a:hover,
+ul.breadcrumbs li a:active{
+    outline: 0;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: auto 1px;
+    background-repeat: repeat-x;
+    background-position: 0 calc(50% + 1ex);
+}
+
+ul.breadcrumbs li a:link{
+    touch-action: manipulation;
+}
+
+ul.breadcrumbs li a:focus{
+    outline: thin dotted;
+}

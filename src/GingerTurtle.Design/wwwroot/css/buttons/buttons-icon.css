@@ -1,0 +1,125 @@
+/****************************************************
+ *  Icon Button Styles
+ ****************************************************/
+:root{
+
+    --iconButtonFontColour: #67677B;
+    --iconButtonBackgroundColour: white;
+    --iconButtonBorderColour: #E7E7E7;
+
+    --iconButtonHoverFontColour: #233246;
+    --iconButtonHoverBackgroundColour: #E7E7E7;
+    --iconButtonHoverBorderColour: #E7E7E7;
+
+    --iconButtonActiveFontColour: #233246;
+    --iconButtonActiveBackgroundColour: #E7E7E7;
+    --iconButtonActiveBorderColour: #E7E7E7;
+
+    --iconButtonDarkFontColour:white;
+    --iconButtonDarkBackgroundColour: transparent;
+    --iconButtonDarkBorderColour: #67677B;
+
+    --iconButtonDarkHoverFontColour: white;
+    --iconButtonDarkHoverBackgroundColour: #36475C;
+    --iconButtonDarkHoverBorderColour: #36475C;
+
+    --iconButtonDarkActiveFontColour: white;
+    --iconButtonDarkActiveBackgroundColour: #36475C;
+    --iconButtonDarkActiveBorderColour: #36475C;
+}
+
+
+/*-- Default Styling --*/
+.btn.btn-icon{
+    color: #67677B;
+    align-items: center;
+    padding: 0;
+    border-radius: 100%;
+}
+
+.btn.btn-icon .btn-icon-wrapper{
+    border: 1px solid transparent;
+    padding: 10px;
+    border-radius: 100px;
+    background-color: var(--iconButtonBackgroundColour);
+}
+
+.btn.btn-icon.bordered .btn-icon-wrapper{
+    border-color: var(--iconButtonBorderColour);
+}
+
+.btn.btn-icon .icon{
+    margin: 0;
+    padding: 0;
+    background-color: #67677B;
+    -webkit-mask-position-y: center;
+    mask-position: center;
+}
+
+.btn.btn-icon:hover{
+    color: var(--iconButtonHoverFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn.btn-icon:hover .btn-icon-wrapper{
+    background-color: var(--iconButtonHoverBackgroundColour);
+}
+
+.btn.btn-icon.bordered:hover .btn-icon-wrapper{
+    border-color: var(--iconButtonHoverBorderColour);
+}
+.btn.btn-icon:hover .icon{
+    background-color: var(--iconButtonHoverFontColour);
+}
+
+.btn.btn-icon:active{
+    color: var(--iconButtonActiveFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn.btn-icon:active .icon{
+    background-color: var(--iconButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-icon.dark {
+    color: var(--iconButtonDarkFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn.btn-icon.dark .icon-wrapper{
+    border-color: transparent;
+}
+
+.btn.btn-icon.dark .icon {
+    background-color: var(--iconButtonDarkFontColour);
+}
+
+.btn.btn-icon.dark.bordered .btn-icon-wrapper{
+    border-color: var(--iconButtonDarkBorderColour);
+}
+
+.btn.btn-icon.dark:hover {
+    color: var(--iconButtonDarkHoverFontColour);
+    background-color: var(--iconButtonDarkHoverBackgroundColour);
+    border-color: transparent;
+}
+.btn.btn-icon.dark:hover .btn-icon-wrapper{
+    background-color: var(--iconButtonDarkHoverBackgroundColour);
+}
+
+.btn.btn-icon.dark:hover .icon{
+    background-color: var(--iconButtonDarkHoverFontColour);
+}
+
+.btn.btn-icon.dark:active {
+    color: var(--iconButtonDarkActiveFontColour);
+    background-color: var(--iconButtonDarkActiveBackgroundColour);
+    border-color: transparent;
+}
+.btn.btn-icon.dark:active .icon {
+    background-color: var(--iconButtonDarkActiveFontColour);
+}
+

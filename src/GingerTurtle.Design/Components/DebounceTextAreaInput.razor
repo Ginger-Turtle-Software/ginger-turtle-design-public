@@ -1,0 +1,90 @@
+@using System.Timers
+
+<textarea id="@Id"
+       type="@Type"
+       @oninput="InputChanged"
+       @onkeyup="InputKeyUp"
+       @onblur="Blurred"
+       autocomplete="one-time-code"
+       value="@Value"
+       class="@Class"
+       placeholder="@Placeholder"
+       data-cy="@Id"
+       data-cy-required="@IsRequired"
+       @onkeydown="@KeyPressed">
+    </textarea>
+
+@code {
+    
+    [Parameter]
+    public string Id { get; set; }
+    
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Type { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter]
+    public Func<Task> ElapsedHandler { get; set; }
+
+    [Parameter]
+    public Action<object> InputChangedHandler { get; set; }
+
+    [Parameter]
+    public Func<bool> CanDebounce { get; set; }
+
+    [Parameter] 
+    public bool IsRequired { get; set; }
+
+    [Parameter]
+    public Func<Task> BlurredCallback { get; set; }
+        
+    [Parameter]
+    public int DebounceMilliseconds { get; set; } = 300;
+    
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> KeyPressedCallback { get; set; }
+    
+    private Timer DebounceTimer { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        DebounceTimer = new Timer(DebounceMilliseconds);
+        DebounceTimer.Elapsed += OnDebounceTimerOnElapsed;
+        DebounceTimer.AutoReset = false;
+    }
+
+    private async void OnDebounceTimerOnElapsed(object sender, ElapsedEventArgs args)
+    {
+        await ElapsedHandler.Invoke();
+    }
+
+    private void InputChanged(ChangeEventArgs args) => InputChangedHandler.Invoke(args.Value);
+
+    private Task Blurred() =>  BlurredCallback == null ? Task.CompletedTask : BlurredCallback.Invoke();  
+    
+    private void InputKeyUp(KeyboardEventArgs args)
+    {
+        DebounceTimer.Stop();
+
+        var canDebounce = CanDebounce?.Invoke() ?? true;
+
+        if (!canDebounce)
+            return;
+
+        DebounceTimer.Start();
+    }
+
+    private Task KeyPressed(KeyboardEventArgs args)
+    {
+        return KeyPressedCallback.InvokeAsync(args);
+    }
+
+}

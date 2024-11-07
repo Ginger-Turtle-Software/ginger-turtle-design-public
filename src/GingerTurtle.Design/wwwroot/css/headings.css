@@ -1,0 +1,115 @@
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Optional: Media query for responsiveness */
+@media (max-width: 768px) {
+    h1 { font-size: 22px; }
+    h2 { font-size: 18px; }
+    h3 { font-size: 16px; }
+    h4 { font-size: 14px; }
+}
+
+html {
+    font-size: 16px; /* Adjust base font size as needed */
+    background-color: rgba(203, 203, 210, 0.15);
+}
+
+body{
+    font-weight: 300;
+    line-height: 1.5; /* Ensures good readability */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #33384A;
+    min-height: 100vh;
+    font-size: 16px;
+    font-family: var(--bodyFont), sans-serif;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--headingFont), sans-serif;
+    font-weight: 500; /* Bold font for headings */
+    line-height: 1.2; /* Tighten line height for headings */
+    margin-top: 0; /* Prevents extra space above headings */
+    color: #33384a;
+}
+
+h1.dark, h2.dark, h3.dark, h4.dark, h5.dark, h6.dark, p.dark {
+    color: white;
+}
+
+
+/* h1 - Main heading */
+h1 {
+    font-size: 24px;
+}
+
+/* h2 - Subheading */
+h2 {
+    font-size: 20px;
+}
+
+/* h3 - Sub-subheading */
+h3 {
+    font-size: 18px;
+}
+
+/* h4 - Minor heading */
+h4 {
+    font-size: 16px;
+}
+
+
+/* Paragraph styling */
+p {
+    font-size: 14px; /* Standard size for body text */
+    line-height: 1.5; /* Ensures good readability */
+    color: #333; /* Dark text color for clarity */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Optional: Larger text for specific areas or sections */
+p.large {
+    font-size: 16px; /* Slightly larger font */
+}
+
+/* Optional: Lighter text for less emphasis */
+p.light {
+    color: #666; /* Lighter gray for secondary text */
+}
+
+/* Optional: Media query for responsiveness */
+@media (max-width: 768px) {
+    p {
+        font-size: 13px; /* Adjust font size for mobile */
+    }
+}
+
+/* Additional elements styling (optional) */
+.container {
+    padding: 20px; /* For general padding in containers */
+}
+
+.container.white{
+    background-color: white;
+}
+
+.container.outline{
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Slight shadow for card-like effect */
+}
+
+/* Optional: Use padding instead of margin to avoid collapsing margins */
+.section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ccc; /* Light border between sections */
+}
+
+

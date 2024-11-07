@@ -1,0 +1,82 @@
+/* ref : https://codepen.io/lukepeters/pen/JjoVWd */
+
+.wrapper {
+    margin: 0 auto;
+    padding: 40px;
+    max-width: 800px;
+}
+
+.table {
+    margin: 0 0 20px 0;
+    width: 100%;
+    font-size: 14px;
+}
+@media screen and (max-width: 767px) {
+    .table {
+        display: block;
+    }
+}
+
+.table > .row-wrap {
+    margin: 0;
+    border-bottom: 1px solid #E4E4E4;
+}
+
+.table > .row-wrap.header {
+    font-weight: 600;
+    color: var(--inputFontColour);
+    background: white;
+    border-bottom: 2px solid var(--inputFontColour);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-size: 12px;
+}
+.table > .row-wrap.green {
+    background: #27ae60;
+}
+.table > .row-wrap.blue {
+    background: #2980b9;
+}
+
+@media screen and (max-width: 767px) {
+    .table > .row {
+        padding: 14px 0 7px;
+    }
+    .table > .row-wrap.header {
+        padding: 0;
+        height: 6px;
+    }
+    .table > .row.header .cell {
+        display: none;
+    }
+    .table > .row .cell {
+        margin-bottom: 10px;
+    }
+    .table > .row .cell:before {
+        margin-bottom: 3px;
+        content: attr(data-title);
+        min-width: 98px;
+        font-size: 10px;
+        line-height: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #969696;
+        display: block;
+    }
+}
+
+.cell {
+    padding: 6px 12px;
+    width: 100%;
+}
+@media screen and (max-width: 767px) {
+    .cell {
+        padding: 2px 16px;
+        display: block;
+    }
+}
+
+.table > .row-wrap:not(.header):hover {
+    background-color: var(--inputBackgroundColour);
+}

@@ -1,0 +1,71 @@
+
+<Hover HoverText="@(Disabled ? "" : HoverText)">
+    <a href="@Link" 
+       target="@GetTarget()"
+       class="@Type.GetButtonTypeCssClass() @Size.GetCssClass() @(Disabled ? "disabled" : "")  @(Type.HasIconBorder() ? "bordered" : "") @(IsDark ? "dark" : "")"
+       data-cy="@Id"
+       id="@Id"
+       aria-label="@(Disabled ? "" : HoverText)"
+       @onclick:stopPropagation="true">
+
+        <Display If="@(!(string.IsNullOrEmpty(IconUrl))  && IconPosition == IconPosition.Left)">        
+            <span class="btn-icon-wrapper">
+                <Icon IconUrl="@IconUrl" Size="@IconSize" Color="IconColor"/>
+            </span>
+        </Display>
+        
+        @Text
+
+        <Display If="@(!(string.IsNullOrEmpty(IconUrl)) && IconPosition == IconPosition.Right)">
+            <span class="btn-icon-wrapper">
+                <Icon IconUrl="@IconUrl" Size="@IconSize" Color="IconColor" />
+            </span>
+        </Display>
+        
+    </a>
+</Hover>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Id { get; set; }
+
+    [Parameter, EditorRequired]    
+    public string Link { get; set; }  
+   
+    [Parameter]
+    public string IconUrl { get; set; }
+    
+    [Parameter]
+    public string Text { get; set; } 
+
+    [Parameter]
+    public string HoverText { get; set; }
+
+    [Parameter]
+    public bool OpenInNewTab { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; }
+
+    [Parameter]    
+    public ButtonType Type { get; set; } = ButtonType.PrimaryLink;    
+
+    [Parameter]    
+    public ElementSize Size { get; set; } = ElementSize.Medium;
+
+    [Parameter]
+    public IconPosition IconPosition { get; set; } = IconPosition.Left;
+    
+    [Parameter]
+    public ElementSize IconSize { get; set; } = ElementSize.Medium;
+
+    [Parameter]
+    public bool IsDark { get; set; }
+    
+    [Parameter]
+    public ElementColor IconColor { get; set; }
+
+    private string GetTarget() => OpenInNewTab ? "_blank" : "";
+    
+    private bool HasIconBorder => Type.HasIconBorder();
+}

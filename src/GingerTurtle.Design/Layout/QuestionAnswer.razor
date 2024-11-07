@@ -1,0 +1,17 @@
+<div class="more-details-info-box">
+    <span class="more-details-info-box-title">
+        @Question
+    </span>
+    <span class="more-details-info-box-info">
+        @Answer
+    </span>
+</div>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string Question { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Answer { get; set; }
+}

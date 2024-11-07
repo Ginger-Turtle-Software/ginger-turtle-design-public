@@ -1,0 +1,60 @@
+@using GingerTurtle.Design.Models
+<MultiSelectDropDown
+     Options="GenerateTestOptions()"
+     Placeholder="select option"
+     SelectedOptions="@SelectedOption"
+     SelectionChangedHandler="SelectOption"
+     CanEdit="true"
+     RenderInline="true"/>
+
+@code {
+    private string SelectedOption { get; set; } = "";
+
+    private List<QuestionOption> GenerateTestOptions()
+    {
+        return
+        [
+            new QuestionOption()
+            {
+                Description = "Description 1",
+                Id = "1"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 2",
+                Id = "2"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 3",
+                Id = "3"
+            },
+
+            new QuestionOption()
+            {
+                Description = "Description 4",
+                Id = "4"
+            }
+        ];
+    }
+    
+    private Task SelectOption(QuestionOption option)
+    {
+        if(option == null)
+            return Task.CompletedTask;
+        
+        SelectedOption ??= "";
+        if (SelectedOption.Split('|').Any(i => i == option?.Id))
+            SelectedOption = string.Join('|', SelectedOption.Split('|').Where(i => i != option.Id));
+        else
+        {
+            SelectedOption = !string.IsNullOrEmpty(SelectedOption) ? $"{SelectedOption}|{option?.Id}" : $"{option?.Id}";
+        }
+        
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+}

@@ -1,0 +1,32 @@
+<Display If="@(!string.IsNullOrEmpty(HoverText))">
+
+    <div class="hover-wrapper"
+         title=""
+         aria-label="@HoverText"
+         role="tooltip"
+         @onabort:stopPropagation="true">
+        <div class="hover-content">
+            <div class="hover-text">
+                @HoverText
+            </div>
+        </div>
+
+        @ChildContent
+        
+    </div>
+</Display>
+
+<Display If="@(string.IsNullOrEmpty(HoverText))">
+    @ChildContent
+</Display>
+
+@code {
+
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string HoverText { get; set; }
+
+}

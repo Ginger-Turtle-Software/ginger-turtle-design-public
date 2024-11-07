@@ -1,0 +1,128 @@
+:root {
+    --inputFontFamily: 'Roboto', sans-serif;
+    --highlightBlue:#2294FF;
+    
+    --inputFontColour: #575757;
+    --inputBorderColour: #C6C6C6;
+    --inputBackgroundColour: #F5F5F5 /*#F0F2F5*/;
+    
+    --inputDisabledFontColour: #737373;;
+    --inputDisabledBorderColour: #E7E7E7;
+    --inputDisabledBackgroundColour: transparent;
+
+    --inputHoverFontColour: #575757;
+    --inputHoverBorderColour: #233246;
+    --inputHoverBackgroundColour:#F5F5F5;
+
+    --inputActiveFontColour: #575757;
+    --inputActiveBorderColour: #C6C6C6;
+    --inputActiveBackgroundColour:#F5F5F5;
+
+    --inputSelectedFontColour: #233246;
+    --inputSelectedBorderColour: #233246;
+    --inputSelectedBackgroundColour: white;
+
+    --inputErrorFontColour: #e21219;
+    --inputErrorBorderColour: #e21219;
+    --inputErrorBackgroundColour:#fdf3f3;
+
+    --inputDarkFontColour: white;
+    --inputDarkBorderColour: #1A293B;
+    --inputDarkBackgroundColour: #1A293B;
+
+    --inputDarkHoverFontColour: white;
+    --inputDarkHoverBorderColour: #1A293B;
+    --inputDarkHoverBackgroundColour: #1A293B;
+
+    --inputDarkActiveFontColour: white;
+    --inputDarkActiveBorderColour: #233246;
+    --inputDarkActiveBackgroundColour: #1A293B;
+}
+
+select, input, textarea {
+    color: var(--inputFontFamily);
+    display: block;
+    text-indent: 12px;
+    height: 38px;
+    background: var(--inputBackgroundColour);
+    border: 1px solid var(--inputBorderColour);
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    width: 100%;
+    font-family: var(--inputFontFamily), serif;
+}
+
+.invalid-input .input-wrapper select,
+.invalid-input .input-wrapper text,
+.invalid-input .input-wrapper textarea{
+    border-color: #ED0100;
+}
+
+select:disabled,
+input:disabled,
+textarea:disabled {
+    cursor: not-allowed;
+    background: transparent;
+    border: 1px solid transparent;
+}
+
+select.white, input.white, textarea.white{
+    background: white;
+}
+
+textarea{
+    padding: 10px 0;
+    height: 100px;
+    font-family: var(--inputFontFamily), serif;
+}
+
+
+input.uppercase,
+textarea.uppercase{
+    text-transform: uppercase;
+}
+
+input.euro,
+input.pound{
+    background-size: 14px 14px;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+    background-position-y: center;
+    background-position-x: 10px;
+}
+
+input.euro{
+    background-image: url("/_content/GingerTurtle.Design/img/icons/euro.svg");
+}
+
+input.pound{
+    background-image: url("/_content/GingerTurtle.Design/img/icons/pound.svg");
+}
+
+select:hover:not(:focus):not(:focus-visible):not(:disabled),
+input:hover:not(:focus):not(:focus-visible):not(:disabled),
+textarea:hover:not(:focus):not(:focus-visible):not(:disabled){
+    border-color: #233246;
+}
+
+::placeholder {
+    color: #929292;
+    font-weight: 500;
+}
+
+.date-wrapper {
+    display: inline-flex;
+}
+
+.date-wrapper input {
+    margin: 0 5px;
+}
+
+.date-wrapper input:first-of-type{
+    margin-left: 0;
+}
+
+.date-wrapper input:last-child{
+    margin-right: 0;
+}

@@ -1,0 +1,32 @@
+
+<Column Layout="Layout"
+        DesktopSize="DesktopSize"
+        MobileSize="@(IsHeader ? ColumnSize.ColHide : MobileSize)">
+    <div class="cell" 
+         data-title="@Title">
+        @ChildContent
+    </div>
+</Column>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public ColumnSize DesktopSize { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Title { get; set; }
+    
+    [Parameter] 
+    public ColumnSize MobileSize { get; set; } = ColumnSize.Col100;
+    
+    [Parameter]
+    public bool IsHeader { get; set; }
+    
+    [Parameter]
+    public ElementPosition Layout { get; set; } = ElementPosition.Left;
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    
+}

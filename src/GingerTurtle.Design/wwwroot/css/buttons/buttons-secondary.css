@@ -1,0 +1,91 @@
+/****************************************************
+ *  Secondary Button Style
+ ****************************************************/
+:root{
+    --secondaryButtonFontColour: #fd7e14;
+    --secondaryButtonBackgroundColour: white;
+    --secondaryButtonBorderColour: #fd7e14;
+
+    --secondaryButtonHoverFontColour: white;
+    --secondaryButtonHoverBackgroundColour: #fd7e14;
+    --secondaryButtonHoverBorderColour: #fd7e14;
+
+    --secondaryButtonActiveFontColour: white;
+    --secondaryButtonActiveBackgroundColour: #e3650a;
+    --secondaryButtonActiveBorderColour: #e3650a;
+
+    --secondaryButtonDarkFontColour: white;
+    --secondaryButtonDarkBackgroundColour: #585869;
+    --secondaryButtonDarkBorderColour: #233246;
+
+    --secondaryButtonDarkHoverFontColour: white;
+    --secondaryButtonDarkHoverBackgroundColour: #585869;
+    --secondaryButtonDarkHoverBorderColour: #585869;
+
+    --secondaryButtonDarkActiveFontColour: white;
+    --secondaryButtonDarkActiveBackgroundColour: #585869;
+    --secondaryButtonDarkActiveBorderColour: white;
+}
+
+
+/*-- Default Styling --*/
+.btn.btn-secondary{
+    color: var(--secondaryButtonFontColour);
+    background-color:var(--secondaryButtonBackgroundColour);
+    border: 2px solid var(--secondaryButtonBorderColour);
+    border-radius: 24px;
+}
+
+.btn.btn-secondary .icon{
+    background-color: var(--secondaryButtonFontColour);
+}
+
+.btn.btn-secondary:hover{
+    color: var(--secondaryButtonHoverFontColour);
+    background-color: var(--secondaryButtonHoverBackgroundColour);
+    border-color: var(--secondaryButtonHoverBorderColour);
+}
+.btn.btn-secondary:hover .icon{
+    background-color: var(--secondaryButtonHoverFontColour);
+}
+
+.btn.btn-secondary:active{
+    color: var(--secondaryButtonActiveFontColour);
+    background-color: var(--secondaryButtonActiveBackgroundColour);
+    border-color: var(--secondaryButtonActiveBorderColour);
+}
+.btn.btn-secondary:active .icon{
+    background-color: var(--secondaryButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-secondary.dark {
+    color: var(--secondaryButtonDarkFontColour);
+    background-color: var(--secondaryButtonDarkBackgroundColour);
+    border-color: var(--secondaryButtonDarkBorderColour);
+}
+.btn.btn-secondary.dark .icon {
+    background-color: var(--secondaryButtonDarkFontColour);
+}
+
+.btn.btn-secondary.dark:hover {
+    color: var(--secondaryButtonDarkHoverFontColour);
+    background-color: var(--secondaryButtonDarkHoverBackgroundColour);
+    border-color: var(--secondaryButtonDarkHoverBorderColour);
+}
+.btn.btn-secondary.dark:hover .icon {
+    background-color: var(--secondaryButtonDarkHoverFontColour);
+}
+
+.btn.btn-secondary.dark:active {
+    color: var(--secondaryButtonDarkActiveFontColour);
+    background-color: var(--secondaryButtonDarkActiveBackgroundColour);
+    border-color: var(--secondaryButtonDarkActiveBorderColour);
+}
+.btn.btn-secondary.dark:active .icon {
+    background-color: var(--secondaryButtonDarkActiveFontColour);
+}
+
+.btn.btn-secondary.processing .spinner {
+    border-top: 2px solid var(--secondaryButtonFontColour);
+}

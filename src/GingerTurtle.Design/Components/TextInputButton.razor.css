@@ -1,0 +1,44 @@
+
+button.text-button{
+    color: #575757;
+    display: block;
+    text-indent: 12px;
+    height: 38px;
+    background: var(--inputBackgroundColour);
+    border: 1px solid var(--inputBorderColour);
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+}
+
+button.text-button.centre{
+    text-align: center;
+    text-indent: 0;
+}
+
+button.text-button:hover{
+    border-color: #233246;
+}
+
+.title{
+    position: absolute;
+    top: -24px;
+    left: -7px;
+    font-weight: 500;
+}
+
+.text.active{
+    color: black;
+    font-weight: 500;
+}
+
+.text-button.calendar{
+    background-image: url("/_content/GingerTurtle.Design/img/icons/calendar.svg");
+    background-size: 18px;
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+}

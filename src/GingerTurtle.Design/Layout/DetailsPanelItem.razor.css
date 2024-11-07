@@ -1,0 +1,12 @@
+
+.panel-content{
+    padding: 8px 12px;
+}
+
+.details-label{
+    font-weight: 500;
+    font-size: 12px;
+}
+.details-value{
+    display: flex;
+}

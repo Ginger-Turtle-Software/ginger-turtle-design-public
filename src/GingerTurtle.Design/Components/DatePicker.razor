@@ -1,0 +1,218 @@
+@using System.Globalization
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Contracts
+
+<TextInputButton Placeholder="Select Date"
+                 Text="@(GetTriggerButtonText())"
+                 ClickedCallback="Toggle"
+                 TitleText=""
+                 Class="calendar"/>
+
+<Display If="IsExpanded">
+
+    <div class="overlay"></div>
+
+    <div class="datepicker-wrapper">
+        <div class="datepicker">
+            
+            <div class="datepicker-header">
+                @PrintCurrentDate()
+                <div class="close-wrapper">
+                    <FormButton Type="ButtonType.BorderedIcon"
+                                Text="Close"
+                                Size="ElementSize.Small"
+                                ClickedCallback="Close"
+                                Id="btnCloseDatePicker"
+                                IconUrl="@ImageUrls.CloseLight"/>
+                </div>
+            </div>
+            
+            <Display If="@(State == PickerState.Date)">
+                <div class="datepicker-body">
+                    <DatePickerMonth
+                        DateSelectedCallback="SetCurrentDate"
+                        SelectedDate="Current"/>
+                </div>
+            </Display>
+
+            <Display If="@(State == PickerState.Time)">
+                <div class="datepicker-body">
+                    <TimePicker SelectedDate="Current"
+                                DateSelectedCallback="SetCurrentDate"/>
+                </div>
+            </Display>
+
+
+
+            <div class="datepicker-footer">
+                <Row>
+                    <Column Layout="ElementPosition.Right"
+                            DesktopSize="ColumnSize.Col100"
+                            MobileSize="ColumnSize.Col100">
+                        <Display If="@(ShowTime && State == PickerState.Date)">
+                            <FormButton
+                                Id="btnShowTime"
+                                Type="ButtonType.Primary"
+                                Text="Continue"
+                                ClickedCallback="ShowTimeState"/>
+                        </Display>
+                        <Display If="@(!ShowTime || State == PickerState.Time)">
+                            <FormButton
+                                Id="btnSetDate"
+                                Type="ButtonType.Primary"
+                                Text="Set Date"
+                                ClickedCallback="SetDate"/>
+                        </Display>
+                        
+                        
+                    </Column>
+                </Row>
+            </div>
+            
+        </div>
+    </div>
+</Display>
+
+@code {
+    
+    [Inject]
+    public INavigationService NavigationService { get; set; }
+    
+    [Parameter, EditorRequired]
+    public DateTime? Date { get; set; }
+    
+    [Parameter, EditorRequired]
+    public EventCallback<DateTime?> SetDateCallback { get; set; }
+    
+    [Parameter, EditorRequired]
+    public bool ShowTime { get; set; }
+    
+    private bool IsExpanded { get; set; }
+    
+    private DateTime Current { get; set; }
+
+    private PickerState State { get; set; } = PickerState.Date;
+    
+    protected override void OnInitialized()
+    {
+        Current = DateTime.UtcNow;
+       
+        if (Date.HasValue)
+        {
+            Current = Date.Value;
+        }
+        else
+        {
+            Current = DateTime.Now;
+        }
+        
+        base.OnInitialized();
+    }
+    
+    private Task CurrentMonthSelected(DateTime month)
+    {
+        Current = month;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private async Task Toggle()
+    {
+        State = PickerState.Date;
+        IsExpanded = !IsExpanded;
+        if (IsExpanded)
+        {
+            await NavigationService.DisableBodyScrolling();
+        }
+        else
+        {
+            await NavigationService.EnableBodyScrolling();
+        }
+    }
+
+    
+    private async Task Close()
+    {
+        IsExpanded = false;
+        await NavigationService.EnableBodyScrolling();
+    }
+
+
+    private Task SetCurrentDate(DateTime d)
+    {
+        Current = d;
+        Console.WriteLine(d.ToString(CultureInfo.InvariantCulture));
+        return Task.CompletedTask;
+    }
+
+    private async Task ConfirmDate()
+    {
+        await SetDateCallback.InvokeAsync(Current);
+        await NavigationService.EnableBodyScrolling();
+        IsExpanded = false;
+    }
+
+    private Task IncreaseHours()
+    {
+        Current = Current.AddHours(1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private Task DecreaseHours()
+    {
+        Current = Current.AddHours(-1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private Task IncreaseMinutes()
+    {
+        Current = Current.AddMinutes(1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+    
+    private Task DecreaseMinutes()
+    {
+        Current = Current.AddMinutes(-1);
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private string PrintCurrentDate()
+    {
+        var day = Current.Day.ToString();
+        var suffix = day.EndsWith("1") && !day.EndsWith("11") ? "st" :
+            day.EndsWith("2") && !day.EndsWith("12") ? "nd" :
+            day.EndsWith("3") && !day.EndsWith("13") ? "rd" : "th";
+        return Current.ToString("ddd") + " " + day + suffix + " " + Current.ToString("MMM yyyy");
+    }
+
+    private async Task SetDate()
+    {
+        IsExpanded = false;
+        StateHasChanged();
+        await SetDateCallback.InvokeAsync(Current);
+        await NavigationService.EnableBodyScrolling();
+    }
+
+    private Task ShowTimeState()
+    {
+        State = PickerState.Time;
+        return Task.CompletedTask;
+    }
+
+    private string GetTriggerButtonText()
+    {
+        if (!Date.HasValue)
+            return "";
+        return Date?.ToString(!ShowTime ? "dd/MM/yyyy" : "dd/MM/yyyy HH:mm");
+    }
+    
+    private enum PickerState
+    {
+        Date,
+        Time
+    }
+}

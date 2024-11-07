@@ -1,0 +1,144 @@
+@using System.Timers;
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Contracts
+
+
+<div class="input-wrapper">
+    <input id="@Id"
+           type="@Type.GetInputType()"
+           @oninput="InputChanged"
+           @onkeyup="InputKeyUp"
+           @onblur="Blurred"
+           autocomplete="@(AllowAutoComplete ? "autocomplete" : "one-time-code")"
+           value="@Value"
+           class="@Class"
+           placeholder="@Placeholder"
+           disabled="@(Disabled)"
+           @onkeydown="@KeyPressed"
+           data-lpignore="true"/>
+
+    <Display If="@(CanClear && !string.IsNullOrEmpty(Value))">
+        <div class="clear-wrapper">
+            <FormButton IconUrl="@(IsDark ? ImageUrls.CloseDark : ImageUrls.CloseLight )"
+                        Id="@($"btnClear{Id}")"
+                        Type="ButtonType.Square"
+                        IsDark="@IsDark"
+                        ClickedCallback="ClearInput"/>
+        </div>
+    </Display>
+    
+</div>
+
+@code {
+    
+    [Inject]
+    public IInputService InputService { get; set; }
+    
+    [Parameter]
+    public string Id { get; set; }
+    
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter]
+    public int DebounceMilliseconds { get; set; }
+
+    [Parameter]
+    public Func<Task> ElapsedHandler { get; set; }
+
+    [Parameter]
+    public Action<object> InputChangedHandler { get; set; }
+
+    [Parameter]
+    public Func<bool> CanDebounce { get; set; }
+
+    [Parameter] 
+    public bool IsRequired { get; set; }
+
+    [Parameter]
+    public Func<Task> BlurredCallback { get; set; }
+        
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> KeyPressedCallback { get; set; }
+    
+    [Parameter]
+    public string RegexMatchCondition { get; set; }
+
+    
+    [Parameter]
+    public bool Disabled { get; set; }
+    
+    [Parameter]
+    public bool AllowAutoComplete { get; set; }
+    
+    [Parameter]
+    public TextInputType Type { get; set; }
+    
+    [Parameter]
+    public bool IsDark { get; set; }
+    
+    [Parameter]
+    public bool CanClear { get; set; }
+    
+    protected override void OnInitialized()
+    {
+        Id ??= Guid.NewGuid().ToString();
+        DebounceTimer = new Timer(DebounceMilliseconds);
+        DebounceTimer.Elapsed += OnDebounceTimerOnElapsed;
+        DebounceTimer.AutoReset = false;
+    }
+    
+    private async void OnDebounceTimerOnElapsed(object sender, ElapsedEventArgs args)
+    {
+        await ElapsedHandler.Invoke();
+    }
+
+    private async Task InputChanged(ChangeEventArgs args)
+    {
+        if (!string.IsNullOrEmpty(RegexMatchCondition))
+        {
+            var value = await InputService.RestrictInput(Id, RegexMatchCondition);
+            InputChangedHandler.Invoke(value);
+            return;
+        }
+        InputChangedHandler.Invoke(args.Value);
+    }
+    
+    private Task Blurred() =>  BlurredCallback == null ? Task.CompletedTask : BlurredCallback.Invoke();  
+    
+    private void InputKeyUp(KeyboardEventArgs args)
+    {
+        DebounceTimer.Stop();
+
+        var canDebounce = CanDebounce?.Invoke() ?? true;
+
+        if (!canDebounce)
+            return;
+
+        DebounceTimer.Start();
+    }
+
+
+    private Task KeyPressed(KeyboardEventArgs args)
+    {
+        return KeyPressedCallback.InvokeAsync(args);
+    }
+
+    private async Task ClearInput()
+    {
+        if(!CanClear)
+            return;
+        Value = "";
+        InputChangedHandler.Invoke(Value);
+        await ElapsedHandler.Invoke();
+    }
+    
+    private Timer DebounceTimer { get; set; }
+    
+}

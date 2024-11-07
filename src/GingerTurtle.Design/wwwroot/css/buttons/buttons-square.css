@@ -1,0 +1,127 @@
+/****************************************************
+ *  Square Button Styles
+ ****************************************************/
+:root{
+
+    --squareButtonFontColour: #808099;
+    --squareButtonBackgroundColour: transparent;
+    --squareButtonBorderColour: #E7E7E7;
+
+    --squareButtonHoverFontColour: #233246;
+    --squareButtonHoverBackgroundColour: #E7E7E7;
+    --squareButtonHoverBorderColour: #E7E7E7;
+
+    --squareButtonActiveFontColour: #233246;
+    --squareButtonActiveBackgroundColour: #E7E7E7;
+    --squareButtonActiveBorderColour: #E7E7E7;
+
+    --squareButtonDarkFontColour:#9C9CAB;
+    --squareButtonDarkBackgroundColour: transparent;
+    --squareButtonDarkBorderColour: #36475C;
+
+    --squareButtonDarkHoverFontColour:#9C9CAB;
+    --squareButtonDarkHoverBackgroundColour: #36475C;
+    --squareButtonDarkHoverBorderColour: #36475C;
+
+    --squareButtonDarkActiveFontColour:#9C9CAB;
+    --squareButtonDarkActiveBackgroundColour: #36475C;
+    --squareButtonDarkActiveBorderColour: #36475C;
+}
+
+
+/*-- Default Styling --*/
+.btn.btn-square{
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-left: 4px;
+    color: var(--squareButtonFontColour);
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.btn.btn-square .btn-icon-wrapper{
+    border: 1px solid transparent;
+    padding: 0;
+    background-color: transparent;
+    margin: 0 2px;
+    border-radius: 4px;
+}
+
+.btn.btn-square.bordered .btn-icon-wrapper{
+    background-color: var(--squareButtonBackgroundColour);
+    border-color: var(--squareButtonBorderColour);
+}
+
+.btn.btn-square .icon{
+    background-color: var(--squareButtonFontColour);
+    margin: 0;
+    padding: 0;
+    -webkit-mask-position-y: center;
+    mask-position: center;
+}
+
+.btn.btn-square:hover{
+    color: var(--squareButtonHoverFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn.btn-square.bordered:hover .btn-icon-wrapper{
+    border-color: var(--squareButtonHoverBorderColour);
+    background-color: var(--squareButtonHoverBackgroundColour);
+}
+.btn.btn-square:hover .icon{
+    background-color: var(--squareButtonHoverFontColour);
+}
+
+.btn.btn-square:active{
+    color: var(--squareButtonActiveFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+.btn.btn-square:active .icon{
+    background-color: var(--squareButtonActiveFontColour);
+}
+
+/*-- Dark Styling --*/
+.btn.btn-square.dark {
+    color: var(--squareButtonDarkFontColour);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn.btn-square.dark .icon-wrapper{
+    border-color: transparent;
+}
+
+.btn.btn-square.dark .icon {
+    background-color: var(--squareButtonDarkFontColour);
+}
+
+.btn.btn-square.dark.bordered .btn-icon-wrapper{
+    background-color: var(--squareButtonDarkBackgroundColour);
+    border-color: var(--squareButtonDarkBorderColour);
+}
+
+.btn.btn-square.dark:hover {
+    color: var(--squareButtonDarkHoverFontColour);
+    background-color: var(--squareButtonDarkHoverBackgroundColour);
+    border-color: transparent;
+}
+.btn.btn-square.dark:hover .icon {
+    background-color: var(--squareButtonDarkHoverFontColour);
+}
+
+.btn.btn-square.dark:active {
+    color: var(--squareButtonDarkActiveFontColour);
+    background-color: var(--squareButtonDarkActiveBackgroundColour);
+    border-color: transparent;
+}
+.btn.btn-square.dark:active .icon {
+    background-color: var(--squareButtonDarkActiveFontColour);
+}
+

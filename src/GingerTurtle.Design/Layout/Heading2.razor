@@ -1,0 +1,22 @@
+
+<Row Type="Type">
+    <Column DesktopSize="ColumnSize.Col100"
+            MobileSize="ColumnSize.Col100"
+            Layout="@Layout">
+        <h2>
+            @Text
+        </h2>
+    </Column>
+</Row>
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string Text { get; set; }
+
+    [Parameter] 
+    public RowType Type { get; set; } = RowType.Default;
+    
+    [Parameter]
+    public ElementPosition Layout { get; set; } = ElementPosition.Left;
+}

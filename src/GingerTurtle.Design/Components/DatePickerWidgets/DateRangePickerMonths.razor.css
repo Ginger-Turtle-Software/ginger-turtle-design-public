@@ -1,0 +1,47 @@
+
+
+.months{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #F3F3F3;
+    padding-top: 20px;
+}
+
+
+.year{
+    font-weight: 600;
+    color: #1A293B;
+    font-size: 10px;
+    position: absolute;
+    top: -8px;
+}
+
+.month{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.month:hover{
+    background-color: #e6f9f7;
+}
+
+.month{
+    color: #00c6b2;
+}
+
+.month.active{
+    background-color: #00c6b2;
+    color: white;
+}
+
+.month.active:first-child{
+    border-bottom-left-radius: 100px;
+    border-top-left-radius: 100px;
+}
+.month.active:last-child{
+    border-bottom-right-radius: 100px;
+    border-top-right-radius: 100px;
+}
