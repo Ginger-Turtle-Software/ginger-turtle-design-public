@@ -10,27 +10,6 @@
         <Content Update="wwwroot\img\**">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-        <Content Update="wwwroot\img\icons\add5hour.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\add1min.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\add5min.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\remove5hour.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\add1hour.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\remove1min.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-        <Content Update="wwwroot\img\icons\remove5min.svg">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
     </ItemGroup>
 
     <ItemGroup>
