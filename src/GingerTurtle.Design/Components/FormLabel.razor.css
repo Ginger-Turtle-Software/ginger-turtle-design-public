@@ -16,10 +16,11 @@ label{
 }
 
 label.sm {
-    height: 18px;
+    min-height: 18px;
     font-size: 12px;
     margin-top: 5px;
     font-weight: 500;
+    padding: 5px;
 }
 
 
