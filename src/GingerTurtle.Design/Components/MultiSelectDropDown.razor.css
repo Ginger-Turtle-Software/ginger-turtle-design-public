@@ -40,7 +40,7 @@ ul.selected-options li{
 button.btn.btn-selected{
     color: var(--inputFontColour);
     display: block;
-    height: 38px;
+    min-height: 38px;
     border: 1px solid var(--inputBorderColour);
     border-radius: 4px;
     box-sizing: border-box;
@@ -54,6 +54,7 @@ button.btn.btn-selected{
     background-size: 14px;
     background-repeat: no-repeat;
     background-position: right 10px center;
+    text-align: left;
 }
 
 button.btn.btn-selected:hover{
