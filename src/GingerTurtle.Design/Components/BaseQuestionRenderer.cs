@@ -37,6 +37,5 @@ public abstract class BaseQuestionRenderer : ComponentBase
     
     protected abstract bool Validate();
     protected abstract bool ShouldAskQuestion();
-
     protected virtual void ResetAnswer() { }
 }

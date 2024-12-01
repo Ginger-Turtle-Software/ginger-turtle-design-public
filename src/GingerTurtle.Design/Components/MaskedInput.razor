@@ -1,0 +1,66 @@
+@using GingerTurtle.Design.Contracts
+<input id="@Id"
+       type="@Type"
+       @onchange="@OnChange"
+       @oninput="@MaskInput"
+       autocomplete="one-time-code"
+       value="@Value"
+       class="@Class"
+       placeholder="@Placeholder"
+       disabled="@(!IsEnabled)" />
+
+@code {
+
+    [Inject]
+    public IInputService InputService { get; set; }
+    
+    [Parameter, EditorRequired]
+    public string Value { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Type { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Mask { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Id { get; set; }
+
+    [Parameter, EditorRequired]
+    public Func<Task> ElapsedHandler { get; set; }
+
+    [Parameter]
+    public string Pattern { get; set; }
+
+    [Parameter, EditorRequired]
+    public string CharacterPattern { get; set; }
+
+    [Parameter, EditorRequired]
+    public Action<object> InputChangedHandler { get; set; }
+
+    [Parameter, EditorRequired]
+    public bool IsEnabled { get; set; }
+
+    [Parameter, EditorRequired]
+    public bool IsRequired { get; set; }
+
+    private void InputChanged(ChangeEventArgs args) => InputChangedHandler.Invoke(args.Value);
+
+    private async Task OnChange(ChangeEventArgs args)
+    {
+        Value = $"{args.Value}";
+        InputChangedHandler.Invoke(Value);
+        await ElapsedHandler.Invoke();
+    }
+
+    private async Task MaskInput(ChangeEventArgs args)
+    {
+        await InputService.Mask(Id, Mask, Pattern, CharacterPattern);
+    }
+}

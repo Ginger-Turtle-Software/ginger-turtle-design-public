@@ -1,0 +1,14 @@
+<div class="label-text">
+    @Label    
+</div>
+
+@ChildContent
+
+@code {
+    
+    [Parameter, EditorRequired]
+    public string Label { get; set; }
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

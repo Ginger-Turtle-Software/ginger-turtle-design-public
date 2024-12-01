@@ -35,7 +35,7 @@
     public string GroupName { get; set; }
 
     [Parameter, EditorRequired]
-    public List<QuestionOption> Options { get; set; }
+    public List<OptionItem> Options { get; set; }
 
     [Parameter, EditorRequired]
     public string SelectedOptionId { get; set; }
@@ -47,7 +47,7 @@
     public string Class { get; set; }
     
     [Parameter, EditorRequired]
-    public EventCallback<QuestionOption> SelectionChangedHandler { get; set; }
+    public EventCallback<OptionItem> SelectionChangedHandler { get; set; }
     
     private async Task SelectionChanged(ChangeEventArgs e)
     {

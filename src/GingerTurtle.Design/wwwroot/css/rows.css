@@ -8,14 +8,16 @@
     margin-top:50px;
 }
 
+
 .row-wrap.error{
+    /*
     border-left: 4px solid #ED0001;
     background-color: #FAEBEB;
-    /*color: #ED0001;*/
     font-size: 14px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     font-weight: 400;
+    */
 }
 
 /*background-color: #f7f5f9;

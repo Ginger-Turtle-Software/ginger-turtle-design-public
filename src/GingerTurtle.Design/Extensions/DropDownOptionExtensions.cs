@@ -4,12 +4,12 @@ namespace GingerTurtle.Design.Extensions;
 
 public static class DropDownOptionExtensions
 {
-    public static QuestionOption GetNext(this List<QuestionOption> options, QuestionOption option)
+    public static OptionItem GetNext(this List<OptionItem> options, OptionItem item)
     {
-        if (option == null)
+        if (item == null)
             return options.FirstOrDefault();
         
-        var currentOption = options.Find(x=>x.Id == option.Id);
+        var currentOption = options.Find(x=>x.Id == item.Id);
         var index = options.IndexOf(currentOption);
 
         if(index < 0 || index == options.Count - 1)
@@ -18,12 +18,12 @@ public static class DropDownOptionExtensions
         return options[index + 1];
     }
 
-    public static QuestionOption GetPrevious(this List<QuestionOption> options, QuestionOption option)
+    public static OptionItem GetPrevious(this List<OptionItem> options, OptionItem item)
     {
-        if (option == null)
+        if (item == null)
             return options.FirstOrDefault();
 
-        var currentOption = options.Find(x => x.Id == option.Id);
+        var currentOption = options.Find(x => x.Id == item.Id);
         var index = options.IndexOf(currentOption);
         
         if(index < 0)

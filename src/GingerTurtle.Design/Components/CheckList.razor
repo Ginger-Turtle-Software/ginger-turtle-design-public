@@ -33,13 +33,13 @@
 @code {
     
     [Parameter, EditorRequired]
-    public List<QuestionOption> Options { get; set; }
+    public List<OptionItem> Options { get; set; }
     
     [Parameter, EditorRequired]
     public List<string> SelectedOptions { get; set; }
     
     [Parameter, EditorRequired]
-    public EventCallback<List<QuestionOption>> AnsweredCallback { get; set; }
+    public EventCallback<List<OptionItem>> AnsweredCallback { get; set; }
 
     [Parameter, EditorRequired]
     public string GroupName { get; set; }
@@ -47,16 +47,16 @@
     [Parameter]
     public bool RenderOutline { get; set; }
     
-    private async Task ToggleOption(QuestionOption option)
+    private async Task ToggleOption(OptionItem item)
     {
         var options = Options.Where(s => SelectedOptions.Contains(s.Id)).ToList();
-        if (options.Any(o => o.Id == option.Id))
+        if (options.Any(o => o.Id == item.Id))
         {
-            options = options.Where(o => o.Id != option.Id).ToList();
+            options = options.Where(o => o.Id != item.Id).ToList();
         }
         else
         {
-            options.Add(option);    
+            options.Add(item);    
         }
         await AnsweredCallback.InvokeAsync(options);
     }

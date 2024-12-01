@@ -96,7 +96,7 @@
 
                     @foreach (var option in DisplayOptions)
                     {
-                        <li class="make-clickable @(option.Id == SelectedOptionId ? "selected" : "") @(ActiveOption?.Description == option.Description ? "active" :"")"
+                        <li class="make-clickable @(option.Id == SelectedOptionId ? "selected" : "") @(ActiveItem?.Description == option.Description ? "active" :"")"
                             id="@GenerateOptionId(option)"
                             @onmousedown="@(() => SelectionChanged(option))"
                             @onclick:preventDefault="true"
@@ -126,10 +126,10 @@
     public string SelectedOptionId { get; set; }
     
     [Parameter]
-    public List<QuestionOption> Options { get; set; } = new();
+    public List<OptionItem> Options { get; set; } = new();
 
     [Parameter]
-    public EventCallback<QuestionOption> SelectionChangedHandler { get; set; }
+    public EventCallback<OptionItem> SelectionChangedHandler { get; set; }
 
     [Parameter]
     public string Placeholder { get; set; }
@@ -146,9 +146,9 @@
     [Parameter] 
     public bool IsRequired { get; set; }
 
-    protected List<QuestionOption> DisplayOptions { get; set; }
+    protected List<OptionItem> DisplayOptions { get; set; }
 
-    protected QuestionOption ActiveOption { get; set; }
+    protected OptionItem ActiveItem { get; set; }
 
     protected bool IsExpanded { get; set; }
     
@@ -220,9 +220,9 @@
             await InputService.FocusInput(elementId);
     }
 
-    private async Task SelectionChanged(QuestionOption option)
+    private async Task SelectionChanged(OptionItem item)
     {
-        await SelectionChangedHandler.InvokeAsync(option);
+        await SelectionChangedHandler.InvokeAsync(item);
         ResetDisplayValue();
         CloseDropDown();
     }
@@ -242,25 +242,25 @@
     
     private void CloseDropDown() => IsExpanded = false;
 
-    private string GenerateOptionId(QuestionOption option) => $"{Id}_{option.Id}";
+    private string GenerateOptionId(OptionItem item) => $"{Id}_{item.Id}";
 
     private async Task KeyPressed(KeyboardEventArgs args)
     {
         switch (args.Key)
         {
             case KeyInputConstants.ArrowDownKey:
-                ActiveOption = DisplayOptions.GetNext(ActiveOption);
-                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveOption), Id);
+                ActiveItem = DisplayOptions.GetNext(ActiveItem);
+                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveItem), Id);
                 break;
             case KeyInputConstants.ArrowUpKey:
-                ActiveOption = DisplayOptions.GetPrevious(ActiveOption);
-                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveOption), Id);
+                ActiveItem = DisplayOptions.GetPrevious(ActiveItem);
+                await NavigationService.ScrollOptionIntoView(GenerateOptionId(ActiveItem), Id);
                 break;
             case KeyInputConstants.EscapeKey:
                 CloseDropDown();
                 break;
             case KeyInputConstants.EnterKey:
-                await SelectionChanged(ActiveOption);
+                await SelectionChanged(ActiveItem);
                 break;
         }
     }

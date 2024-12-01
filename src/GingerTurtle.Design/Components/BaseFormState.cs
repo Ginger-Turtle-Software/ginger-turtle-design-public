@@ -9,7 +9,8 @@ public abstract class BaseFormState
     public Action TriggerStateChange { get; init; }
     
     public bool Processing { get; set; }
-    
+    public bool IsEditMode { get; set; } = true;
+
     public void ValidateApplication()
     {
         foreach (var validate in Validators)

@@ -4,5 +4,6 @@ public enum TextInputType
 {
     Text = 0,
     Password = 1,
-    Tel = 2
+    Tel = 2,
+    Email = 3
 }

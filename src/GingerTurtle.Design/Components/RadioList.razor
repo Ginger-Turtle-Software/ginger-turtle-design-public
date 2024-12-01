@@ -33,13 +33,13 @@
 @code {
     
     [Parameter, EditorRequired]
-    public List<QuestionOption> Options { get; set; }
+    public List<OptionItem> Options { get; set; }
     
     [Parameter, EditorRequired]
     public string SelectedOptionId { get; set; }
     
     [Parameter, EditorRequired]
-    public EventCallback<QuestionOption> AnsweredCallback { get; set; }
+    public EventCallback<OptionItem> AnsweredCallback { get; set; }
 
     [Parameter, EditorRequired]
     public string GroupName { get; set; }
@@ -47,9 +47,9 @@
     [Parameter]
     public bool RenderOutline { get; set; }
     
-    private async Task OptionSelected(QuestionOption option)
+    private async Task OptionSelected(OptionItem item)
     {
-        await AnsweredCallback.InvokeAsync(option);
+        await AnsweredCallback.InvokeAsync(item);
     }
     
 }
