@@ -1,10 +1,6 @@
 /****************************************************
  *  Radio Label Style
  ****************************************************/
-.pseudo-radio-stacked li{
-    margin-bottom: 10px;
-}
-
 input[type='radio']:checked + .pseudo-radio:after {
     background-color: #233246;
     border: 4px solid #FFFFFF !important;
