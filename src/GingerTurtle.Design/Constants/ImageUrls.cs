@@ -11,6 +11,7 @@ public static class ImageUrls
     public static string Add => "/_content/GingerTurtle.Design/img/icons/add.svg";
     public static string Error => "/_content/GingerTurtle.Design/img/icons/error.svg";
     public static string Edit => "/_content/GingerTurtle.Design/img/icons/edit.svg";
+    public static string Tick => "/_content/GingerTurtle.Design/img/icons/tick.svg";
     public static string Link => "/_content/GingerTurtle.Design/img/icons/link.svg";
     public static string Unlink => "/_content/GingerTurtle.Design/img/icons/unlink.svg";
     public static string Email => "/_content/GingerTurtle.Design/img/icons/email.svg";

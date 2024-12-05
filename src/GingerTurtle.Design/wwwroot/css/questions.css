@@ -26,10 +26,10 @@
 }
 
 .question-text{
-    font-size: 16px;
+    font-size: 1.1rem;
     font-weight: 500;
     line-height: 1.5;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
@@ -48,7 +48,7 @@
 }
 
 
-.invalid-input .question-text .icon{
+.question-text .icon{
     margin-right: 5px;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .question-sub-text{
-    font-size: 14px;
+    font-size: 1rem;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.5;
