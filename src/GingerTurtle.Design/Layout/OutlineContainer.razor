@@ -1,0 +1,13 @@
+
+<div class="container outline white">
+    <div class="container-content">
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    
+}

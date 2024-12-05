@@ -1,10 +1,17 @@
 
 .col .col-content{
     position: relative;
-    padding: 8px;
+    padding: 8px 0;
     display: flex;
     height: 100%;
 }
+
+@media(max-width:800px){
+    .col .col-content{
+        padding: 2px 0;
+    }
+}
+
 
 .col .col-content.col-centre{
     justify-content: center;
