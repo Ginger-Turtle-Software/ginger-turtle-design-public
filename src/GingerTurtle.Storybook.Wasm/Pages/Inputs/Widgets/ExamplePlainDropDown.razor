@@ -11,29 +11,29 @@
 
     private string SelectedOption { get; set; }
 
-    private List<QuestionOption> GenerateTestOptions()
+    private List<OptionItem> GenerateTestOptions()
     {
         return
         [
-            new QuestionOption()
+            new OptionItem()
             {
                 Description = "Description 1",
                 Id = "1"
             },
 
-            new QuestionOption()
+            new OptionItem()
             {
                 Description = "Description 2",
                 Id = "2"
             },
 
-            new QuestionOption()
+            new OptionItem()
             {
                 Description = "Description 3",
                 Id = "3"
             },
 
-            new QuestionOption()
+            new OptionItem()
             {
                 Description = "Description 4",
                 Id = "4"
@@ -41,7 +41,7 @@
         ];
     }
     
-    private void SelectOption(QuestionOption option)
+    private void SelectOption(OptionItem option)
     {
         SelectedOption = option?.Id;
     }
