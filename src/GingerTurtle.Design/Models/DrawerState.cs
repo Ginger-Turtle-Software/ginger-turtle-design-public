@@ -1,5 +1,3 @@
-using GingerTurtle.Design.Types;
-
 namespace GingerTurtle.Design.Models;
 
 public sealed class DrawerState
