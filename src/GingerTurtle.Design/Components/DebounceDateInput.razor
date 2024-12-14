@@ -4,18 +4,18 @@
 
 <div class="date-wrapper">
     <label for="@($"{DayInputId}")" aria-label="@($"{DayInputId}")" class="hide-me">@($"{DayInputId}")</label>
-        <input type="tel"
-               @oninput="@(async (args) => await OnInput(args, DayInputId, 2, MonthInputId))"
-               @onblur="@(async (args) => await OnBlur(args, DayInputId))"
-               @onchange="@OnDayChange"
-               @onkeyup="InputKeyUp"
-               autocomplete="false"
-               value="@Day"
-               class="@Class"
-               disabled="@(!IsEnabled)"
-               placeholder="DD"
-               id="@DayInputId"
-               data-cy="@DayInputId"/>
+    <input type="tel"
+           @oninput="@(async (args) => await OnInput(args, DayInputId, 2, MonthInputId))"
+           @onblur="@(async (args) => await OnBlur(args, DayInputId))"
+           @onchange="@OnDayChange"
+           @onkeyup="InputKeyUp"
+           autocomplete="false"
+           value="@Day"
+           class="@Class"
+           disabled="@(!IsEnabled)"
+           placeholder="DD"
+           id="@DayInputId"
+           data-cy="@DayInputId"/>
     
     <label for="@($"{MonthInputId}")" aria-label="@($"{MonthInputId}")" class="hide-me">@($"{MonthInputId}")</label>
     <input type="tel"
