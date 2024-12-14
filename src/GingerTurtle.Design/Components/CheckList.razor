@@ -10,7 +10,7 @@
                        checked="checked"
                        id="@($"{GroupName}_{option.Id}")"
                        @onchange="@(() => ToggleOption(option))"
-                       name="chkCompanyServices"
+                       name="@GroupName"
                        autocomplete="one-time-code"/>   
             }
             else
@@ -18,7 +18,7 @@
                 <input type="checkbox"
                        id="@($"{GroupName}_{option.Id}")"
                        @onchange="@(() => ToggleOption(option))"
-                       name="chkCompanyServices"
+                       name="@GroupName"
                        autocomplete="one-time-code"/>
             }
             <label for="@($"{GroupName}_{option.Id}")"
