@@ -16,4 +16,5 @@ public interface IInputService
     Task ClearInput(string elementId);
     // Task RemoveFocus();
     Task<string> RestrictInput(string id, string characterPattern);
+    Task<string> GetValue(string id);
 }

@@ -82,6 +82,8 @@
     [Parameter]
     public bool CanClear { get; set; }
     
+    private Timer DebounceTimer { get; set; }
+    
     protected override void OnInitialized()
     {
         Id ??= Guid.NewGuid().ToString();
@@ -135,6 +137,6 @@
         await ElapsedHandler.Invoke();
     }
     
-    private Timer DebounceTimer { get; set; }
+    
     
 }

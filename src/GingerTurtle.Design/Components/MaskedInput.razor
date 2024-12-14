@@ -1,13 +1,23 @@
+@using System.Timers;
 @using GingerTurtle.Design.Contracts
-<input id="@Id"
-       type="@Type"
-       @onchange="@OnChange"
-       @oninput="@MaskInput"
-       autocomplete="one-time-code"
-       value="@Value"
-       class="@Class"
-       placeholder="@Placeholder"
-       disabled="@(!IsEnabled)" />
+
+
+
+<div class="input-wrapper">
+    <input id="@Id"
+           type="@Type"
+           @oninput="@MaskInput"
+           @onkeyup="InputKeyUp"
+           @onblur="Blurred"
+           @onchange="@OnChange"
+           autocomplete="one-time-code"
+           value="@Value"
+           class="@Class"
+           placeholder="@Placeholder"
+           @onkeydown="@KeyPressed"
+           disabled="@(!IsEnabled)"
+           data-lpignore="true"/>
+</div>
 
 @code {
 
@@ -20,12 +30,6 @@
     [Parameter, EditorRequired]
     public string Type { get; set; }
 
-    [Parameter]
-    public string Class { get; set; }
-
-    [Parameter]
-    public string Placeholder { get; set; }
-
     [Parameter, EditorRequired]
     public string Mask { get; set; }
 
@@ -35,23 +39,64 @@
     [Parameter, EditorRequired]
     public Func<Task> ElapsedHandler { get; set; }
 
-    [Parameter]
-    public string Pattern { get; set; }
-
     [Parameter, EditorRequired]
     public string CharacterPattern { get; set; }
 
     [Parameter, EditorRequired]
     public Action<object> InputChangedHandler { get; set; }
-
+    
     [Parameter, EditorRequired]
     public bool IsEnabled { get; set; }
 
     [Parameter, EditorRequired]
     public bool IsRequired { get; set; }
+    
+    [Parameter]
+    public Func<Task> BlurredCallback { get; set; }
+    
+    [Parameter]
+    public string Pattern { get; set; }
 
+    [Parameter]
+    public Func<bool> CanDebounce { get; set; }
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Placeholder { get; set; }
+    
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> KeyPressedCallback { get; set; }
+
+    [Parameter]
+    public int DebounceMilliseconds { get; set; } = 300;
+    
+    private Timer DebounceTimer { get; set; }
+    
+    
+    protected override void OnInitialized()
+    {
+        Id ??= Guid.NewGuid().ToString();
+        DebounceTimer = new Timer(DebounceMilliseconds);
+        DebounceTimer.Elapsed += OnDebounceTimerOnElapsed;
+        DebounceTimer.AutoReset = false;
+    }
+    
+    private async void OnDebounceTimerOnElapsed(object sender, ElapsedEventArgs args)
+    {
+        await ElapsedHandler.Invoke();
+    }
+    
     private void InputChanged(ChangeEventArgs args) => InputChangedHandler.Invoke(args.Value);
 
+    private Task Blurred() =>  BlurredCallback == null ? Task.CompletedTask : BlurredCallback.Invoke();
+    
+    private Task KeyPressed(KeyboardEventArgs args)
+    {
+        return KeyPressedCallback.InvokeAsync(args);
+    }
+    
     private async Task OnChange(ChangeEventArgs args)
     {
         Value = $"{args.Value}";
@@ -62,5 +107,20 @@
     private async Task MaskInput(ChangeEventArgs args)
     {
         await InputService.Mask(Id, Mask, Pattern, CharacterPattern);
+        var value =await  InputService.GetValue(Id);
+        InputChangedHandler.Invoke(value);
     }
+    
+    private void InputKeyUp(KeyboardEventArgs args)
+    {
+        DebounceTimer.Stop();
+
+        var canDebounce = CanDebounce?.Invoke() ?? true;
+
+        if (!canDebounce)
+            return;
+
+        DebounceTimer.Start();
+    }
+    
 }

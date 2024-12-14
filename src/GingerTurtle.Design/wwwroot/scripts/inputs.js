@@ -117,3 +117,7 @@ function formatMoneyToFloat(id) {
     const formatted = parseFloat(value.replaceAll("$", "").replaceAll(",", ""));
     writeMoneyToValue(id, formatted);
 }
+
+function getValue(inputId){
+    return document.getElementById(inputId).value;
+}

@@ -53,6 +53,5 @@ public sealed class InputService : IInputService
     public async Task RemoveFocus() => await _jsRuntime.InvokeVoidAsync(Functions.RemoveFocus);
 
     public async Task<string> RestrictInput(string id, string characterPattern) => await _jsRuntime.InvokeAsync<string>(Functions.RestrictInput, id,characterPattern);
-
-
+    public async Task<string> GetValue(string id) => await _jsRuntime.InvokeAsync<string>(Functions.GetValue, id);
 }

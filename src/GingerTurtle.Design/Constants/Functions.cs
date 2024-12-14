@@ -29,4 +29,5 @@ public static class Functions
     public static string SetBodyScrollPosition => "setBodyScrollPosition";
     public static string SaveFile => "saveAsFile";
     public static string GetDateTimeOffset => "getTimezoneOffset";
+    public static string GetValue => "getValue";
 }
