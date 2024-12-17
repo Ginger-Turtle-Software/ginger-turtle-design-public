@@ -11,26 +11,26 @@
         </Column>
     </Row>
     
-    <Question IsRequired="false"
+    <QuestionHolder IsRequired="false"
               IsValid="true"
               QuestionText="Id"
               RenderError="false"
               RenderStacked="false"
               QuestionSubText="The unique id for the link">
         <input type="text" disabled="disabled" value="1" />
-    </Question>
+    </QuestionHolder>
 
 
-    <Question IsRequired="false"
+    <QuestionHolder IsRequired="false"
               IsValid="true"
               QuestionText="Link Title"
               RenderError="false"
               RenderStacked="false"
               QuestionSubText="What is the link title?">
         <input type="text" placeholder="enter link title" />
-    </Question>
+    </QuestionHolder>
 
-    <Question IsRequired="true"
+    <QuestionHolder IsRequired="true"
               IsValid="true"
               QuestionText="Link Type"
               RenderError="false"
@@ -41,36 +41,36 @@
                    RenderOutline="true"
                    AnsweredCallback="@(() => { })"
                    SelectedOptionId=""/>
-    </Question>
+    </QuestionHolder>
 
-    <Question IsRequired="true"
+    <QuestionHolder IsRequired="true"
               IsValid="true"
               QuestionText="SSRS Folder"
               RenderError="false"
               RenderStacked="false"
               QuestionSubText="What folder is the SSRS Report in?">
         <input type="text" placeholder="enter folder name" />
-    </Question>
+    </QuestionHolder>
 
-    <Question IsRequired="true"
+    <QuestionHolder IsRequired="true"
               IsValid="true"
               QuestionText="Portal Heading"
               RenderError="false"
               RenderStacked="false"
               QuestionSubText="What heading should this link appear under?">
         <input type="text" placeholder="enter heading name" />
-    </Question>
+    </QuestionHolder>
 
-    <Question IsRequired="true"
+    <QuestionHolder IsRequired="true"
               IsValid="true"
               QuestionText="Portal Sub-Heading"
               RenderError="false"
               RenderStacked="false"
               QuestionSubText="What sub-heading should this link appear under?">
         <input type="text" placeholder="enter sub-heading name" />
-    </Question>
+    </QuestionHolder>
 
-    <Question IsRequired="true"
+    <QuestionHolder IsRequired="true"
               IsValid="true"
               QuestionText="Access"
               RenderError="false"
@@ -81,7 +81,7 @@
                    RenderOutline="true"
                    AnsweredCallback="@(() => { })"
                    SelectedOptions="@(new List<string>())"/>
-    </Question>
+    </QuestionHolder>
 
 
     <Row>
