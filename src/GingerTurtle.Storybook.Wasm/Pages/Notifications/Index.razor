@@ -1,0 +1,20 @@
+@page "/notifications"
+@using GingerTurtle.Design.Models
+
+<Container Size="ElementSize.ExtraLarge">
+
+    <NotificationRenderer Notification="@Error" PreventDismiss="@true" />
+    <NotificationRenderer Notification="@Warn" PreventDismiss="@true" />
+    <NotificationRenderer Notification="@Info" PreventDismiss="@true" />
+    <NotificationRenderer Notification="@Success" PreventDismiss="@true" />
+    
+</Container>
+
+@code {
+
+    private Notification Error => new Notification("Error", "This is an error message", NotificationType.Error);
+    private Notification Info => new Notification("Info", "This is an info message", NotificationType.Info);
+    private Notification Success => new Notification("Success", "This is a success message", NotificationType.Success);
+    private Notification Warn => new Notification("Warning", "This is a warning message", NotificationType.Warn);
+
+}

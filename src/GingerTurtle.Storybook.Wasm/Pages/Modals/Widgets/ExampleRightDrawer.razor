@@ -1,0 +1,16 @@
+@using GingerTurtle.Design.Models
+<Drawer Alignment="DrawerAlignment.Right"
+        State="DrawerState"
+        OpenButtonText="Test Right"
+        RenderOverlay="true"
+        OpenButtonType="ButtonType.Secondary"
+        Id="dwrLeftDrawer"
+        Size="ElementSize.Small"
+        IsDark="true">
+        
+    <h1>this is a drawer</h1>
+</Drawer>
+
+@code {
+    private DrawerState DrawerState { get; set; } = new();
+}

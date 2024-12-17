@@ -1,0 +1,23 @@
+@using GingerTurtle.Design.Constants
+@using GingerTurtle.Design.Models
+
+<Drawer Id="@(Guid.NewGuid().ToString())"
+        Size="ElementSize.Medium"
+        Alignment="DrawerAlignment.Right"
+        State="DrawerState"
+        IsDark="false"
+        RenderOverlay="true"
+        OpenButtonText=""
+        OpenButtonType="ButtonType.BorderedIcon"
+        OpenHoverText="Priorities"
+        OpenIconColour="ElementColor.Blue"
+        OpenIconPosition="IconPosition.Left"
+        OpenIconUrl="@ImageUrls.Priority">
+    <h1>Priorities</h1>
+</Drawer>
+
+@code {
+    
+    private DrawerState DrawerState { get; set; } = new();
+    
+}

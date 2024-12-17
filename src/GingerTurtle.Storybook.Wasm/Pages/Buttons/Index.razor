@@ -1,0 +1,421 @@
+﻿@page "/buttons"
+<PageTitle>Storybook - Example Buttons</PageTitle>
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col100" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnExample"
+                        Disabled="@Spinning"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Medium Primary Button"
+                        Title="example"
+                        Type="ButtonType.Primary"
+                        HoverText="Example Button"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+    </Row>
+</Container>
+
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col100" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnTileExample"
+                        Disabled="@Spinning"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Medium Primary Button"
+                        Title="example"
+                        Type="ButtonType.TileButton"
+                        HoverText="Example Button"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+    </Row>
+</Container>
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col50" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecoondary1"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Secondary Button"
+                        Title="example"
+                        Type="ButtonType.Secondary"
+                        HoverText="Secondary Button"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+        <Column DesktopSize="ColumnSize.Col50" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecoondary1"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Secondary Button"
+                        Title="example"
+                        Type="ButtonType.Secondary"
+                        HoverText="Secondary Button"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+    </Row>
+</Container>
+
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col25" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnLink1"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link"
+                        Title="example"
+                        Type="ButtonType.PrimaryLink"
+                        HoverText="Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+        <Column DesktopSize="ColumnSize.Col25" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnLink2"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link"
+                        Title="example"
+                        Type="ButtonType.PrimaryLink"
+                        HoverText="Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col25" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnLink3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link"
+                        Title="example"
+                        Type="ButtonType.PrimaryLink"
+                        HoverText="Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col25" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnLink4"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link"
+                        Title="example"
+                        Type="ButtonType.PrimaryLink"
+                        HoverText="Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+    </Row>
+</Container>
+
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col20" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecondaryLink1"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link 2"
+                        Title="example"
+                        Type="ButtonType.SecondaryLink"
+                        HoverText="Secondary Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+        <Column DesktopSize="ColumnSize.Col20" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecondaryLink2"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link 2"
+                        Title="example"
+                        Type="ButtonType.SecondaryLink"
+                        HoverText="Secondary Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col20" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecondaryLink3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link 2"
+                        Title="example"
+                        Type="ButtonType.SecondaryLink"
+                        HoverText="Secondary Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col20" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecondaryLink4"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link 2"
+                        Title="example"
+                        Type="ButtonType.SecondaryLink"
+                        HoverText="Secondary Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col20" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnSecondaryLink5"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Text="Link 2"
+                        Title="example"
+                        Type="ButtonType.SecondaryLink"
+                        HoverText="Secondary Link"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Small"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+    </Row>
+</Container>
+
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon1"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.FlatIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IsDark="false"
+                        IconUrl="/img/icons/list.svg"
+                        ClickedCallback="Clicked"
+                        IsProcessing="@Spinning"/>
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon2"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.BorderedIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.FlatIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon4"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.BorderedIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon5"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.FlatIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.BorderedIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.FlatIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="true"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.BorderedIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.FlatIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+        <Column DesktopSize="ColumnSize.Col10" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormButton Id="btnIcon3"
+                        Disabled="false"
+                        IconPosition="IconPosition.Left"
+                        Size="ElementSize.Medium"
+                        Title="example"
+                        Type="ButtonType.BorderedIcon"
+                        HoverText="An Icon"
+                        IconColor="ElementColor.Default"
+                        IconSize="ElementSize.Medium"
+                        IconUrl="/img/icons/list.svg"
+                        IsDark="false"
+                        ClickedCallback="Clicked" />
+        </Column>
+    </Row>
+</Container>
+
+<Container>
+    <Row>
+        <Column DesktopSize="ColumnSize.Col50" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormLink Id="btnLink1"
+                      Disabled="false"
+                      IconPosition="IconPosition.Left"
+                      Size="ElementSize.Medium"
+                      Text="Primary Link"
+                      Type="ButtonType.PrimaryLink"
+                      HoverText="Primary Link"
+                      IconColor="ElementColor.Default"
+                      IconSize="ElementSize.Small"
+                      IconUrl="/img/icons/list.svg"
+                      IsDark="false"
+                      Link="https://www.bbc.co.uk"
+                      OpenInNewTab="true"/>
+        </Column>
+        <Column DesktopSize="ColumnSize.Col50" MobileSize="ColumnSize.Col100" Layout="ElementPosition.Centre">
+            <FormLink Id="btnLink2"
+                      Disabled="false"
+                      IconPosition="IconPosition.Left"
+                      Size="ElementSize.Medium"
+                      Text="Secondary Link"
+                      Type="ButtonType.SecondaryLink"
+                      HoverText="Secondary Link"
+                      IconColor="ElementColor.Default"
+                      IconSize="ElementSize.Small"
+                      IconUrl="/img/icons/list.svg"
+                      IsDark="false"
+                      Link="https://www.bbc.co.uk"
+                      OpenInNewTab="true"/>
+        </Column>
+    </Row>
+</Container>
+
+
+
+@code{
+
+    private bool Spinning { get; set; }
+    
+    public Task Clicked()
+    {
+        Console.WriteLine("Hello");
+        Spinning = !Spinning;
+        return Task.CompletedTask;
+    }
+
+    
+    
+    
+}
+

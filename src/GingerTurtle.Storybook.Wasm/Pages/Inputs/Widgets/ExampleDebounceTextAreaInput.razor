@@ -1,0 +1,28 @@
+<DebounceTextAreaInput
+    Type="TextInputType.Text"
+    DebounceMilliseconds="300"
+    Value="@Value"
+    InputChangedHandler="TextInputChanged"
+    ElapsedHandler="@Elapsed"
+    Placeholder="debounce placeholder"
+    Id="@Guid.NewGuid().ToString()"/>
+
+@code {
+
+    private string Value { get; set; }
+        
+    private void TextInputChanged(object value)
+    {
+        var enteredText = value?.ToString();
+        Value = enteredText;
+        StateHasChanged();
+    }
+
+    private Task Elapsed()
+    {
+        Console.WriteLine($"Value : {Value}");
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+        
+}
