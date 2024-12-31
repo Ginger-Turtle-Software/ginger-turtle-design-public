@@ -1,7 +1,5 @@
 
 :root {
-    /* Component Sizes */
-    --navbar-height: 60px;
     --subnavbar-height: 125px;
     --sticky-subnavbar-height: 93px;
     --left-split-width: 490px;

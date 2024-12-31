@@ -7,13 +7,15 @@
         
             <div class="question-text-wrapper">
                 <div class="question-text @(RenderStacked ? "stacked" : "")">
-                    <Display If="@(!IsValid && RenderError)">
-                        <Icon Color="ElementColor.Red"
-                              Size="ElementSize.Medium"
-                              IconUrl="@ImageUrls.Error" />
-                    </Display>
+                    <Display If="@(!string.IsNullOrEmpty(QuestionText))">
+                        <Display If="@(!IsValid && RenderError)">
+                            <Icon Color="ElementColor.Red"
+                                  Size="ElementSize.Medium"
+                                  IconUrl="@ImageUrls.Error" />
+                        </Display>
                     
-                    @QuestionText @(IsRequired ? "*" : "") 
+                        @QuestionText @(IsRequired ? "*" : "")
+                    </Display>
                 </div>
                 <Display If="@(!string.IsNullOrEmpty(QuestionSubText))">
                     <div class="question-sub-text">
