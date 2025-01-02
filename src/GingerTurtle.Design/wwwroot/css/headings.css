@@ -61,7 +61,7 @@ h4 {
 
 /* Paragraph styling */
 p {
-    font-size: 14px; /* Standard size for body text */
+    font-size: 1rem;
     line-height: 1.5; /* Ensures good readability */
     margin-top: 10px;
     margin-bottom: 10px;

@@ -42,8 +42,9 @@
 select, input, textarea {
     color: var(--inputFontFamily);
     display: block;
-    text-indent: 12px;
-    height: 38px;
+    text-indent: var(--spacing-2);
+    font-size: 1rem;
+    height: var(--inputHeight);
     background: var(--inputBackgroundColour);
     border: 1px solid var(--inputBorderColour);
     border-radius: 4px;

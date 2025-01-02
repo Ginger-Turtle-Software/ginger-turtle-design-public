@@ -10,13 +10,15 @@ input[type='radio']:checked + .pseudo-radio:after {
 
 label.pseudo-radio.outline{
     background-color: var(--inputBackgroundColour);
-    padding: 8px 12px 8px 44px;
+    padding-left: 50px;
     border: 1px solid var(--inputBorderColour);
     border-radius: 4px;
     line-height: 24px;
-    font-size: 14px;
+    font-size: 1rem;
     display: inline-flex;
     width: 100%;
+    height: var(--inputHeight);
+    align-items: center;
 }
 
 label.pseudo-radio.outline:hover{
@@ -36,8 +38,8 @@ input[type="radio"]:checked + .pseudo-radio:after {
 }
 
 input[type="radio"]:checked + .pseudo-radio.outline:after {
-    top: 12px;
-    left: 14px;
+    top: 14px;
+    left: 17px;
     width: 16px;
     height: 16px;
 }
@@ -79,7 +81,7 @@ label.pseudo-radio:before{
 }
 
 input:checked + .pseudo-radio.outline:before{
-    top: 10px;
+    top: 9px;
     left: 12px;
 }
 
@@ -88,8 +90,8 @@ label.pseudo-radio:before,
 label.pseudo-radio:after{
     position: absolute;
     content: '';
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     background-color: white;
     transform-origin: center;
     left: 0;
@@ -100,8 +102,8 @@ label.pseudo-radio:after{
 
 label.pseudo-radio.outline:before,
 label.pseudo-radio.outline:after {
+    top: 9px;
     left:12px;
-    top: 10px;
 }
 
 input[type="radio"]:checked+.pseudo-check{
