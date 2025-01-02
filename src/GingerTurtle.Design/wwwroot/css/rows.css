@@ -26,7 +26,7 @@
 .row-wrap.info{
     border-left: 4px solid #0046A3;
     background-color: #E1EBFF;
-    font-size: 14px;
+    font-size: 1rems;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     font-weight: 400;
