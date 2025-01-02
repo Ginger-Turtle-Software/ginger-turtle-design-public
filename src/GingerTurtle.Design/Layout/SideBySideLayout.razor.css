@@ -19,7 +19,6 @@
 }
 
 .content{
-    /*background-color: #ececec;*/
     padding: 20px;
     box-sizing: border-box;
     height: 100%;
@@ -39,5 +38,4 @@
     transform: translate(-50%, -50%);
     width: 1px;
     height: 100%;
-    background-color: var(--grey5);
 }
