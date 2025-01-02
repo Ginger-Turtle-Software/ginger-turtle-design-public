@@ -77,13 +77,6 @@ p.light {
     color: #666; /* Lighter gray for secondary text */
 }
 
-/* Optional: Media query for responsiveness */
-@media (max-width: 768px) {
-    p {
-        font-size: 13px; /* Adjust font size for mobile */
-    }
-}
-
 /* Additional elements styling (optional) */
 .container {
     padding: 20px; /* For general padding in containers */
