@@ -38,8 +38,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     transition: all 0.5s ease-out;
-    backdrop-filter: blur(5px); /* Applies a blur to the background */
-    background-color: rgba(0, 0, 0, 0.4); /* Optional color to darken the blur */
+    backdrop-filter: blur(2px); /* Applies a blur to the background */
+    background-color: rgba(0, 51, 102, 0.3);
 }
 
 .overlay.open{

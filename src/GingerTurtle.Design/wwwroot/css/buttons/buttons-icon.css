@@ -20,11 +20,11 @@
     --iconButtonDarkBorderColour: #67677B;
 
     --iconButtonDarkHoverFontColour: white;
-    --iconButtonDarkHoverBackgroundColour: #36475C;
+    --iconButtonDarkHoverBackgroundColour: transparent;
     --iconButtonDarkHoverBorderColour: #36475C;
 
     --iconButtonDarkActiveFontColour: white;
-    --iconButtonDarkActiveBackgroundColour: #36475C;
+    --iconButtonDarkActiveBackgroundColour: transparent;
     --iconButtonDarkActiveBorderColour: #36475C;
 }
 
@@ -42,6 +42,10 @@
     padding: 10px;
     border-radius: 100px;
     background-color: var(--iconButtonBackgroundColour);
+}
+
+.btn.btn-icon.dark .btn-icon-wrapper{
+    background-color: transparent;
 }
 
 .btn.btn-icon.bordered .btn-icon-wrapper{
@@ -95,6 +99,10 @@
 
 .btn.btn-icon.dark .icon {
     background-color: var(--iconButtonDarkFontColour);
+}
+
+.btn.btn-icon.dark.bordered:hover .btn-icon-wrapper{
+    border-color: white;
 }
 
 .btn.btn-icon.dark.bordered .btn-icon-wrapper{
