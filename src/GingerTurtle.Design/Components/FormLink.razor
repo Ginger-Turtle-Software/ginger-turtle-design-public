@@ -6,6 +6,7 @@
        data-cy="@Id"
        id="@Id"
        aria-label="@(Disabled ? "" : HoverText)"
+       @onclick="@ClickedCallback"
        @onclick:stopPropagation="true">
 
         <Display If="@(!(string.IsNullOrEmpty(IconUrl))  && IconPosition == IconPosition.Left)">        
@@ -32,6 +33,9 @@
     [Parameter, EditorRequired]    
     public string Link { get; set; }  
    
+    [Parameter]
+    public EventCallback ClickedCallback { get; set; }
+    
     [Parameter]
     public string IconUrl { get; set; }
     

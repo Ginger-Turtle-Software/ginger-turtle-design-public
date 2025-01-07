@@ -31,4 +31,9 @@ public static class ImageUrls
     public static string Remove1Min => "/_content/GingerTurtle.Design/img/icons/remove1min.svg";
     public static string Remove5Min => "/_content/GingerTurtle.Design/img/icons/remove5min.svg";
     public static string Remove5Hour => "/_content/GingerTurtle.Design/img/icons/remove5hour.svg";
+    public static string Menu => "/_content/GingerTurtle.Design/img/icons/menu.svg";
+    public static string Reports => "/_content/GingerTurtle.Design/img/icons/reports.svg";
+    public static string Logout => "/_content/GingerTurtle.Design/img/icons/logout.svg";
+    public static string SwitchAccount => "/_content/GingerTurtle.Design/img/icons/switch-account.svg";
+    public static string Dashboard => "/_content/GingerTurtle.Design/img/icons/home.svg";
 }
