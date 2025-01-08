@@ -4,7 +4,7 @@
     <Row>
         <Column DesktopSize="ColumnSize.ColGrow"
                 MobileSize="ColumnSize.ColGrow"
-                HorizontalLayout="ElementPosition.Centre">
+                HorizontalLayout="HorizontalPosition.Centre">
             <FormButton Type="ButtonType.PrimaryLink"
                         Text="<"
                         ClickedCallback="@(() => { ChangeMonth(-1); })" Id="btnPreviousMonth" />
@@ -17,7 +17,7 @@
                 var target3 = target2;
                 <Column DesktopSize="ColumnSize.ColGrow"
                         MobileSize="ColumnSize.ColGrow"
-                        HorizontalLayout="ElementPosition.Centre">
+                        HorizontalLayout="HorizontalPosition.Centre">
                     <span class="month @(IsCurrentMonth(target3.Month, target3.Year) || IsNextMonth(target3.Month, target3.Year) ? "active" : "")"
                           @onclick="@(async () => { await SetMonth(target3); })">
                         @target3.ToString("MMM")
@@ -38,7 +38,7 @@
 
         <Column DesktopSize="ColumnSize.ColGrow"
                 MobileSize="ColumnSize.ColGrow"
-                HorizontalLayout="ElementPosition.Centre">
+                HorizontalLayout="HorizontalPosition.Centre">
             <FormButton Type="ButtonType.PrimaryLink"
                         Text=">"
                         ClickedCallback="@(() => { ChangeMonth(1); })" Id="btnNextMonth" />

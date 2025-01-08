@@ -1,7 +1,7 @@
 @using GingerTurtle.Design.Constants
 <div class="question-wrapper @(RenderError && !IsValid ? "invalid-input" : "")">
     <Row>
-        <Column HorizontalLayout="ElementPosition.Left"
+        <Column HorizontalLayout="HorizontalPosition.Left"
                 DesktopSize="@(RenderStacked ? ColumnSize.Col100 : ColumnSize.Col50)"
                 MobileSize="ColumnSize.Col100">
         
@@ -45,7 +45,7 @@
         
         @if (!RenderStacked)
         {
-            <Column HorizontalLayout="ElementPosition.Left"
+            <Column HorizontalLayout="HorizontalPosition.Left"
                     DesktopSize="ColumnSize.Col50"
                     MobileSize="ColumnSize.Col100">
                 <div class="question-content">

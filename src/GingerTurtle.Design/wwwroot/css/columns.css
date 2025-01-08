@@ -37,15 +37,15 @@
     justify-content: end;
 }
 
+.col .col-content.col-vertical-top{
+    align-items: start;
+}
+
 .col .col-content.col-vertical-centre{
     align-items: center;
 }
 
-.col .col-content.col-vertical-left{
-    align-items: start;
-}
-
-.col .col-content.col-vertical-right{
+.col .col-content.col-vertical-bottom{
     align-items: end;
 }
 

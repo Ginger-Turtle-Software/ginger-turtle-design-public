@@ -18,10 +18,10 @@
     public PaddingSize Padding { get; set; } = PaddingSize.None;
     
     [Parameter]
-    public ElementPosition HorizontalLayout { get; set; } = ElementPosition.Left;
+    public HorizontalPosition HorizontalLayout { get; set; } = HorizontalPosition.Left;
     
     [Parameter] 
-    public ElementPosition VerticalLayout { get; set; } = ElementPosition.Centre;
+    public VerticalPosition VerticalLayout { get; set; } = VerticalPosition.Centre;
 
     [Parameter] 
     public string CssClass { get; set; } = "";
@@ -42,18 +42,18 @@
     private string GetHorizontalLayoutCss() => 
         HorizontalLayout switch
         {
-            ElementPosition.Left => "col-horizontal-left",
-            ElementPosition.Centre => "col-horizontal-centre",
-            ElementPosition.Right => "col-horizontal-right",
+            HorizontalPosition.Left => "col-horizontal-left",
+            HorizontalPosition.Centre => "col-horizontal-centre",
+            HorizontalPosition.Right => "col-horizontal-right",
             _ => ""
         };
     
     private string GetVerticalLayoutCss() => 
         VerticalLayout switch
         {
-            ElementPosition.Left => "col-vertical-left",
-            ElementPosition.Centre => "col-vertical-centre",
-            ElementPosition.Right => "col-vertical-right",
+            VerticalPosition.Top => "col-vertical-top",
+            VerticalPosition.Centre => "col-vertical-centre",
+            VerticalPosition.Bottom => "col-vertical-bottom",
             _ => ""
         };
     

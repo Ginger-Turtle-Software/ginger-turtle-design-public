@@ -1,8 +1,8 @@
 namespace GingerTurtle.Design.Types;
 
-public enum ElementPosition
+public enum VerticalPosition
 {
-    Left = 0,
+    Top = 0,
     Centre = 1,
-    Right = 2
+    Bottom = 2
 }
