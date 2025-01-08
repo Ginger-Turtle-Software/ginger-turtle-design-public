@@ -36,4 +36,5 @@ public static class ImageUrls
     public static string Logout => "/_content/GingerTurtle.Design/img/icons/logout.svg";
     public static string SwitchAccount => "/_content/GingerTurtle.Design/img/icons/switch-account.svg";
     public static string Dashboard => "/_content/GingerTurtle.Design/img/icons/home.svg";
+    public static string Invoice => "/_content/GingerTurtle.Design/img/icons/invoice.svg";
 }

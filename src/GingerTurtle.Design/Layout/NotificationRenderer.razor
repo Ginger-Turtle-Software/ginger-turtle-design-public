@@ -4,8 +4,7 @@
 <div class="notification">
     <Row Type="@GetRowType()">
         <Column DesktopSize="ColumnSize.ColAuto"
-            MobileSize="ColumnSize.ColAuto"
-            Layout="ElementPosition.VerticalCentre">
+            MobileSize="ColumnSize.ColAuto">
             <Icon IconUrl="@GetIconType()"
                   Color="GetIconColor()"
                   Size="ElementSize.Large"/>
@@ -13,8 +12,7 @@
         
         <Display If="@(!string.IsNullOrEmpty(Notification.Title))">
             <Column DesktopSize="ColumnSize.ColAuto"
-                    MobileSize="ColumnSize.ColAuto"
-                    Layout="ElementPosition.VerticalCentre">
+                    MobileSize="ColumnSize.ColAuto">
                 <div class="notification-title">
                     @Notification.Title 
                 </div>
@@ -22,15 +20,13 @@
         </Display>
 
         <Column DesktopSize="ColumnSize.ColGrow"
-                MobileSize="ColumnSize.ColAuto"
-                Layout="ElementPosition.VerticalCentre">
+                MobileSize="ColumnSize.ColAuto">
             <p class="sm">
                 @Notification.Message
             </p>
         </Column>
         <Column DesktopSize="ColumnSize.ColAuto"
-                MobileSize="ColumnSize.ColAuto"
-                Layout="ElementPosition.VerticalCentre">
+                MobileSize="ColumnSize.ColAuto">
             <Display If="@(!PreventDismiss)">
                 <FormButton
                     IconSize="ElementSize.Small"

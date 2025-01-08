@@ -1,4 +1,16 @@
 
+.col.padding-0{
+    padding: 0;
+}
+
+.col.padding-05{
+    padding: var(--spacing-05);
+}
+
+.col.padding-1{
+    padding: var(--spacing-1);
+}
+
 .col .col-content{
     position: relative;
     padding: 8px 0;
@@ -13,20 +25,28 @@
 }
 
 
-.col .col-content.col-centre{
+.col .col-content.col-horizontal-left{
+    justify-content: start;
+}
+
+.col .col-content.col-horizontal-centre{
     justify-content: center;
-    align-items: center;
-    text-align: center;
+}
+
+.col .col-content.col-horizontal-right{
+    justify-content: end;
 }
 
 .col .col-content.col-vertical-centre{
     align-items: center;
 }
 
-.col .col-end{
-    justify-content: right;
-    align-items: center;
-    text-align: right;
+.col .col-content.col-vertical-left{
+    align-items: start;
+}
+
+.col .col-content.col-vertical-right{
+    align-items: end;
 }
 
 

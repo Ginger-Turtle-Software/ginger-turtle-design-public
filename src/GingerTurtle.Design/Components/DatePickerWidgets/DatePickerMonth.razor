@@ -5,8 +5,7 @@
     
     <Row>
         <Column DesktopSize="ColumnSize.ColAuto"
-                MobileSize="ColumnSize.ColAuto"
-                Layout="ElementPosition.VerticalCentre">
+                MobileSize="ColumnSize.ColAuto">
             <FormButton Type="ButtonType.FlatIcon"
                         IconUrl="@ImageUrls.Left"
                         ClickedCallback="SetPreviousMonth"
@@ -15,13 +14,12 @@
 
         <Column DesktopSize="ColumnSize.ColGrow"
                 MobileSize="ColumnSize.ColGrow"
-                Layout="ElementPosition.Centre">
+                HorizontalLayout="ElementPosition.Centre">
             <h5>@MonthTitle()</h5>
         </Column>
 
         <Column DesktopSize="ColumnSize.ColAuto"
-                MobileSize="ColumnSize.ColAuto"
-                Layout="ElementPosition.VerticalCentre">
+                MobileSize="ColumnSize.ColAuto">
             <FormButton Type="ButtonType.FlatIcon"
                         IconUrl="@ImageUrls.Right"
                         ClickedCallback="SetNextMonth"

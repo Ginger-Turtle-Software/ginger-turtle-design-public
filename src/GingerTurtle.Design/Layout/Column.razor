@@ -1,21 +1,30 @@
 @using System.Text
 
 <div class="col @GetDeviceSizeCss()">
-    <div class="col-content @GetLayoutCss()">
+    <div class="col-content @GetHorizontalLayoutCss() @GetVerticalLayoutCss()">
         @ChildContent
     </div>
 </div>
 
 @code {
-    
-    [Parameter, EditorRequired]
-    public ColumnSize MobileSize { get; set; }
-    
-    [Parameter, EditorRequired]
-    public ColumnSize DesktopSize { get; set; }
+
+    [Parameter] 
+    public ColumnSize DesktopSize { get; set; } = ColumnSize.ColAuto;
+
+    [Parameter]
+    public ColumnSize MobileSize { get; set; } = ColumnSize.Col100;
     
     [Parameter]
-    public ElementPosition Layout { get; set; } = ElementPosition.Left;
+    public PaddingSize Padding { get; set; } = PaddingSize.None;
+    
+    [Parameter]
+    public ElementPosition HorizontalLayout { get; set; } = ElementPosition.Left;
+    
+    [Parameter] 
+    public ElementPosition VerticalLayout { get; set; } = ElementPosition.Centre;
+
+    [Parameter] 
+    public string CssClass { get; set; } = "";
     
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -25,18 +34,26 @@
         var builder = new StringBuilder();
         builder.Append($"{MobileSize.GetMobileCss()} ");
         builder.Append($"{DesktopSize.GetDesktopCss()} ");
-        builder.Append($"{GetLayoutCss()} ");
-        
+        builder.Append($"{Padding.GetCss()} ");
+        builder.Append($"{CssClass} ");
         return builder.ToString();
     }
 
-    private string GetLayoutCss() => 
-        Layout switch
+    private string GetHorizontalLayoutCss() => 
+        HorizontalLayout switch
         {
-            ElementPosition.Left => "",
-            ElementPosition.Centre => "col-centre",
-            ElementPosition.Right => "col-end",
-            ElementPosition.VerticalCentre => "col-vertical-centre",
+            ElementPosition.Left => "col-horizontal-left",
+            ElementPosition.Centre => "col-horizontal-centre",
+            ElementPosition.Right => "col-horizontal-right",
+            _ => ""
+        };
+    
+    private string GetVerticalLayoutCss() => 
+        VerticalLayout switch
+        {
+            ElementPosition.Left => "col-vertical-left",
+            ElementPosition.Centre => "col-vertical-centre",
+            ElementPosition.Right => "col-vertical-right",
             _ => ""
         };
     
