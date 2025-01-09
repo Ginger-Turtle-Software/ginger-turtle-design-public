@@ -1,6 +1,6 @@
 
 <div class="row-wrap @(IsHeader ? "header" : "") @Type.GetRowCss() ">
-    <div class="row @CssClass">
+    <div class="row @RowCssClass">
         @ChildContent
     </div>
 </div>
@@ -17,6 +17,6 @@
     public RowType Type { get; set; }
     
     [Parameter]
-    public string CssClass { get; set; }
+    public string RowCssClass { get; set; }
     
 }

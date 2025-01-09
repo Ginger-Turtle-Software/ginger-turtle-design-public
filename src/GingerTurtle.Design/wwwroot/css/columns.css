@@ -51,7 +51,7 @@
 
 
 /* - Mobile -*/
-@media(max-width: 767px){
+@media(max-width: 1023px){
     .col.col-mobile-auto{
         width: auto;
     }
@@ -124,7 +124,7 @@
 }
 
 /* - Desktop -*/
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .col.col-desktop-auto{
         width: auto;
     }
