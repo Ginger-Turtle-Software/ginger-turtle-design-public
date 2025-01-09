@@ -3,19 +3,19 @@
 <Container Size="ElementSize.ExtraLarge">
     <ResponsiveTable>
         <Row IsHeader="true">
-            <Cell Layout="ElementPosition.Left"
+            <Cell Layout="HorizontalPosition.Left"
                   Title=""
                   IsHeader="true"
                   DesktopSize="ColumnSize.Col20">
                 Name
             </Cell>
-            <Cell Layout="ElementPosition.Left"
+            <Cell Layout="HorizontalPosition.Left"
                   Title=""
                   IsHeader="true"
                   DesktopSize="ColumnSize.Col20">
                 Group Comment
             </Cell>
-            <Cell Layout="ElementPosition.Left"
+            <Cell Layout="HorizontalPosition.Left"
                   Title=""
                   IsHeader="true"
                   DesktopSize="ColumnSize.ColGrow">
@@ -32,17 +32,17 @@
                 @{
                     var i1 = i2;
                 }
-                <Cell Layout="ElementPosition.Left"
+                <Cell Layout="HorizontalPosition.Left"
                       Title="Product Type"
                       DesktopSize="ColumnSize.Col20">
                     Product Type @i1
                 </Cell>
-                <Cell Layout="ElementPosition.Left"
+                <Cell Layout="HorizontalPosition.Left"
                       Title="Group Comment"
                       DesktopSize="ColumnSize.Col20">
                     
                 </Cell>
-                <Cell Layout="ElementPosition.Left"
+                <Cell Layout="HorizontalPosition.Left"
                       Title="Product Type Comment"
                       DesktopSize="ColumnSize.ColGrow">
                     <textarea class="white"></textarea>
@@ -54,7 +54,7 @@
                         </InlineLabelsHolder>
                     }
                 </Cell>
-                <Cell Layout="ElementPosition.Centre"
+                <Cell Layout="HorizontalPosition.Centre"
                       Title=""
                       DesktopSize="ColumnSize.ColAuto"
                       MobileSize="ColumnSize.Col50">
@@ -63,7 +63,7 @@
                                 Id="@Guid.NewGuid().ToString()"
                                 IconUrl="@ImageUrls.Save" />
                 </Cell>
-                <Cell Layout="ElementPosition.Centre"
+                <Cell Layout="HorizontalPosition.Centre"
                       Title=""
                       DesktopSize="ColumnSize.ColAuto"
                       MobileSize="ColumnSize.Col50">
