@@ -1,7 +1,11 @@
 .loading-screen-wrapper{
     width: 100%;
-    height:calc(100vh - 300px);
-    display:flex;
+    height: calc(100vh - 300px);
+    display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
+    color: white;
+    position: relative;
+    flex-direction: column;
 }

@@ -1,22 +1,21 @@
 <div class="spinner-wrapper">
-    <div class="spinner @SpinnerSize.GetCssClass()"></div>
+    <section><span class="loader-38"> </span></section>
 </div>
+
 @if (!string.IsNullOrEmpty(LoadingText))
 {
-    <p class="@TextSize.GetCssClass()">
+    <div class="hero">
         @LoadingText
-    </p>
+    </div>
 }
+
 
 @code {
 
-    [Parameter]
-    public string LoadingText { get; set; }
+    [Parameter] public string LoadingText { get; set; }
 
-    [Parameter]
-    public ElementSize TextSize { get; set; } = ElementSize.Large;
+    [Parameter] public ElementSize TextSize { get; set; } = ElementSize.Large;
 
-    [Parameter]
-    public ElementSize SpinnerSize { get; set; } = ElementSize.Large;
+    [Parameter] public ElementSize SpinnerSize { get; set; } = ElementSize.Large;
 
 }
