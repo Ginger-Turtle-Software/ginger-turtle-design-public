@@ -37,7 +37,6 @@
     text-decoration: none;
     padding: 0;
     font-family: var(--bodyFont), sans-serif;
-    white-space: nowrap;
 }
 
 .btn.btn-link-secondary .icon{

@@ -19,6 +19,7 @@
     z-index:202;
     position: relative;
     text-align: left;
+    max-width: calc(100vw - 20px);
 }
 
 .modal.xl {
@@ -42,7 +43,7 @@
 }
 
 .modal .modal-body .modal-body-content{
-    padding: 42px 32px 22px 32px;
+    padding: 20px;
 }
 
 .modal .modal-footer{
