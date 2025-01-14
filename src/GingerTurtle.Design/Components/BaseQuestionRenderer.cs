@@ -29,7 +29,7 @@ public abstract class BaseQuestionRenderer : ComponentBase
         });
     }
     
-    protected Task ValidateApplication()
+    protected virtual Task ValidateApplication()
     {
         BaseFormState.ValidateApplication();
         return Task.CompletedTask;
