@@ -67,7 +67,8 @@ label.pseudo-check {
     word-wrap: break-word;
     display: block;
     background-color: transparent;
-    font-size: 14px;
+    font-size: 1rem;
+    line-height: 1.5;
     cursor: pointer;
     padding: 0 0 0 28px;
     position: relative;

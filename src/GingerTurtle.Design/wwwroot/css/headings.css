@@ -61,9 +61,9 @@ h4 {
 /* Paragraph styling */
 p {
     font-size: 1rem;
-    line-height: 1.5; /* Ensures good readability */
-    margin-top: 10px;
-    margin-bottom: 10px;
+    line-height: 1.5;
+    margin-top: var(--spacing-2);
+    margin-bottom: var(--spacing-2);
 }
 
 /* Optional: Larger text for specific areas or sections */
