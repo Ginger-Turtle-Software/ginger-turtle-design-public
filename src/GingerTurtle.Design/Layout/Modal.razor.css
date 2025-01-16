@@ -43,7 +43,7 @@
 }
 
 .modal .modal-body .modal-body-content{
-    padding: 20px;
+    padding: var(--spacing-8) var(--spacing-4);
 }
 
 .modal .modal-footer{

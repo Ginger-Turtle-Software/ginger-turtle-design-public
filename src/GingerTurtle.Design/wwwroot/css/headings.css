@@ -57,7 +57,6 @@ h4 {
     font-weight: 400;
 }
 
-
 /* Paragraph styling */
 p {
     font-size: 1rem;
@@ -92,10 +91,10 @@ p.light {
 }
 
 /* Optional: Use padding instead of margin to avoid collapsing margins */
-.section {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #ccc; /* Light border between sections */
+.section:not(:last-of-type) {
+    padding-bottom: var(--spacing-5);
 }
+
+
 
 
