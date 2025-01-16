@@ -17,4 +17,7 @@ public class NavigationService(IJSRuntime jsRuntime) : INavigationService
     public async Task SetBodyScrollPosition(int yOffset) => await jsRuntime.InvokeVoidAsync(Functions.SetBodyScrollPosition, yOffset);
     public async Task NavigateToNewTab(string url) => await jsRuntime.InvokeVoidAsync(Functions.NavigateToNewTab,url);
     public async Task ScrollOptionIntoView(string elementId, string containerId) => await jsRuntime.InvokeVoidAsync(Functions.ScrollOptionIntoView, elementId,containerId);
+    public async Task ScrollToElement(string elementId) => await jsRuntime.InvokeVoidAsync(Functions.ScrollToElement, elementId);
+    public async Task FocusInput(string elementId) => await jsRuntime.InvokeVoidAsync(Functions.FocusInput, elementId);
+    public async Task ResetRecaptcha() => await jsRuntime.InvokeVoidAsync(Functions.ResetReCaptcha);
 }

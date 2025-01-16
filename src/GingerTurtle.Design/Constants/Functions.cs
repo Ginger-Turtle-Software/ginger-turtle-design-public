@@ -24,10 +24,12 @@ public static class Functions
     public static string RemoveFocus => "removeFocus";
     public static string NavigateToNewTab => "navigateToNewTab";
     public static string ScrollOptionIntoView => "scrollOptionIntoView";
+    public static string ScrollToElement => "scrollToElementById";
     public static string RestrictInput => "restrictInput";
     public static string GetBodyScrollPosition => "getBodyScrollPosition";
     public static string SetBodyScrollPosition => "setBodyScrollPosition";
     public static string SaveFile => "saveAsFile";
     public static string GetDateTimeOffset => "getTimezoneOffset";
     public static string GetValue => "getValue";
+    public static string ResetReCaptcha => "resetGrecaptcha";
 }

@@ -10,4 +10,7 @@ public interface INavigationService
     Task SetBodyScrollPosition(int yOffset);
     Task NavigateToNewTab(string url);
     Task ScrollOptionIntoView(string elementId, string containerId);
+    Task ScrollToElement(string elementId);
+    Task FocusInput(string elementId);
+    Task ResetRecaptcha();
 }
