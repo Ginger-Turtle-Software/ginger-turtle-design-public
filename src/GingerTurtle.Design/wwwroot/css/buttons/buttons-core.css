@@ -2,22 +2,22 @@
  *  Core Button Style
  ****************************************************/
 button {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--buttonFont), sans-serif;
 }
 
 .btn{
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 1rem;
+    line-height: 1.5;
     border-width: 0;
-    padding: 8px 16px;
     background: transparent;
     text-decoration: none;
     cursor: pointer;
-    font-weight: 700;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    display: inline-flex;
-    align-items: center;
+    font-family: var(--buttonFont), sans-serif;
+}
+
+.btn.full-width{
+    width: 100%;
 }
 
 .btn.sm{

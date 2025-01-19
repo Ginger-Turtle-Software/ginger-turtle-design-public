@@ -2,7 +2,7 @@
 
     <button id="@Id"
             type="button"
-            class="@($"{Type.GetButtonTypeCssClass()} {Size.GetCssClass()}") @(Type.HasIconBorder() ? "bordered" : "") @(IsDark ? "dark" : "") @(IsProcessing ? "processing" : "")"
+            class="@($"{Type.GetButtonTypeCssClass()} {Size.GetCssClass()}") @(Type.HasIconBorder() ? "bordered" : "") @(IsDark ? "dark" : "") @(IsProcessing ? "processing" : "") @CssClass"
             disabled="@(!IsProcessing && Disabled)"
             @onclick="@Clicked"
             data-cy="@Id"
@@ -73,6 +73,9 @@
     [Parameter]
     public EventCallback ClickedCallback { get; set; }
 
+    [Parameter]
+    public string CssClass { get; set; }
+    
     private async Task Clicked()
     {
         if (Disabled || IsProcessing)

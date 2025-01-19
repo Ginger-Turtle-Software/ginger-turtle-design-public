@@ -2,7 +2,7 @@
 <Hover HoverText="@(Disabled ? "" : HoverText)">
     <a href="@Link" 
        target="@GetTarget()"
-       class="@Type.GetButtonTypeCssClass() @Size.GetCssClass() @(Disabled ? "disabled" : "")  @(Type.HasIconBorder() ? "bordered" : "") @(IsDark ? "dark" : "")"
+       class="@Type.GetButtonTypeCssClass() @Size.GetCssClass() @(Disabled ? "disabled" : "")  @(Type.HasIconBorder() ? "bordered" : "") @(IsDark ? "dark" : "") @CssClass"
        data-cy="@Id"
        id="@Id"
        aria-label="@(Disabled ? "" : HoverText)"
@@ -69,6 +69,9 @@
     [Parameter]
     public ElementColor IconColor { get; set; }
 
+    [Parameter]
+    public string CssClass { get; set; }
+    
     private string GetTarget() => OpenInNewTab ? "_blank" : "";
     
     private bool HasIconBorder => Type.HasIconBorder();
