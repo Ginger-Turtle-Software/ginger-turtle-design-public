@@ -30,6 +30,7 @@
 
 
 /*-- Default Styling --*/
+
 .btn.btn-link-secondary{
     color: var(--linkSecondaryButtonFontColour);
     background-color:var(--linkSecondaryButtonBackgroundColour);
@@ -37,6 +38,9 @@
     text-decoration: none;
     padding: 0;
     font-family: var(--bodyFont), sans-serif;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn.btn-link-secondary .icon{
