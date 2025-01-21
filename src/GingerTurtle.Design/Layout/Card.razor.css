@@ -1,9 +1,0 @@
-
-.card {
-    background-color: white;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border: 1px solid var(--actionButtonActiveBackgroundColour);
-    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-}

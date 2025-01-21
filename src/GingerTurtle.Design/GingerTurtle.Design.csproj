@@ -17,14 +17,23 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.12" />
     </ItemGroup>
 
     <ItemGroup>
-      <Content Update="bundleconfig.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\scripts.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\scripts.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\scripts.min.js.gz" />
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\styles.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\styles.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\bundles\styles.min.css.gz" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Components\DatePickerWidgets\DatePickerMonth.razor" />
+      <UpToDateCheckInput Remove="Components\DatePickerWidgets\DateRangePickerMonth.razor" />
+      <UpToDateCheckInput Remove="Components\DatePickerWidgets\DateRangePickerMonths.razor" />
+      <UpToDateCheckInput Remove="Components\DatePickerWidgets\TimePicker.razor" />
     </ItemGroup>
 
 </Project>

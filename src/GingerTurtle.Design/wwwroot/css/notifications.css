@@ -10,11 +10,7 @@
     margin-top: 30px;
 }
 
-.no-scroll {
-    position: fixed;
-    overflow: hidden;
-    width: 100vw;
-}
+
 
 .notification-hub{
     padding: 0 50px;

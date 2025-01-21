@@ -169,20 +169,6 @@ function removeSticky() {
     cleanUpBodyClasses();
 }
 
-function resetScrollSections()
-{
-    const leftSplit = document.getElementsByClassName("split left")[0];
-    const rightSplit = document.getElementsByClassName("split right")[0];
-    scrollTo(leftSplit, 0);
-    scrollTo(rightSplit, 0);
-    if (leftSplit) {
-        window.scrollBy({
-            top: -window.pageYOffset,
-            behavior: 'smooth'
-        });
-    }
-
-}
 
 function cleanUpBodyClasses() {
     const body = document.getElementsByTagName("body")[0];
@@ -201,11 +187,6 @@ function returnPageName() {
         return "home";
     else
         return pathname;
-}
-
-function openPanelAndScrollToFirstErrorAfterTimeout(panelIndex) {
-    setTimeout(() => { openPanelAndScrollToFirstError(panelIndex) }, 100);
-
 }
 
 function openPanelAndScrollToFirstError(panelIndex) {
